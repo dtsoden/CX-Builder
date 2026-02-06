@@ -82,9 +82,7 @@ const VectorStoreDialog = ({ show, dialogProps, onCancel, onIndexResult }) => {
     const portalElement = document.getElementById('portal')
     const { reactFlowInstance } = useContext(flowContext)
     const dispatch = useDispatch()
-    const customization = useSelector((state) => state.customization)
-    const brand = customization?.brand
-    const chatflowLabel = brand === 'cx-builder' ? 'Chatflow' : 'iX-Hello'
+    const chatflowLabel = 'Chatflow'
 
     useNotifier()
     const enqueueSnackbar = (...args) => dispatch(enqueueSnackbarAction(...args))

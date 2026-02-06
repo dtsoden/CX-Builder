@@ -26,7 +26,7 @@ export const theme = (customization) => {
               darkTextPrimary: color.paper,
               darkTextSecondary: color.paper,
               textDark: color.paper,
-              // Concentrix iX-Suite: selected menu text = primary dark navy, background = teal
+              // CX-Builder: selected menu text = primary dark navy, background = teal
               menuSelected: '#003D5B',
               menuSelectedBack: '#24E2CB',
               divider: color.darkPaper,
@@ -38,11 +38,11 @@ export const theme = (customization) => {
               paper: color.paper,
               backgroundDefault: color.paper,
               background: color.primaryLight,
-              // Concentrix iX-Suite: use primary dark navy for text
+              // CX-Builder: use primary dark navy for text
               darkTextPrimary: '#003D5B',
               darkTextSecondary: '#003D5B',
               textDark: '#003D5B',
-              // Concentrix iX-Suite: selected menu text = primary dark navy, background = teal
+              // CX-Builder: selected menu text = primary dark navy, background = teal
               menuSelected: '#003D5B',
               menuSelectedBack: '#24E2CB',
               divider: color.grey200,

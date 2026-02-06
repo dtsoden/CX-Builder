@@ -90,9 +90,7 @@ const APICodeDialog = ({ show, dialogProps, onCancel }) => {
     const dispatch = useDispatch()
     const theme = useTheme()
     const chatflow = useSelector((state) => state.canvas.chatflow)
-    const customization = useSelector((state) => state.customization)
-    const brand = customization?.brand
-    const chatflowLabel = brand === 'cx-builder' ? 'Chatflow' : 'iX-Hello'
+    const chatflowLabel = 'Chatflow'
     const apiConfig = chatflow?.apiConfig ? JSON.parse(chatflow.apiConfig) : {}
     const overrideConfigStatus = apiConfig?.overrideConfig?.status !== undefined ? apiConfig.overrideConfig.status : false
 

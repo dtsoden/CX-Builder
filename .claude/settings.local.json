@@ -19,7 +19,6 @@
       "Bash(timeout:*)",
       "Bash(ping:*)",
       "Bash(docker system:*)",
-      "Bash(ls -la \"C:\\\\Users\\\\DavidSoden\\\\Flowise\\\\packages\\\\ui\\\\src\\\\assets\\\\images\"\" | findstr \"ixsuite \")",
       "Bash(del:*)",
       "Bash(ls:*)",
       "Bash(git checkout:*)"

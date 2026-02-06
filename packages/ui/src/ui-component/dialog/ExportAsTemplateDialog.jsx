@@ -1,5 +1,5 @@
 import { createPortal } from 'react-dom'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
 
@@ -27,8 +27,6 @@ import useApi from '@/hooks/useApi'
 const ExportAsTemplateDialog = ({ show, dialogProps, onCancel }) => {
     const portalElement = document.getElementById('portal')
     const dispatch = useDispatch()
-    const customization = useSelector((state) => state.customization)
-    const brand = customization?.brand
     const [name, setName] = useState('')
     const [flowType, setFlowType] = useState('')
     const [description, setDescription] = useState('')
@@ -44,14 +42,9 @@ const ExportAsTemplateDialog = ({ show, dialogProps, onCancel }) => {
     useNotifier()
 
     const getFlowTypeLabel = (type) => {
-        if (brand === 'cx-builder') {
-            if (type === 'AGENTFLOW') return 'Agentflow'
-            if (type === 'MULTIAGENT') return 'Agentflow V1'
-            if (type === 'CHATFLOW') return 'Chatflow'
-        }
-        if (type === 'AGENTFLOW') return 'iX-Hero'
-        if (type === 'MULTIAGENT') return 'iX-Hero V1'
-        if (type === 'CHATFLOW') return 'iX-Hello'
+        if (type === 'AGENTFLOW') return 'Agentflow'
+        if (type === 'MULTIAGENT') return 'Agentflow V1'
+        if (type === 'CHATFLOW') return 'Chatflow'
         return type
     }
 

@@ -37,8 +37,7 @@ const Agentflows = () => {
     const navigate = useNavigate()
     const theme = useTheme()
     const customization = useSelector((state) => state.customization)
-    const brand = customization?.brand
-    const agentflowTitle = brand === 'cx-builder' ? 'Agentflows' : 'iX-Hero'
+    const agentflowTitle = 'Agentflows'
 
     const [isLoading, setLoading] = useState(true)
     const [images, setImages] = useState({})

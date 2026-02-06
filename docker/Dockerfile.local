@@ -1,4 +1,4 @@
-# Build Concentrix iX-Suite from local source
+# Build CX-Builder from local source
 FROM node:20-alpine AS build
 
 USER root

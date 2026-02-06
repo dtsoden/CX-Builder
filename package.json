@@ -1,8 +1,8 @@
 {
-    "name": "flowise",
-    "version": "3.0.12",
+    "name": "cx-builder",
+    "version": "4.0.0",
     "private": true,
-    "homepage": "https://flowiseai.com",
+    "homepage": "https://cx-builder.com",
     "workspaces": [
         "packages/*",
         "flowise",

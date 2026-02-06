@@ -74,8 +74,7 @@ const AddNodes = ({ nodesData, node, isAgentCanvas, isAgentflowv2, onFlowGenerat
     const theme = useTheme()
     const customization = useSelector((state) => state.customization)
     const dispatch = useDispatch()
-    const brand = customization?.brand
-    const agentflowLabel = brand === 'cx-builder' ? 'Agentflow' : 'iX-Hero'
+    const agentflowLabel = 'Agentflow'
 
     const [searchValue, setSearchValue] = useState('')
     const [nodes, setNodes] = useState({})

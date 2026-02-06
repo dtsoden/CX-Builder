@@ -1,12 +1,9 @@
 import PropTypes from 'prop-types'
-import { useSelector } from 'react-redux'
 import { TableContainer, Table, TableHead, TableCell, TableRow, TableBody, Paper, Chip, Stack, Typography } from '@mui/material'
 import { TooltipWithParser } from '@/ui-component/tooltip/TooltipWithParser'
 
 export const TableViewOnly = ({ columns, rows, sx }) => {
-    const customization = useSelector((state) => state.customization)
-    const brand = customization?.brand
-    const chatflowLabel = brand === 'cx-builder' ? 'Chatflow' : 'iX-Hello'
+    const chatflowLabel = 'Chatflow'
     // Helper function to safely render cell content
     const renderCellContent = (key, row) => {
         if (row[key] === null || row[key] === undefined) {

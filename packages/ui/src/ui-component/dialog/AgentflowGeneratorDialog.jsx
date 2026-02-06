@@ -44,8 +44,7 @@ const AgentflowGeneratorDialog = ({ show, dialogProps, onCancel, onConfirm }) =>
     const [chatModelsOptions, setChatModelsOptions] = useState([])
     const [selectedChatModel, setSelectedChatModel] = useState({})
     const customization = useSelector((state) => state.customization)
-    const brand = customization?.brand
-    const agentflowLabel = brand === 'cx-builder' ? 'Agentflow' : 'iX-Hero'
+    const agentflowLabel = 'Agentflow'
 
     const getChatModelsApi = useApi(assistantsApi.getChatModels)
     const { reactFlowInstance } = useContext(flowContext)

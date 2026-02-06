@@ -51,13 +51,13 @@ const MaterialUISwitch = styled(Switch)(({ theme }) => ({
             },
             '& + .MuiSwitch-track': {
                 opacity: 1,
-                // Concentrix iX-Suite: teal track
+                // CX-Builder: teal track
                 backgroundColor: '#24E2CB'
             }
         }
     },
     '& .MuiSwitch-thumb': {
-        // Concentrix iX-Suite: navy thumb
+        // CX-Builder: navy thumb
         backgroundColor: '#003D5B',
         width: 32,
         height: 32,
@@ -77,7 +77,7 @@ const MaterialUISwitch = styled(Switch)(({ theme }) => ({
     },
     '& .MuiSwitch-track': {
         opacity: 1,
-        // Concentrix iX-Suite: teal track
+        // CX-Builder: teal track
         backgroundColor: '#24E2CB',
         borderRadius: 20 / 2
     }
@@ -238,7 +238,7 @@ const Header = ({ handleLeftDrawerToggle }) => {
                                 ...theme.typography.commonAvatar,
                                 ...theme.typography.mediumAvatar,
                                 transition: 'all .2s ease-in-out',
-                                // Concentrix iX-Suite brand colors
+                                // CX-Builder brand colors
                                 background: '#24E2CB',
                                 color: '#003D5B',
                                 '&:hover': {
@@ -254,7 +254,7 @@ const Header = ({ handleLeftDrawerToggle }) => {
                     </ButtonBase>
                 )}
             </Box>
-            {/* Spacer - GitHub stars removed for Concentrix iX-Suite */}
+            {/* Spacer - GitHub stars removed for CX-Builder */}
             <Box sx={{ flexGrow: 1 }} />
             {isEnterpriseLicensed && isAuthenticated && <WorkspaceSwitcher />}
             {isCloud && isAuthenticated && <OrgWorkspaceBreadcrumbs />}

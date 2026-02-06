@@ -49,8 +49,7 @@ import TablePagination, { DEFAULT_ITEMS_PER_PAGE } from '@/ui-component/paginati
 const AgentExecutions = () => {
     const theme = useTheme()
     const customization = useSelector((state) => state.customization)
-    const brand = customization?.brand
-    const agentflowLabel = brand === 'cx-builder' ? 'Agentflow' : 'iX-Hero'
+    const agentflowLabel = 'Agentflow'
     const borderColor = theme.palette.grey[900] + 25
 
     const getAllExecutions = useApi(executionsApi.getAllExecutions)

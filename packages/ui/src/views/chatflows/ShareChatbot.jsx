@@ -49,9 +49,7 @@ const ShareChatbot = ({ isSessionMemory, isAgentCanvas }) => {
     const dispatch = useDispatch()
     const theme = useTheme()
     const chatflow = useSelector((state) => state.canvas.chatflow)
-    const customization = useSelector((state) => state.customization)
-    const brand = customization?.brand
-    const agentflowLabel = brand === 'cx-builder' ? 'Agentflow' : 'iX-Hero'
+    const agentflowLabel = 'Agentflow'
     const chatflowid = chatflow.id
     const chatbotConfig = chatflow.chatbotConfig ? JSON.parse(chatflow.chatbotConfig) : {}
 

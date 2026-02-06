@@ -29,9 +29,7 @@ const AddDocStoreDialog = ({ show, dialogProps, onCancel, onConfirm }) => {
     const portalElement = document.getElementById('portal')
 
     const dispatch = useDispatch()
-    const customization = useSelector((state) => state.customization)
-    const brand = customization?.brand
-    const docstoreLabel = brand === 'cx-builder' ? 'Document Store' : 'iX-Wisdom'
+    const docstoreLabel = 'Document Store'
 
     // ==============================|| Snackbar ||============================== //
 

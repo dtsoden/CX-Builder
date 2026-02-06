@@ -24,18 +24,13 @@ const Settings = ({ chatflow, isSettingsOpen, isCustomAssistant, anchorEl, isAge
     const theme = useTheme()
     const [settingsMenu, setSettingsMenu] = useState([])
     const customization = useSelector((state) => state.customization)
-    const brand = customization?.brand
     const inputFile = useRef(null)
     const [open, setOpen] = useState(false)
     const { hasPermission } = useAuth()
 
-    // Brand-aware title transformation
+    // Brand-aware title transformation (now always cx-builder)
     const getBrandAwareTitle = (title) => {
-        if (brand !== 'cx-builder') return title
         return title
-            .replace('iX-Hello', 'Chatflow')
-            .replace('iX-Hero', 'Agentflow')
-            .replace('iX-Wisdom', 'Document Store')
     }
 
     const handleFileUpload = (e) => {

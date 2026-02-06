@@ -35,7 +35,7 @@ const AboutDialog = ({ show, onCancel }) => {
             aria-describedby='alert-dialog-description'
         >
             <DialogTitle sx={{ fontSize: '1rem' }} id='alert-dialog-title'>
-                iX-Suite Version
+                CX-Builder™ Version
             </DialogTitle>
             <DialogContent>
                 <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, py: 1 }}>

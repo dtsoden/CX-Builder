@@ -1,7 +1,6 @@
 import PropTypes from 'prop-types'
 import { useState } from 'react'
 import { createPortal } from 'react-dom'
-import { useSelector } from 'react-redux'
 import { Box, Dialog, DialogContent, DialogTitle, Tabs, Tab } from '@mui/material'
 import { tabsClasses } from '@mui/material/Tabs'
 import SpeechToText from '@/ui-component/extended/SpeechToText'
@@ -41,7 +40,7 @@ const CHATFLOW_CONFIGURATION_TABS = [
         id: 'chatFeedback'
     },
     {
-        label: 'Analyse iX-Hello',
+        label: 'Analyse Chatflow',
         id: 'analyseChatflow'
     },
     {
@@ -90,15 +89,6 @@ function a11yProps(index) {
 const ChatflowConfigurationDialog = ({ show, isAgentCanvas, dialogProps, onCancel }) => {
     const portalElement = document.getElementById('portal')
     const [tabValue, setTabValue] = useState(0)
-    const customization = useSelector((state) => state.customization)
-    const brand = customization?.brand
-
-    // Brand-aware label transformation
-    const getBrandAwareLabel = (label) => {
-        if (brand !== 'cx-builder') return label
-        return label.replace('iX-Hello', 'Chatflow').replace('iX-Hero', 'Agentflow')
-    }
-
     const filteredTabs = CHATFLOW_CONFIGURATION_TABS.filter((tab) => !isAgentCanvas || !tab.hideInAgentFlow)
 
     const component = show ? (
@@ -139,7 +129,7 @@ const ChatflowConfigurationDialog = ({ show, isAgentCanvas, dialogProps, onCance
                                 mb: 1
                             }}
                             key={item.id}
-                            label={getBrandAwareLabel(item.label)}
+                            label={item.label}
                             {...a11yProps(index)}
                         ></Tab>
                     ))}

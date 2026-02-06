@@ -123,8 +123,7 @@ const NodeInputHandler = ({
 }) => {
     const theme = useTheme()
     const customization = useSelector((state) => state.customization)
-    const brand = customization?.brand
-    const docstoreLabel = brand === 'cx-builder' ? 'Document Store' : 'iX-Wisdom'
+    const docstoreLabel = 'Document Store'
     const ref = useRef(null)
     const { reactFlowInstance, deleteEdge, onNodeDataChange } = useContext(flowContext)
     const updateNodeInternals = useUpdateNodeInternals()

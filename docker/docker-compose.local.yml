@@ -1,21 +1,28 @@
-version: '3.1'
+version: '3.8'
+
+# CX-Builder Local Source Build Stack
+# Usage: docker compose -f docker-compose.local.yml up -d --build
+# Builds from local source code + pgvector PostgreSQL
 
 services:
-    flowise:
-        image: concentrix-ix-suite:latest
+    cx-builder:
+        image: cx-builder:latest
         build:
             context: ..
             dockerfile: docker/Dockerfile.local
         restart: always
+        depends_on:
+            postgres:
+                condition: service_healthy
         environment:
             - PORT=${PORT}
-            - DATABASE_PATH=${DATABASE_PATH}
             - DATABASE_TYPE=${DATABASE_TYPE}
-            - DATABASE_PORT=${DATABASE_PORT}
             - DATABASE_HOST=${DATABASE_HOST}
+            - DATABASE_PORT=${DATABASE_PORT}
             - DATABASE_NAME=${DATABASE_NAME}
             - DATABASE_USER=${DATABASE_USER}
             - DATABASE_PASSWORD=${DATABASE_PASSWORD}
+            - DATABASE_PATH=${DATABASE_PATH}
             - DATABASE_SSL=${DATABASE_SSL}
             - DATABASE_SSL_KEY_BASE64=${DATABASE_SSL_KEY_BASE64}
             - SECRETKEY_STORAGE_TYPE=${SECRETKEY_STORAGE_TYPE}
@@ -37,11 +44,30 @@ services:
             - JWT_REFRESH_TOKEN_EXPIRY_IN_MINUTES=${JWT_REFRESH_TOKEN_EXPIRY_IN_MINUTES}
         ports:
             - '${PORT}:${PORT}'
+        volumes:
+            - ./LocalLiveDockerData:/root/.flowise
         healthcheck:
             test: ['CMD', 'curl', '-f', 'http://localhost:${PORT}/api/v1/ping']
+            interval: 15s
+            timeout: 5s
+            retries: 5
+            start_period: 60s
+
+    postgres:
+        image: pgvector/pgvector:pg17
+        restart: always
+        environment:
+            - POSTGRES_DB=${POSTGRES_DB}
+            - POSTGRES_USER=${POSTGRES_USER}
+            - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+        volumes:
+            - postgres_data:/var/lib/postgresql/data
+        healthcheck:
+            test: ['CMD-SHELL', 'pg_isready -U ${POSTGRES_USER} -d ${POSTGRES_DB}']
             interval: 10s
             timeout: 5s
             retries: 5
-            start_period: 30s
-        volumes:
-            - ./LocalLiveDockerData:/root/.flowise
+            start_period: 10s
+
+volumes:
+    postgres_data:

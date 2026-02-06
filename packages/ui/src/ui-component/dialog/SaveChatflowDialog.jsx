@@ -1,6 +1,5 @@
 import { createPortal } from 'react-dom'
 import { useState, useEffect } from 'react'
-import { useSelector } from 'react-redux'
 import PropTypes from 'prop-types'
 
 import { Button, Dialog, DialogActions, DialogContent, OutlinedInput, DialogTitle } from '@mui/material'
@@ -8,9 +7,7 @@ import { StyledButton } from '@/ui-component/button/StyledButton'
 
 const SaveChatflowDialog = ({ show, dialogProps, onCancel, onConfirm }) => {
     const portalElement = document.getElementById('portal')
-    const customization = useSelector((state) => state.customization)
-    const brand = customization?.brand
-    const chatflowLabel = brand === 'cx-builder' ? 'Chatflow' : 'iX-Hello'
+    const chatflowLabel = 'Chatflow'
 
     const [chatflowName, setChatflowName] = useState('')
     const [isReadyToSave, setIsReadyToSave] = useState(false)

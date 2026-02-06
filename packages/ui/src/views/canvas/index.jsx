@@ -73,10 +73,7 @@ const Canvas = () => {
         URLpath[URLpath.length - 1] === 'canvas' || URLpath[URLpath.length - 1] === 'agentcanvas' ? '' : URLpath[URLpath.length - 1]
     const isAgentCanvas = URLpath.includes('agentcanvas') ? true : false
     const customization = useSelector((state) => state.customization)
-    const brand = customization?.brand
-    const canvasTitle = isAgentCanvas
-        ? (brand === 'cx-builder' ? 'Agentflow' : 'iX-Hero')
-        : (brand === 'cx-builder' ? 'Chatflow' : 'iX-Hello')
+    const canvasTitle = isAgentCanvas ? 'Agentflow' : 'Chatflow'
 
     const { confirm } = useConfirm()
 

@@ -1,6 +1,5 @@
 import express, { Request, Response } from 'express'
 import path from 'path'
-import fs from 'fs'
 import cors from 'cors'
 import http from 'http'
 import cookieParser from 'cookie-parser'
@@ -356,25 +355,8 @@ export class App {
         this.app.use('/', express.static(uiBuildPath))
 
         // All other requests not handled will return React app
-        // Inject brand configuration from environment variable
         this.app.use((req: Request, res: Response) => {
-            const defaultBrand = process.env.DEFAULT_BRAND || 'cx-builder'
-            const ixStudio = process.env.IX_STUDIO || ''
-
-            // Read the HTML file and inject brand config before </head>
-            fs.readFile(uiHtmlPath, 'utf8', (err, html) => {
-                if (err) {
-                    logger.error(`Error reading index.html: ${err}`)
-                    return res.sendFile(uiHtmlPath) // Fallback to sendFile
-                }
-
-                // Inject brand config script before </head>
-                const configScript = `<script>window.__DEFAULT_BRAND__ = "${defaultBrand}"; window.__IX_STUDIO__ = "${ixStudio}";</script>`
-                const modifiedHtml = html.replace('</head>', `${configScript}</head>`)
-
-                res.setHeader('Content-Type', 'text/html')
-                res.send(modifiedHtml)
-            })
+            res.sendFile(uiHtmlPath)
         })
 
         // Error handling

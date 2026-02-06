@@ -88,8 +88,7 @@ function APIKeyRow(props) {
     const [open, setOpen] = useState(false)
     const theme = useTheme()
     const customization = useSelector((state) => state.customization)
-    const brand = customization?.brand
-    const chatflowLabel = brand === 'cx-builder' ? 'Chatflow' : 'iX-Hello'
+    const chatflowLabel = 'Chatflow'
 
     return (
         <>

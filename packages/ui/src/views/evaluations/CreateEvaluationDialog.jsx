@@ -58,10 +58,8 @@ const CreateEvaluationDialog = ({ show, dialogProps, onCancel, onConfirm }) => {
     const portalElement = document.getElementById('portal')
     const theme = useTheme()
     useNotifier()
-    const customization = useSelector((state) => state.customization)
-    const brand = customization?.brand
-    const chatflowLabel = brand === 'cx-builder' ? 'Chatflow' : 'iX-Hello'
-    const agentflowLabel = brand === 'cx-builder' ? 'Agentflow' : 'iX-Hero'
+    const chatflowLabel = 'Chatflow'
+    const agentflowLabel = 'Agentflow'
 
     const getAllChatflowsApi = useApi(chatflowsApi.getAllChatflows)
     const getAllAgentflowsApi = useApi(chatflowsApi.getAllAgentflows)

@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { useSelector } from 'react-redux'
 
 // material-ui
 import { Box, Skeleton, Stack, ToggleButton, ToggleButtonGroup } from '@mui/material'
@@ -36,9 +35,7 @@ import { IconPlus, IconLayoutGrid, IconList } from '@tabler/icons-react'
 const Chatflows = () => {
     const navigate = useNavigate()
     const theme = useTheme()
-    const customization = useSelector((state) => state.customization)
-    const brand = customization?.brand
-    const chatflowTitle = brand === 'cx-builder' ? 'Chatflows' : 'iX-Hello'
+    const chatflowTitle = 'Chatflows'
 
     const [isLoading, setLoading] = useState(true)
     const [images, setImages] = useState({})

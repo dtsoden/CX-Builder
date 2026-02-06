@@ -14,13 +14,6 @@ import config from '@/config'
 // assets
 import FiberManualRecordIcon from '@mui/icons-material/FiberManualRecord'
 
-// Brand title translations: iX-Suite names -> CX-Builder names (original Flowise names)
-const brandTitleMap = {
-    'iX-Hello': 'Chatflows',
-    'iX-Hero': 'Agentflows',
-    'iX-Wisdom': 'Document Stores'
-}
-
 // ==============================|| SIDEBAR MENU LIST ITEMS ||============================== //
 
 const NavItem = ({ item, level, navType, onClick, onUploadFile }) => {
@@ -125,9 +118,7 @@ const NavItem = ({ item, level, navType, onClick, onUploadFile }) => {
                         color='inherit'
                         sx={{ my: 0.5 }}
                     >
-                        {customization.brand === 'cx-builder' && brandTitleMap[item.title]
-                            ? brandTitleMap[item.title]
-                            : item.title}
+                        {item.title}
                     </Typography>
                 }
                 secondary={

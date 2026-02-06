@@ -63,7 +63,7 @@ const agent_settings = {
         },
         {
             id: 'duplicateChatflow',
-            title: 'Duplicate iX-Hero',
+            title: 'Duplicate Agentflow',
             type: 'item',
             url: '',
             icon: icons.IconCopy,
@@ -71,7 +71,7 @@ const agent_settings = {
         },
         {
             id: 'loadChatflow',
-            title: 'Load iX-Hero',
+            title: 'Load Agentflow',
             type: 'item',
             url: '',
             icon: icons.IconFileUpload,
@@ -79,7 +79,7 @@ const agent_settings = {
         },
         {
             id: 'exportChatflow',
-            title: 'Export iX-Hero',
+            title: 'Export Agentflow',
             type: 'item',
             url: '',
             icon: icons.IconFileExport,
@@ -87,7 +87,7 @@ const agent_settings = {
         },
         {
             id: 'deleteChatflow',
-            title: 'Delete iX-Hero',
+            title: 'Delete Agentflow',
             type: 'item',
             url: '',
             icon: icons.IconTrash,

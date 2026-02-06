@@ -61,8 +61,7 @@ const CardWrapper = styled(MainCard)(({ theme }) => ({
 
 const LoaderConfigPreviewChunks = () => {
     const customization = useSelector((state) => state.customization)
-    const brand = customization?.brand
-    const docstoreLabel = brand === 'cx-builder' ? 'Document Store' : 'iX-Wisdom'
+    const docstoreLabel = 'Document Store'
     const navigate = useNavigate()
     const theme = useTheme()
     const { error } = useError()

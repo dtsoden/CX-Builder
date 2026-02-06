@@ -63,11 +63,7 @@ const CanvasHeader = ({ chatflow, isAgentCanvas, isAgentflowV2, handleSaveFlow, 
 
     const [savePermission, setSavePermission] = useState(isAgentCanvas ? 'agentflows:create' : 'chatflows:create')
 
-    const customization = useSelector((state) => state.customization)
-    const brand = customization?.brand
-    const title = isAgentCanvas
-        ? (brand === 'cx-builder' ? 'Agentflow' : 'iX-Hero')
-        : (brand === 'cx-builder' ? 'Chatflow' : 'iX-Hello')
+    const title = isAgentCanvas ? 'Agentflow' : 'Chatflow'
 
     const updateChatflowApi = useApi(chatflowsApi.updateChatflow)
     const canvas = useSelector((state) => state.canvas)

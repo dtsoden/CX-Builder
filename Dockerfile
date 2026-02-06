@@ -1,11 +1,8 @@
-# Optimized Flowise Dockerfile - Multi-stage to avoid chown layer bloat
-# Based on official: https://github.com/FlowiseAI/Flowise/blob/main/Dockerfile
+# CX-Builder Dockerfile - Multi-stage to avoid chown layer bloat
 #
 # OPTIMIZATION: The single-stage build creates a 2.9GB duplicate layer when
 # running chown -R. This multi-stage approach uses COPY --chown to set
 # ownership during copy, avoiding the duplicate layer.
-#
-# Rollback: git checkout 3fa8ac4 -- template_versions/v3.0.12-customized/Dockerfile
 
 # =============================================================================
 # Stage 1: Builder - Full build (identical to original single-stage)
@@ -30,7 +27,7 @@ ENV PUPPETEER_SKIP_DOWNLOAD=true
 ENV PUPPETEER_EXECUTABLE_PATH=/usr/bin/chromium-browser
 ENV NODE_OPTIONS=--max-old-space-size=8192
 
-WORKDIR /usr/src/flowise
+WORKDIR /usr/src/cxbuilder
 
 # Copy app source
 COPY . .
@@ -55,12 +52,12 @@ ENV PUPPETEER_SKIP_DOWNLOAD=true
 ENV PUPPETEER_EXECUTABLE_PATH=/usr/bin/chromium-browser
 ENV NODE_OPTIONS=--max-old-space-size=4096
 
-WORKDIR /usr/src/flowise
+WORKDIR /usr/src/cxbuilder
 
 # Copy entire built application with correct ownership (avoids 2.9GB chown layer)
-COPY --from=builder --chown=node:node /usr/src/flowise /usr/src/flowise
+COPY --from=builder --chown=node:node /usr/src/cxbuilder /usr/src/cxbuilder
 
-# Create .flowise directory for uploads and data
+# Create data directory for uploads and storage
 RUN mkdir -p /home/node/.flowise && chown -R node:node /home/node/.flowise
 
 # Switch to non-root user

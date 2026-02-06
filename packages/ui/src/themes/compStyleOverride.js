@@ -149,7 +149,7 @@ export default function componentStyleOverrides(theme) {
                         color: theme.menuSelected,
                         backgroundColor: theme.menuSelectedBack,
                         '&:hover': {
-                            // Concentrix iX-Suite hover color
+                            // CX-Builder hover color
                             backgroundColor: '#fbca1b'
                         },
                         '& .MuiListItemIcon-root': {
@@ -157,7 +157,7 @@ export default function componentStyleOverrides(theme) {
                         }
                     },
                     '&:hover': {
-                        // Concentrix iX-Suite hover color
+                        // CX-Builder hover color
                         backgroundColor: '#fbca1b',
                         color: theme.menuSelected,
                         '& .MuiListItemIcon-root': {

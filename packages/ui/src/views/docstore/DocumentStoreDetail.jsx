@@ -127,9 +127,8 @@ const StyledMenu = styled((props) => (
 const DocumentStoreDetails = () => {
     const theme = useTheme()
     const customization = useSelector((state) => state.customization)
-    const brand = customization?.brand
-    const docstoreLabel = brand === 'cx-builder' ? 'Document Store' : 'iX-Wisdom'
-    const chatflowLabel = brand === 'cx-builder' ? 'Chatflow' : 'iX-Hello'
+    const docstoreLabel = 'Document Store'
+    const chatflowLabel = 'Chatflow'
     const navigate = useNavigate()
     const dispatch = useDispatch()
     const { hasAssignedWorkspace } = useAuth()

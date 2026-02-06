@@ -81,8 +81,7 @@ const CustomAssistantConfigurePreview = () => {
     const settingsRef = useRef()
     const canvas = useSelector((state) => state.canvas)
     const customization = useSelector((state) => state.customization)
-    const brand = customization?.brand
-    const docstoreLabel = brand === 'cx-builder' ? 'Document Store' : 'iX-Wisdom'
+    const docstoreLabel = 'Document Store'
 
     const getSpecificAssistantApi = useApi(assistantsApi.getSpecificAssistant)
     const getChatModelsApi = useApi(assistantsApi.getChatModels)

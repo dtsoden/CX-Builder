@@ -11,8 +11,7 @@ export const initialState = {
     opened: true,
     isHorizontal: localStorage.getItem('isHorizontal') === 'true' ? true : false,
     isDarkMode: localStorage.getItem('isDarkMode') === 'true' ? true : false,
-    // Brand priority: 1) window.__DEFAULT_BRAND__ (server-injected), 2) localStorage, 3) default
-    brand: window.__DEFAULT_BRAND__ || localStorage.getItem('appBrand') || 'cx-builder' // 'ix-suite' or 'cx-builder'
+    brand: 'cx-builder'
 }
 
 // ==============================|| CUSTOMIZATION REDUCER ||============================== //

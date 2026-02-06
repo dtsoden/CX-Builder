@@ -68,7 +68,7 @@ const dashboard = {
             children: [
                 {
                     id: 'chatflows',
-                    title: 'iX-Hello',
+                    title: 'Chatflows',
                     type: 'item',
                     url: '/chatflows',
                     icon: icons.IconHierarchy,
@@ -77,7 +77,7 @@ const dashboard = {
                 },
                 {
                     id: 'agentflows',
-                    title: 'iX-Hero',
+                    title: 'Agentflows',
                     type: 'item',
                     url: '/agentflows',
                     icon: icons.IconUsersGroup,
@@ -149,7 +149,7 @@ const dashboard = {
                 },
                 {
                     id: 'document-stores',
-                    title: 'iX-Wisdom',
+                    title: 'Document Stores',
                     type: 'item',
                     url: '/document-stores',
                     icon: icons.IconFiles,

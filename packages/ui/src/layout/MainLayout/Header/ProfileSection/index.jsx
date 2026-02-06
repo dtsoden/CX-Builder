@@ -4,7 +4,7 @@ import { createPortal } from 'react-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 
-import { closeSnackbar as closeSnackbarAction, enqueueSnackbar as enqueueSnackbarAction, REMOVE_DIRTY, SET_BRAND } from '@/store/actions'
+import { closeSnackbar as closeSnackbarAction, enqueueSnackbar as enqueueSnackbarAction, REMOVE_DIRTY } from '@/store/actions'
 import { exportData, stringify } from '@/utils/exportImport'
 import useNotifier from '@/utils/useNotifier'
 
@@ -29,7 +29,6 @@ import {
     Paper,
     Popper,
     Stack,
-    Switch,
     Typography
 } from '@mui/material'
 import { useTheme } from '@mui/material/styles'
@@ -45,7 +44,7 @@ import Transitions from '@/ui-component/extended/Transitions'
 
 // assets
 import ExportingGIF from '@/assets/images/Exporting.gif'
-import { IconFileExport, IconFileUpload, IconInfoCircle, IconLogout, IconPalette, IconSettings, IconUserEdit, IconX } from '@tabler/icons-react'
+import { IconFileExport, IconFileUpload, IconInfoCircle, IconLogout, IconSettings, IconUserEdit, IconX } from '@tabler/icons-react'
 import './index.css'
 
 // API
@@ -55,39 +54,32 @@ import exportImportApi from '@/api/exportimport'
 import useApi from '@/hooks/useApi'
 import { getErrorMessage } from '@/utils/errorHandler'
 
-// Data export items with both brand labels
 const dataExportItems = [
-    { key: 'agentflow', ixLabel: 'iX-Hero', cxLabel: 'Agentflows' },
-    { key: 'agentflowv2', ixLabel: 'iX-Hero V2', cxLabel: 'Agentflows V2' },
-    { key: 'assistantCustom', ixLabel: 'Assistants Custom', cxLabel: 'Assistants Custom' },
-    { key: 'assistantOpenAI', ixLabel: 'Assistants OpenAI', cxLabel: 'Assistants OpenAI' },
-    { key: 'assistantAzure', ixLabel: 'Assistants Azure', cxLabel: 'Assistants Azure' },
-    { key: 'chatflow', ixLabel: 'iX-Hello', cxLabel: 'Chatflows' },
-    { key: 'chat_message', ixLabel: 'Chat Messages', cxLabel: 'Chat Messages' },
-    { key: 'chat_feedback', ixLabel: 'Chat Feedbacks', cxLabel: 'Chat Feedbacks' },
-    { key: 'custom_template', ixLabel: 'Custom Templates', cxLabel: 'Custom Templates' },
-    { key: 'document_store', ixLabel: 'iX-Wisdom', cxLabel: 'Document Stores' },
-    { key: 'execution', ixLabel: 'Executions', cxLabel: 'Executions' },
-    { key: 'tool', ixLabel: 'Tools', cxLabel: 'Tools' },
-    { key: 'variable', ixLabel: 'Variables', cxLabel: 'Variables' }
+    { key: 'agentflow', label: 'Agentflows' },
+    { key: 'agentflowv2', label: 'Agentflows V2' },
+    { key: 'assistantCustom', label: 'Assistants Custom' },
+    { key: 'assistantOpenAI', label: 'Assistants OpenAI' },
+    { key: 'assistantAzure', label: 'Assistants Azure' },
+    { key: 'chatflow', label: 'Chatflows' },
+    { key: 'chat_message', label: 'Chat Messages' },
+    { key: 'chat_feedback', label: 'Chat Feedbacks' },
+    { key: 'custom_template', label: 'Custom Templates' },
+    { key: 'document_store', label: 'Document Stores' },
+    { key: 'execution', label: 'Executions' },
+    { key: 'tool', label: 'Tools' },
+    { key: 'variable', label: 'Variables' }
 ]
 
-// Get labels based on brand
-const getDataLabels = (brand) => dataExportItems.map(item =>
-    brand === 'cx-builder' ? item.cxLabel : item.ixLabel
-)
+const getDataLabels = () => dataExportItems.map(item => item.label)
 
-// Map label back to key for export
-const labelToKey = (label, brand) => {
-    const item = dataExportItems.find(i =>
-        (brand === 'cx-builder' ? i.cxLabel : i.ixLabel) === label
-    )
+const labelToKey = (label) => {
+    const item = dataExportItems.find(i => i.label === label)
     return item?.key
 }
 
-const ExportDialog = ({ show, onCancel, onExport, brand }) => {
+const ExportDialog = ({ show, onCancel, onExport }) => {
     const portalElement = document.getElementById('portal')
-    const dataToExport = getDataLabels(brand)
+    const dataToExport = getDataLabels()
 
     const [selectedData, setSelectedData] = useState(dataToExport)
     const [isExporting, setIsExporting] = useState(false)
@@ -103,7 +95,7 @@ const ExportDialog = ({ show, onCancel, onExport, brand }) => {
         }
 
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [show, brand])
+    }, [show])
 
     const component = show ? (
         <Dialog
@@ -190,8 +182,7 @@ const ExportDialog = ({ show, onCancel, onExport, brand }) => {
 ExportDialog.propTypes = {
     show: PropTypes.bool,
     onCancel: PropTypes.func,
-    onExport: PropTypes.func,
-    brand: PropTypes.string
+    onExport: PropTypes.func
 }
 
 const ImportDialog = ({ show }) => {
@@ -234,7 +225,6 @@ const ProfileSection = ({ handleLogout }) => {
     const theme = useTheme()
 
     const customization = useSelector((state) => state.customization)
-    const brand = customization.brand || 'ix-suite'
 
     const [open, setOpen] = useState(false)
     const [aboutDialogOpen, setAboutDialogOpen] = useState(false)
@@ -260,27 +250,9 @@ const ProfileSection = ({ handleLogout }) => {
     const enqueueSnackbar = (...args) => dispatch(enqueueSnackbarAction(...args))
     const closeSnackbar = (...args) => dispatch(closeSnackbarAction(...args))
 
-    // Update document title and favicon when brand changes
     useEffect(() => {
-        document.title = brand === 'cx-builder' ? 'CX-Builder\u2122' : 'Concentrix iX-Suite'
-
-        // Update favicons based on brand (light/dark handled by media queries on the link elements)
-        const faviconLight = document.getElementById('favicon-light')
-        const faviconDark = document.getElementById('favicon-dark')
-        if (brand === 'cx-builder') {
-            if (faviconLight) faviconLight.href = '/cx-icon.png'
-            if (faviconDark) faviconDark.href = '/cx-icon-dark.png'
-        } else {
-            if (faviconLight) faviconLight.href = '/ix-icon.png'
-            if (faviconDark) faviconDark.href = '/ix-icon-dark.png'
-        }
-    }, [brand])
-
-    const handleBrandToggle = () => {
-        const newBrand = brand === 'ix-suite' ? 'cx-builder' : 'ix-suite'
-        localStorage.setItem('appBrand', newBrand)
-        dispatch({ type: SET_BRAND, brand: newBrand })
-    }
+        document.title = 'CX-Builder\u2122'
+    }, [])
 
     const handleClose = (event) => {
         if (anchorRef.current && anchorRef.current.contains(event.target)) {
@@ -349,9 +321,8 @@ const ProfileSection = ({ handleLogout }) => {
 
     const onExport = (selectedLabels) => {
         const body = {}
-        // Convert selected labels to API keys using the brand-aware mapping
         selectedLabels.forEach(label => {
-            const key = labelToKey(label, brand)
+            const key = labelToKey(label)
             if (key) body[key] = true
         })
 
@@ -428,7 +399,6 @@ const ProfileSection = ({ handleLogout }) => {
                         ...theme.typography.commonAvatar,
                         ...theme.typography.mediumAvatar,
                         transition: 'all .2s ease-in-out',
-                        // Concentrix iX-Suite brand colors
                         background: '#24E2CB',
                         color: '#003D5B',
                         '&:hover': {
@@ -522,40 +492,6 @@ const ProfileSection = ({ handleLogout }) => {
                                                     <ListItemText primary={<Typography variant='body2'>Import</Typography>} />
                                                 </PermissionListItemButton>
                                                 <input ref={inputRef} type='file' hidden onChange={fileChange} accept='.json' />
-                                                {window.__IX_STUDIO__ === '1' && (
-                                                    <>
-                                                        <Divider sx={{ my: 1 }} />
-                                                        <ListItemButton
-                                                            sx={{ borderRadius: `${customization.borderRadius}px` }}
-                                                            onClick={handleBrandToggle}
-                                                        >
-                                                            <ListItemIcon>
-                                                                <IconPalette stroke={1.5} size='1.3rem' />
-                                                            </ListItemIcon>
-                                                            <ListItemText
-                                                                primary={
-                                                                    <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-                                                                        <Typography variant='body2'>CX-Builder Mode</Typography>
-                                                                        <Switch
-                                                                            size='small'
-                                                                            checked={brand === 'cx-builder'}
-                                                                            onChange={handleBrandToggle}
-                                                                            onClick={(e) => e.stopPropagation()}
-                                                                            sx={{
-                                                                                '& .MuiSwitch-switchBase.Mui-checked': {
-                                                                                    color: '#24E2CB',
-                                                                                },
-                                                                                '& .MuiSwitch-switchBase.Mui-checked + .MuiSwitch-track': {
-                                                                                    backgroundColor: '#24E2CB',
-                                                                                },
-                                                                            }}
-                                                                        />
-                                                                    </Box>
-                                                                }
-                                                            />
-                                                        </ListItemButton>
-                                                    </>
-                                                )}
                                                 <Divider sx={{ my: 1 }} />
                                                 <ListItemButton
                                                     sx={{ borderRadius: `${customization.borderRadius}px` }}
@@ -602,7 +538,7 @@ const ProfileSection = ({ handleLogout }) => {
                 )}
             </Popper>
             <AboutDialog show={aboutDialogOpen} onCancel={() => setAboutDialogOpen(false)} />
-            <ExportDialog show={exportDialogOpen} onCancel={() => setExportDialogOpen(false)} onExport={(data) => onExport(data)} brand={brand} />
+            <ExportDialog show={exportDialogOpen} onCancel={() => setExportDialogOpen(false)} onExport={(data) => onExport(data)} />
             <ImportDialog show={importDialogOpen} />
         </>
     )

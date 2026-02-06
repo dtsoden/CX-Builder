@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import PropTypes from 'prop-types'
 
 import { styled, alpha } from '@mui/material/styles'
@@ -77,8 +77,6 @@ const StyledMenu = styled((props) => (
 export default function FlowListMenu({ chatflow, isAgentCanvas, isAgentflowV2, setError, updateFlowsApi, currentPage, pageLimit }) {
     const { confirm } = useConfirm()
     const dispatch = useDispatch()
-    const customization = useSelector((state) => state.customization)
-    const brand = customization?.brand
     const updateChatflowApi = useApi(chatflowsApi.updateChatflow)
 
     useNotifier()
@@ -102,9 +100,7 @@ export default function FlowListMenu({ chatflow, isAgentCanvas, isAgentflowV2, s
     const [exportTemplateDialogOpen, setExportTemplateDialogOpen] = useState(false)
     const [exportTemplateDialogProps, setExportTemplateDialogProps] = useState({})
 
-    const title = isAgentCanvas
-        ? (brand === 'cx-builder' ? 'Agentflow' : 'iX-Hero')
-        : (brand === 'cx-builder' ? 'Chatflow' : 'iX-Hello')
+    const title = isAgentCanvas ? 'Agentflow' : 'Chatflow'
 
     const refreshFlows = async () => {
         try {

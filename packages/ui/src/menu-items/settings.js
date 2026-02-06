@@ -70,7 +70,7 @@ const settings = {
         },
         {
             id: 'duplicateChatflow',
-            title: 'Duplicate iX-Hello',
+            title: 'Duplicate Chatflow',
             type: 'item',
             url: '',
             icon: icons.IconCopy,
@@ -78,7 +78,7 @@ const settings = {
         },
         {
             id: 'loadChatflow',
-            title: 'Load iX-Hello',
+            title: 'Load Chatflow',
             type: 'item',
             url: '',
             icon: icons.IconFileUpload,
@@ -86,7 +86,7 @@ const settings = {
         },
         {
             id: 'exportChatflow',
-            title: 'Export iX-Hello',
+            title: 'Export Chatflow',
             type: 'item',
             url: '',
             icon: icons.IconFileExport,
@@ -94,7 +94,7 @@ const settings = {
         },
         {
             id: 'deleteChatflow',
-            title: 'Delete iX-Hello',
+            title: 'Delete Chatflow',
             type: 'item',
             url: '',
             icon: icons.IconTrash,

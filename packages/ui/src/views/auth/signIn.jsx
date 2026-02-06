@@ -11,10 +11,6 @@ import { LoadingButton } from '@mui/lab'
 import MainCard from '@/ui-component/cards/MainCard'
 import { Input } from '@/ui-component/input/Input'
 
-// logos - iX-Suite
-import logo from '@/assets/images/flowise_white.svg'
-import logoDark from '@/assets/images/flowise_dark.svg'
-// logos - CX-Builder
 import logoCxBuilder from '@/assets/images/cxbuilder_white.svg'
 import logoCxBuilderDark from '@/assets/images/cxbuilder_dark.svg'
 
@@ -50,10 +46,9 @@ const SignInPage = () => {
     useNotifier()
     const { isEnterpriseLicensed, isCloud, isOpenSource } = useConfig()
 
-    // Update document title based on brand
     useEffect(() => {
-        document.title = customization.brand === 'cx-builder' ? 'Concentrix CX-Builder' : 'Concentrix iX-Suite'
-    }, [customization.brand])
+        document.title = 'CX-Builder\u2122'
+    }, [])
 
     const usernameInput = {
         label: 'Username',
@@ -218,11 +213,9 @@ const SignInPage = () => {
                             <img
                                 style={{ objectFit: 'contain', height: 'auto', width: 'auto' }}
                                 src={
-                                    customization.brand === 'cx-builder'
-                                        ? (customization.isDarkMode ? logoCxBuilderDark : logoCxBuilder)
-                                        : (customization.isDarkMode ? logoDark : logo)
+                                    customization.isDarkMode ? logoCxBuilderDark : logoCxBuilder
                                 }
-                                alt={customization.brand === 'cx-builder' ? 'CX-Builder' : 'iX Suite'}
+                                alt='CX-Builder'
                             />
                         </div>
                         <Typography variant='h1'>Sign In</Typography>

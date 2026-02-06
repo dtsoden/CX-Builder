@@ -75,10 +75,7 @@ const AgentflowCanvas = () => {
     const URLpath = document.location.pathname.toString().split('/')
     const chatflowId =
         URLpath[URLpath.length - 1] === 'canvas' || URLpath[URLpath.length - 1] === 'agentcanvas' ? '' : URLpath[URLpath.length - 1]
-    const brand = customization?.brand
-    const canvasTitle = URLpath.includes('agentcanvas')
-        ? (brand === 'cx-builder' ? 'Agentflow' : 'iX-Hero')
-        : (brand === 'cx-builder' ? 'Chatflow' : 'iX-Hello')
+    const canvasTitle = URLpath.includes('agentcanvas') ? 'Agentflow' : 'Chatflow'
 
     const { confirm } = useConfirm()
 

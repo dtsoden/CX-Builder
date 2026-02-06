@@ -32,9 +32,7 @@ import { DocumentStoreTable } from '@/ui-component/table/DocumentStoreTable'
 
 const Documents = () => {
     const theme = useTheme()
-    const customization = useSelector((state) => state.customization)
-    const brand = customization?.brand
-    const docstoreTitle = brand === 'cx-builder' ? 'Document Store' : 'iX-Wisdom'
+    const docstoreTitle = 'Document Store'
 
     const navigate = useNavigate()
     const getAllDocumentStores = useApi(documentsApi.getAllDocumentStores)

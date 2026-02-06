@@ -1,43 +1,29 @@
-# v4.0.0-branding Migration Guide
+# CX-Builder Migration Guide
 
 ## Version Hierarchy
 
 ```
 Flowise Upstream (3.0.12)
-    └── v3.0.12-customized (iX-Suite base customizations)
-            └── v4.0.0-branding (Dual-brand support: iX-Suite / CX-Builder)
+    └── v3.0.12-customized (Base customizations)
+            └── v4.0.0-branding (CX-Builder exclusive branding)
 ```
 
 ## Current State
 - **Base Version:** v3.0.12-customized
 - **Feature Version:** 4.0.0-branding
-- **Feature:** Dual-brand support with dynamic text/image swapping
+- **Brand:** CX-Builder™ (exclusive - no dual-brand toggle)
 
-## What This Version Adds
+## Terminology
 
-### Branding Toggle Feature
-Allows switching between two brands via settings:
-
-| Feature | iX-Suite (Default) | CX-Builder |
-|---------|-------------------|------------|
-| Chatflows | iX-Hello | Chatflows |
-| Agentflows | iX-Hero | Agentflows |
-| Document Stores | iX-Wisdom | Document Stores |
-| Empty State Images | ixsuite_empty.svg | cxbuilder_empty.svg |
-
-### Brand State Management
-- Location: Redux `customization.brand`
-- Values: `'ix-suite'` (default) or `'cx-builder'`
-
-### Standard Pattern for Brand-Aware Components
-```javascript
-const customization = useSelector((state) => state.customization)
-const brand = customization?.brand
-const chatflowLabel = brand === 'cx-builder' ? 'Chatflow' : 'iX-Hello'
-```
+| Feature | Label |
+|---------|-------|
+| Chatflows | Chatflows |
+| Agentflows | Agentflows |
+| Document Stores | Document Stores |
+| Empty State Images | cxbuilder_empty.svg |
 
 ## Files in this folder
-- `CUSTOMIZATION_MANIFEST.json` - Complete inventory of branding changes
+- `CUSTOMIZATION_MANIFEST.json` - Complete inventory of customization changes
 - `README.md` - This file
 
 ## Migration Strategy
@@ -49,24 +35,30 @@ const chatflowLabel = brand === 'cx-builder' ? 'Chatflow' : 'iX-Hello'
    - This includes theme, server changes, components, etc.
 
 2. **Then apply branding modifications**
-   - Copy added files (cxbuilder_empty.svg, cxbuilder_empty_dark.svg)
-   - Apply brand-aware code changes to UI components
-   - Search for `customization?.brand` to find all brand-aware code
+   - Copy CX-Builder image assets (cxbuilder_empty.svg, cxbuilder_empty_dark.svg, cxbuilder_white.svg, cxbuilder_dark.svg)
+   - Apply branded code changes to UI components
+   - See CUSTOMIZATION_MANIFEST.json for full file list
 
-3. **Test both brands**
-   - Toggle brand setting in UI
-   - Verify all text labels switch correctly
-   - Verify empty state images switch correctly
+3. **Test**
+   - Verify all text labels display CX-Builder terminology
+   - Verify logos and empty state images render correctly
+   - Verify email templates show CX-Builder branding
 
 ## Key Modified Files
 
-### Settings/Menu Transformation
-- `views/settings/index.jsx` - `getBrandAwareTitle()` function
-- `ui-component/button/FlowListMenu.jsx` - Brand-aware context menu
-- `menu-items/settings.js`, `agentsettings.js` - Source labels (transformed at render)
+### Theme & Styling
+- `assets/scss/_themes-vars.module.scss` - Brand colors
+- `themes/index.js`, `themes/compStyleOverride.js` - Theme overrides
+- `ui-component/button/StyledButton.jsx` - Button styling
+
+### Layout & Navigation
+- `layout/MainLayout/Header/index.jsx` - Header styling
+- `layout/MainLayout/Header/ProfileSection/index.jsx` - Settings menu
+- `layout/MainLayout/Sidebar/MenuList/NavItem/index.jsx` - Nav items
+- `menu-items/dashboard.js`, `settings.js`, `agentsettings.js` - Menu definitions
 
 ### Dialogs
-- `ExportAsTemplateDialog.jsx` - `getFlowTypeLabel()` for flow types
+- `ExportAsTemplateDialog.jsx` - Flow type labels
 - `ChatflowConfigurationDialog.jsx` - Tab labels
 - `AgentflowGeneratorDialog.jsx` - Error messages, alt text
 - `SaveChatflowDialog.jsx` - Placeholder text
