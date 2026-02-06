@@ -1,0 +1,47 @@
+version: '3.1'
+
+services:
+    flowise:
+        image: concentrix-ix-suite:latest
+        build:
+            context: ..
+            dockerfile: docker/Dockerfile.local
+        restart: always
+        environment:
+            - PORT=${PORT}
+            - DATABASE_PATH=${DATABASE_PATH}
+            - DATABASE_TYPE=${DATABASE_TYPE}
+            - DATABASE_PORT=${DATABASE_PORT}
+            - DATABASE_HOST=${DATABASE_HOST}
+            - DATABASE_NAME=${DATABASE_NAME}
+            - DATABASE_USER=${DATABASE_USER}
+            - DATABASE_PASSWORD=${DATABASE_PASSWORD}
+            - DATABASE_SSL=${DATABASE_SSL}
+            - DATABASE_SSL_KEY_BASE64=${DATABASE_SSL_KEY_BASE64}
+            - SECRETKEY_STORAGE_TYPE=${SECRETKEY_STORAGE_TYPE}
+            - SECRETKEY_PATH=${SECRETKEY_PATH}
+            - FLOWISE_SECRETKEY_OVERWRITE=${FLOWISE_SECRETKEY_OVERWRITE}
+            - DEBUG=${DEBUG}
+            - LOG_PATH=${LOG_PATH}
+            - LOG_LEVEL=${LOG_LEVEL}
+            - STORAGE_TYPE=${STORAGE_TYPE}
+            - BLOB_STORAGE_PATH=${BLOB_STORAGE_PATH}
+            - CORS_ORIGINS=${CORS_ORIGINS}
+            - IFRAME_ORIGINS=${IFRAME_ORIGINS}
+            - SHOW_COMMUNITY_NODES=${SHOW_COMMUNITY_NODES}
+            - JWT_AUTH_TOKEN_SECRET=${JWT_AUTH_TOKEN_SECRET}
+            - JWT_REFRESH_TOKEN_SECRET=${JWT_REFRESH_TOKEN_SECRET}
+            - JWT_ISSUER=${JWT_ISSUER}
+            - JWT_AUDIENCE=${JWT_AUDIENCE}
+            - JWT_TOKEN_EXPIRY_IN_MINUTES=${JWT_TOKEN_EXPIRY_IN_MINUTES}
+            - JWT_REFRESH_TOKEN_EXPIRY_IN_MINUTES=${JWT_REFRESH_TOKEN_EXPIRY_IN_MINUTES}
+        ports:
+            - '${PORT}:${PORT}'
+        healthcheck:
+            test: ['CMD', 'curl', '-f', 'http://localhost:${PORT}/api/v1/ping']
+            interval: 10s
+            timeout: 5s
+            retries: 5
+            start_period: 30s
+        volumes:
+            - ./LocalLiveDockerData:/root/.flowise

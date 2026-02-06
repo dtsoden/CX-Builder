@@ -1,0 +1,33 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(docker-compose:*)",
+      "Bash(docker ps:*)",
+      "Bash(dir \"C:\\\\Users\\\\DavidSoden\\\\Flowise\\\\docker\\\\LocalLiveDockerData\")",
+      "Bash(dir:*)",
+      "Bash(copy:*)",
+      "Bash(find:*)",
+      "Bash(docker logs:*)",
+      "Bash(docker run:*)",
+      "Bash(docker inspect:*)",
+      "Bash(MSYS_NO_PATHCONV=1 docker run:*)",
+      "Bash(docker images:*)",
+      "Bash(wmic process:*)",
+      "Bash(tasklist:*)",
+      "Bash(docker buildx:*)",
+      "Bash(docker system prune:*)",
+      "Bash(timeout:*)",
+      "Bash(ping:*)",
+      "Bash(docker system:*)",
+      "Bash(ls -la \"C:\\\\Users\\\\DavidSoden\\\\Flowise\\\\packages\\\\ui\\\\src\\\\assets\\\\images\"\" | findstr \"ixsuite \")",
+      "Bash(del:*)",
+      "Bash(ls:*)",
+      "Bash(git checkout:*)"
+    ]
+  },
+  "enableAllProjectMcpServers": true,
+  "enabledMcpjsonServers": [
+    "shadcn",
+    "github"
+  ]
+}

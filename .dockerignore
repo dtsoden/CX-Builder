@@ -1,0 +1,19 @@
+node_modules
+dist
+build
+.pnpm-store
+.turbo
+
+**/node_modules
+**/build
+**/dist
+**/.turbo
+
+packages/server/.env
+packages/ui/.env
+
+# Local development data - never include in builds
+docker/LocalLiveDockerData
+docker/.env
+docker/docker-compose.dev.yml
+.claude

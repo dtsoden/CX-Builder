@@ -1,0 +1,265 @@
+{
+  "baseVersion": "v3.0.12-customized",
+  "baseDescription": "iX-Studio customized Flowise based on upstream 3.0.12",
+  "featureVersion": "4.0.0-branding",
+  "featureDescription": "Adds dual-brand support (iX-Suite / CX-Builder) with dynamic text and image swapping",
+  "analysisDate": "2026-01-21",
+  "lastModified": "2026-01-26",
+  "diffAnalysisMethod": "diff -rq v3.0.12-customized/packages/ui/src v4.0.0-branding/packages/ui/src",
+
+  "summary": {
+    "addedFiles": 2,
+    "modifiedFiles": 29,
+    "totalChanges": 31
+  },
+
+  "brandingFeature": {
+    "description": "Toggle between iX-Suite and CX-Builder branding via settings",
+    "brands": {
+      "ix-suite": {
+        "description": "Default brand - Concentrix iX-Suite",
+        "terminology": {
+          "chatflows": "iX-Hello",
+          "agentflows": "iX-Hero",
+          "documentStores": "iX-Wisdom"
+        }
+      },
+      "cx-builder": {
+        "description": "Alternate brand - CX-Builder",
+        "terminology": {
+          "chatflows": "Chatflows",
+          "agentflows": "Agentflows",
+          "documentStores": "Document Stores"
+        }
+      }
+    },
+    "stateManagement": {
+      "location": "Redux customization.brand",
+      "values": ["ix-suite", "cx-builder"],
+      "default": "ix-suite"
+    }
+  },
+
+  "addedFiles": {
+    "description": "New files added for branding feature (diff: Only in v4.0.0-branding)",
+    "files": [
+      "packages/ui/src/assets/images/cxbuilder_empty.svg",
+      "packages/ui/src/assets/images/cxbuilder_empty_dark.svg"
+    ],
+    "note": "CX-Builder empty state images copied from img/cx-icon.svg and img/cx-icon-dark.svg"
+  },
+
+  "modifiedFiles": {
+    "description": "Files modified from v3.0.12-customized for brand-aware behavior (diff: Files ... differ)",
+    "uiComponents": [
+      "packages/ui/src/ui-component/button/FlowListMenu.jsx",
+      "packages/ui/src/ui-component/dialog/AgentflowGeneratorDialog.jsx",
+      "packages/ui/src/ui-component/dialog/ChatflowConfigurationDialog.jsx",
+      "packages/ui/src/ui-component/dialog/ExportAsTemplateDialog.jsx",
+      "packages/ui/src/ui-component/dialog/SaveChatflowDialog.jsx",
+      "packages/ui/src/ui-component/EmptyStateImage.jsx",
+      "packages/ui/src/ui-component/table/Table.jsx"
+    ],
+    "views": [
+      "packages/ui/src/views/agentexecutions/index.jsx",
+      "packages/ui/src/views/agentflows/index.jsx",
+      "packages/ui/src/views/agentflowsv2/Canvas.jsx",
+      "packages/ui/src/views/apikey/index.jsx",
+      "packages/ui/src/views/assistants/custom/CustomAssistantConfigurePreview.jsx",
+      "packages/ui/src/views/canvas/AddNodes.jsx",
+      "packages/ui/src/views/canvas/CanvasHeader.jsx",
+      "packages/ui/src/views/canvas/index.jsx",
+      "packages/ui/src/views/canvas/NodeInputHandler.jsx",
+      "packages/ui/src/views/chatflows/APICodeDialog.jsx",
+      "packages/ui/src/views/chatflows/index.jsx",
+      "packages/ui/src/views/chatflows/ShareChatbot.jsx",
+      "packages/ui/src/views/docstore/AddDocStoreDialog.jsx",
+      "packages/ui/src/views/docstore/DocumentStoreDetail.jsx",
+      "packages/ui/src/views/docstore/index.jsx",
+      "packages/ui/src/views/docstore/LoaderConfigPreviewChunks.jsx",
+      "packages/ui/src/views/docstore/VectorStoreQuery.jsx",
+      "packages/ui/src/views/evaluations/CreateEvaluationDialog.jsx",
+      "packages/ui/src/views/marketplaces/MarketplaceCanvasHeader.jsx",
+      "packages/ui/src/views/settings/index.jsx",
+      "packages/ui/src/views/vectorstore/VectorStoreDialog.jsx"
+    ]
+  },
+
+  "changeDetails": {
+    "pattern": {
+      "description": "Standard pattern for brand-aware components",
+      "code": [
+        "const customization = useSelector((state) => state.customization)",
+        "const brand = customization?.brand",
+        "const label = brand === 'cx-builder' ? 'Chatflow' : 'iX-Hello'"
+      ]
+    },
+    "byFile": {
+      "EmptyStateImage.jsx": {
+        "changes": ["Brand-aware image selection for empty states"],
+        "logic": "Returns cxbuilder_empty.svg or ixsuite_empty.svg based on brand"
+      },
+      "settings/index.jsx": {
+        "changes": ["Added getBrandAwareTitle() function"],
+        "transforms": ["iX-Hello → Chatflow", "iX-Hero → Agentflow", "iX-Wisdom → Document Store"]
+      },
+      "FlowListMenu.jsx": {
+        "changes": ["Brand-aware title variable for context menu"]
+      },
+      "ExportAsTemplateDialog.jsx": {
+        "changes": ["getFlowTypeLabel() function for flow type display"]
+      },
+      "ChatflowConfigurationDialog.jsx": {
+        "changes": ["getBrandAwareLabel() for tab labels"]
+      },
+      "AgentflowGeneratorDialog.jsx": {
+        "changes": ["Error messages", "Alt text", "Model selection label"]
+      },
+      "SaveChatflowDialog.jsx": {
+        "changes": ["Placeholder text"]
+      },
+      "APICodeDialog.jsx": {
+        "changes": ["Override config text", "Security configuration message"]
+      },
+      "VectorStoreDialog.jsx": {
+        "changes": ["Security warning message"]
+      },
+      "Table.jsx": {
+        "changes": ["Tooltip text for override settings"]
+      },
+      "NodeInputHandler.jsx": {
+        "changes": ["Success messages for document store tool"]
+      },
+      "CustomAssistantConfigurePreview.jsx": {
+        "changes": ["Success message", "Knowledge section label"]
+      },
+      "mainViews": {
+        "files": ["agentflows/index.jsx", "chatflows/index.jsx", "docstore/index.jsx"],
+        "changes": ["Page titles", "Empty state messages"]
+      },
+      "canvasViews": {
+        "files": ["canvas/index.jsx", "canvas/CanvasHeader.jsx", "canvas/AddNodes.jsx", "agentflowsv2/Canvas.jsx"],
+        "changes": ["Canvas titles", "Generate dialog title"]
+      },
+      "otherViews": {
+        "files": ["agentexecutions/index.jsx", "apikey/index.jsx", "ShareChatbot.jsx", "DocumentStoreDetail.jsx", "AddDocStoreDialog.jsx", "VectorStoreQuery.jsx", "LoaderConfigPreviewChunks.jsx", "CreateEvaluationDialog.jsx", "MarketplaceCanvasHeader.jsx"],
+        "changes": ["Various brand-aware labels and messages"]
+      }
+    }
+  },
+
+  "unchangedFromBase": {
+    "description": "These files were NOT modified - brand transformations happen via menu-items at render time",
+    "staticMenuConfigs": [
+      "packages/ui/src/menu-items/settings.js",
+      "packages/ui/src/menu-items/agentsettings.js",
+      "packages/ui/src/menu-items/dashboard.js"
+    ],
+    "layoutComponents": [
+      "packages/ui/src/layout/MainLayout/Header/ProfileSection/index.jsx",
+      "packages/ui/src/layout/MainLayout/Sidebar/MenuList/NavItem/index.jsx"
+    ],
+    "note": "These files contain iX terminology but transformations are applied via getBrandAwareTitle() in settings/index.jsx and existing CX_BUILDER_LABELS mappings in NavItem"
+  },
+
+  "inheritedFromBase": {
+    "description": "All customizations from v3.0.12-customized are inherited unchanged",
+    "referenceFile": "../v3.0.12-customized/.migration/CUSTOMIZATION_MANIFEST.json",
+    "includes": [
+      "All theme/styling customizations",
+      "Server-side changes (routes, passport, postgres drivers)",
+      "Azure Reranker components",
+      "File validation utilities",
+      "Dynamic marketplace folder system",
+      "Email templates",
+      "Favicons and logos"
+    ]
+  },
+
+  "serverSideBrandInjection": {
+    "description": "Server-side injection of DEFAULT_BRAND env var into HTML for tenant container deployments",
+    "addedDate": "2026-01-22",
+    "purpose": "Allow platform to set tenant branding via Docker container environment variable",
+    "files": {
+      "packages/server/src/index.ts": {
+        "changes": [
+          "Added fs import for file reading",
+          "Modified catch-all route to inject window.__DEFAULT_BRAND__ script into HTML"
+        ],
+        "envVar": "DEFAULT_BRAND",
+        "default": "ix-suite"
+      },
+      "packages/ui/src/store/reducers/customizationReducer.js": {
+        "changes": [
+          "Updated brand initialization to check window.__DEFAULT_BRAND__ first",
+          "Priority: window.__DEFAULT_BRAND__ > localStorage > default"
+        ]
+      }
+    }
+  },
+
+  "embedScriptCustomization": {
+    "addedDate": "2026-01-24",
+    "description": "Replaced embed script CDN URLs and default theme config for CX-Builder branding",
+    "files": {
+      "packages/ui/src/views/chatflows/EmbedChat.jsx": {
+        "changes": [
+          "Replaced cdn.jsdelivr.net/npm/flowise-embed URLs with GitHub raw CX-Builder URL (4 locations)",
+          "Removed 'specify a version' text block from HTML embed tabs",
+          "Replaced defaultThemeConfig with CX-Builder themed version"
+        ],
+        "urlReplacement": {
+          "from": "https://cdn.jsdelivr.net/npm/flowise-embed/dist/web.js",
+          "to": "https://github.com/dtsoden/webresources/raw/main/cx-builder/web.js"
+        },
+        "themeConfigChanges": [
+          "button.backgroundColor: #3B81F6 → #000000",
+          "button.customIconSrc: CX-Builder icon from dtsoden/webresources",
+          "tooltip.tooltipMessage: 'Foo says hello 👋!'",
+          "disclaimer.title: 'Example and optional disclaimer'",
+          "disclaimer.message: Link to terms.html",
+          "chatWindow.title: 'CX-Builder Bot'",
+          "chatWindow.titleAvatarSrc: cx-avitar.png from dtsoden/webresources",
+          "chatWindow.welcomeMessage: Custom Foo Schnickens message",
+          "chatWindow.backgroundColor: #ffffff → #F5F0E1",
+          "chatWindow.starterPrompts: 4 new story-related prompts",
+          "botMessage.avatarSrc: cx-avitar.png from dtsoden/webresources",
+          "userMessage.avatarSrc: user_avitar.png from dtsoden/webresources",
+          "textInput.sendSoundLocation: Full GitHub raw URL",
+          "textInput.receiveSoundLocation: Full GitHub raw URL",
+          "footer.company: 'CX-Builder'",
+          "footer.companyLink: 'https://cx-builder.com'"
+        ]
+      }
+    }
+  },
+
+  "grafanaDashboardBranding": {
+    "addedDate": "2026-01-26",
+    "description": "Rebranded Grafana monitoring dashboard titles from FlowiseAI to CX-Builder™",
+    "files": {
+      "metrics/grafana/grafana.dashboard.app.json.txt": {
+        "changes": ["Dashboard title: 'FlowiseAI - Custom Metrics' → 'CX-Builder™ Monitoring - Custom Metrics'"],
+        "purpose": "Application metrics dashboard (throughput, error rates, response times)"
+      },
+      "metrics/grafana/grafana.dashboard.server.json.txt": {
+        "changes": ["Dashboard title: 'FlowiseAI Server' → 'CX-Builder™ Server'"],
+        "purpose": "Server metrics dashboard (CPU, memory, Node.js metrics)",
+        "tags": ["node.js"]
+      }
+    },
+    "deploymentNote": "These templates are copied to tenant grafana/provisioning/dashboards/ when monitoring is enabled"
+  },
+
+  "migrationNotes": {
+    "toNewFlowiseVersion": [
+      "1. Start with v3.0.12-customized migration to new Flowise version first",
+      "2. Then apply branding modifications from this manifest",
+      "3. Search for 'customization?.brand' to find all brand-aware code",
+      "4. Copy cxbuilder_empty.svg and cxbuilder_empty_dark.svg to assets/images",
+      "5. Apply server-side brand injection changes (index.ts + customizationReducer.js)",
+      "6. Apply embed script customization (EmbedChat.jsx) from embedScriptCustomization section"
+    ],
+    "verifyDiff": "Run: diff -rq v3.0.12-customized/packages/ui/src v4.0.0-branding/packages/ui/src"
+  }
+}
