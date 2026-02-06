@@ -1,4 +1,4 @@
-# CX-Builder
+# CX-Builder™
 
 **AI Agent Development Platform**
 
