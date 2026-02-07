@@ -4,27 +4,55 @@
 
 Build AI agents, chatbots, and RAG pipelines visually with a drag-and-drop interface. CX-Builder is built on [Flowise](https://github.com/FlowiseAI/Flowise) v3.0.12 with custom branding, pgvector PostgreSQL integration, and production-ready Docker deployment.
 
-## Quick Start (Docker)
+## Quick Start (One-Liner)
 
-The fastest way to run CX-Builder is with Docker Compose. This spins up two containers as a single unit:
+The fastest way to run CX-Builder. Just Docker — nothing else required. No git clone, no manual config. The installer generates all secrets automatically and starts the stack.
 
-- **CX-Builder** app (Node.js)
-- **pgvector PostgreSQL** database (with vector similarity search)
+**Linux / macOS:**
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/dtsoden/CX-Builder/master/install.sh | bash
+```
+
+**Windows (PowerShell):**
+
+```powershell
+irm https://raw.githubusercontent.com/dtsoden/CX-Builder/master/install.ps1 | iex
+```
+
+CX-Builder will be available at **http://localhost:9800** once both services are healthy.
+
+## Quick Start (Manual)
+
+If you prefer to configure everything yourself:
 
 ### 1. Clone the repo
 
 ```bash
 git clone https://github.com/dtsoden/CX-Builder.git
-cd CX-Builder/docker
+cd CX-Builder
 ```
 
-### 2. Configure environment
+### 2. Run the installer interactively
 
 ```bash
+# Linux / macOS
+./install.sh
+
+# Windows
+powershell -ExecutionPolicy Bypass -File install.ps1
+```
+
+Choose option **2** when prompted to enter your own values for passwords, ports, and JWT secrets.
+
+### 3. Or configure manually
+
+```bash
+cd docker
 cp .env.example .env
 ```
 
-**Important:** Edit `.env` and replace ALL placeholder values before starting. The defaults will not work. Set secure values for:
+Edit `.env` and replace ALL placeholder values before starting:
 
 | Variable                   | What to change                         |
 | -------------------------- | -------------------------------------- |
@@ -34,13 +62,11 @@ cp .env.example .env
 | `JWT_REFRESH_TOKEN_SECRET` | Different random secret                |
 | `CORS_ORIGINS`             | Your domain(s), comma-separated        |
 
-### 3. Start the stack
+Then start the stack:
 
 ```bash
 docker compose up -d
 ```
-
-CX-Builder will be available at **http://localhost:9800** once both services are healthy.
 
 ### 4. Verify
 
@@ -119,6 +145,8 @@ Mounts source code as a volume for live UI changes at http://localhost:5173.
 
 ```
 CX-Builder/
+  install.sh                  # One-liner installer (Linux/macOS)
+  install.ps1                 # One-liner installer (Windows)
   docker/
     docker-compose.yml        # Production: pulls dsoden/cx-builder + pgvector
     docker-compose.local.yml  # Build from source + pgvector
