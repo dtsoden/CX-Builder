@@ -24,15 +24,15 @@ cd CX-Builder/docker
 cp .env.example .env
 ```
 
-Edit `.env` and set secure values for:
+**Important:** Edit `.env` and replace ALL placeholder values before starting. The defaults will not work. Set secure values for:
 
-| Variable | What to change |
-|----------|---------------|
-| `DATABASE_PASSWORD` | Strong database password |
-| `POSTGRES_PASSWORD` | Must match `DATABASE_PASSWORD` |
-| `JWT_AUTH_TOKEN_SECRET` | Random secret (`openssl rand -hex 32`) |
-| `JWT_REFRESH_TOKEN_SECRET` | Different random secret |
-| `CORS_ORIGINS` | Your domain(s), comma-separated |
+| Variable                   | What to change                         |
+| -------------------------- | -------------------------------------- |
+| `DATABASE_PASSWORD`        | Strong database password               |
+| `POSTGRES_PASSWORD`        | Must match `DATABASE_PASSWORD`         |
+| `JWT_AUTH_TOKEN_SECRET`    | Random secret (`openssl rand -hex 32`) |
+| `JWT_REFRESH_TOKEN_SECRET` | Different random secret                |
+| `CORS_ORIGINS`             | Your domain(s), comma-separated        |
 
 ### 3. Start the stack
 
@@ -54,10 +54,10 @@ curl http://localhost:9800/api/v1/ping
 
 ## Docker Images
 
-| Image | Description |
-|-------|-------------|
-| `dsoden/cx-builder:latest` | CX-Builder application |
-| `pgvector/pgvector:pg17` | PostgreSQL 17 with pgvector extension |
+| Image                      | Description                           |
+| -------------------------- | ------------------------------------- |
+| `dsoden/cx-builder:latest` | CX-Builder application                |
+| `pgvector/pgvector:pg17`   | PostgreSQL 17 with pgvector extension |
 
 The pgvector extension enables vector embeddings storage and cosine similarity searches directly in PostgreSQL, supporting RAG workflows, document store queries, and semantic search across your AI agents.
 
@@ -137,17 +137,17 @@ CX-Builder/
 
 See [`docker/.env.example`](docker/.env.example) for the full list with descriptions. Key variables:
 
-| Variable | Default | Description |
-|----------|---------|-------------|
-| `PORT` | `9800` | Application port |
-| `DATABASE_TYPE` | `postgres` | Database type (postgres, sqlite, mysql, mariadb) |
-| `DATABASE_HOST` | `postgres` | Database hostname (matches Docker service name) |
-| `DATABASE_PORT` | `5432` | Database port |
-| `DATABASE_NAME` | `cxbuilder` | Database name |
-| `DATABASE_USER` | `cxbuilder` | Database username |
-| `DATABASE_PASSWORD` | - | Database password (required) |
-| `JWT_AUTH_TOKEN_SECRET` | - | JWT signing secret (required) |
-| `CORS_ORIGINS` | `*` | Allowed CORS origins |
+| Variable                | Default     | Description                                      |
+| ----------------------- | ----------- | ------------------------------------------------ |
+| `PORT`                  | `9800`      | Application port                                 |
+| `DATABASE_TYPE`         | `postgres`  | Database type (postgres, sqlite, mysql, mariadb) |
+| `DATABASE_HOST`         | `postgres`  | Database hostname (matches Docker service name)  |
+| `DATABASE_PORT`         | `5432`      | Database port                                    |
+| `DATABASE_NAME`         | `cxbuilder` | Database name                                    |
+| `DATABASE_USER`         | `cxbuilder` | Database username                                |
+| `DATABASE_PASSWORD`     | -           | Database password (required)                     |
+| `JWT_AUTH_TOKEN_SECRET` | -           | JWT signing secret (required)                    |
+| `CORS_ORIGINS`          | `*`         | Allowed CORS origins                             |
 
 ## Pushing to Docker Hub
 

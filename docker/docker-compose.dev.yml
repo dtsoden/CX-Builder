@@ -1,4 +1,4 @@
-version: '3.1'
+name: cx-builder
 
 # DEV MODE - Hot reload for UI changes
 # Usage: docker-compose -f docker-compose.dev.yml up

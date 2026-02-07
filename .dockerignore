@@ -12,8 +12,14 @@ build
 packages/server/.env
 packages/ui/.env
 
+# Git history not needed in container
+.git
+.github
+.gitignore
+
 # Local development data - never include in builds
 docker/LocalLiveDockerData
 docker/.env
 docker/docker-compose.dev.yml
 .claude
+.migration
