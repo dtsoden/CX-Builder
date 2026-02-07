@@ -21,5 +21,6 @@ packages/ui/.env
 docker/LocalLiveDockerData
 docker/.env
 docker/docker-compose.dev.yml
+docker/DOCKERHUB_README.md
 .claude
 .migration
