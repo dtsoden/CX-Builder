@@ -229,10 +229,10 @@ POSTGRES_USER=${db_user}
 POSTGRES_PASSWORD=${db_password}
 
 # STORAGE PATHS
-DATABASE_PATH=/root/.flowise
-SECRETKEY_PATH=/root/.flowise
-LOG_PATH=/root/.flowise/logs
-BLOB_STORAGE_PATH=/root/.flowise/storage
+DATABASE_PATH=/home/node/.flowise
+SECRETKEY_PATH=/home/node/.flowise
+LOG_PATH=/home/node/.flowise/logs
+BLOB_STORAGE_PATH=/home/node/.flowise/storage
 
 # AUTHENTICATION (JWT)
 JWT_AUTH_TOKEN_SECRET=${jwt_auth_secret}

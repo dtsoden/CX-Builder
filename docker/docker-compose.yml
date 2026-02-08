@@ -42,7 +42,7 @@ services:
         ports:
             - '${PORT}:${PORT}'
         volumes:
-            - cxbuilder_data:/root/.flowise
+            - cxbuilder_data:/home/node/.flowise
         healthcheck:
             test: ['CMD', 'curl', '-f', 'http://localhost:${PORT}/api/v1/ping']
             interval: 15s
