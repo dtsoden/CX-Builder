@@ -240,7 +240,13 @@ function Start-CXBuilder {
     Write-Info "Pulling images and starting CX-Builder..."
     Write-Host ""
 
+    # Docker Compose writes progress to stderr, which PowerShell treats as a
+    # terminating error when $ErrorActionPreference is "Stop".  Temporarily
+    # relax the preference so progress messages don't abort the script.
+    $saved = $ErrorActionPreference
+    $ErrorActionPreference = "Continue"
     docker compose -f $ComposeFile up -d
+    $ErrorActionPreference = $saved
 
     if ($LASTEXITCODE -ne 0) {
         Write-Err "Failed to start CX-Builder. Check Docker logs for details."
