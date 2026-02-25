@@ -34,7 +34,8 @@ COPY . .
 
 # Install dependencies and build (identical to original)
 RUN pnpm install && \
-    pnpm build
+    pnpm build && \
+    cd packages/server && pnpm exec oclif manifest
 
 # =============================================================================
 # Stage 2: Runtime - Copy with ownership set (avoids chown layer)

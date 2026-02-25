@@ -20,7 +20,8 @@ WORKDIR /app
 COPY . .
 
 # Install dependencies and build
-RUN pnpm install && pnpm build
+RUN pnpm install && pnpm build && \
+    cd packages/server && pnpm exec oclif manifest && cd /app
 
 # Prune dev dependencies — keeps only production deps in node_modules
 RUN pnpm prune --prod
