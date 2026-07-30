@@ -384,6 +384,24 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   .hero-buttons { flex-direction: column; }
   .footer-row { flex-direction: column; gap: 1rem; text-align: center; }
 }
+
+/* Lineage / independence notice */
+.lineage {
+  border-top: 1px solid var(--white-06);
+  background: var(--white-02);
+  padding: 3.5rem 1.5rem;
+}
+.lineage-inner { max-width: 46rem; margin: 0 auto; text-align: center; }
+.lineage h2 {
+  font-size: 1.5rem; font-weight: 700; letter-spacing: -0.01em; margin-bottom: 1rem;
+}
+.lineage p {
+  color: var(--white-50); line-height: 1.75; font-size: 0.975rem; margin-bottom: 0.9rem;
+}
+.lineage a {
+  color: var(--accent); text-decoration: underline; text-underline-offset: 2px;
+}
+.lineage a:hover { color: var(--primary-300); }
 </style>
 </head>
 <body>
@@ -680,6 +698,28 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
         <svg style="width:16px;height:16px"><use href="#i-arrow-right"/></svg>
       </a>
     </div>
+  </div>
+</section>
+
+<!-- ═══ LINEAGE ═══ -->
+<section class="lineage" id="lineage">
+  <div class="lineage-inner">
+    <h2>Independently maintained</h2>
+    <p>
+      CX-Builder is a fork of <a href="https://github.com/FlowiseAI/Flowise" target="_blank" rel="noopener noreferrer">Flowise</a>,
+      which its original team discontinued in July 2026. CX-Builder tracks the final
+      release, v3.1.4, and is maintained independently from that point on.
+    </p>
+    <p>
+      Nothing here depends on the upstream project continuing. The code is Apache 2.0,
+      every package builds from source in this repository, and the container image is
+      published separately. Self-hosted deployments keep running regardless.
+    </p>
+    <p>
+      Read the <a href="https://flowiseai.com/sunset" target="_blank" rel="noopener noreferrer">Flowise sunset notice</a>,
+      which explicitly encourages forks: the Apache 2.0 licensed code is yours to keep
+      building on.
+    </p>
   </div>
 </section>
 
