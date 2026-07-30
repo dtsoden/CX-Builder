@@ -24,3 +24,6 @@ docker/docker-compose.dev.yml
 docker/DOCKERHUB_README.md
 .claude
 .migration
+
+# Marketing site, not part of the app build
+landing

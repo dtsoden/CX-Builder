@@ -1,0 +1,793 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CX-Builder — AI Agent Development Platform</title>
+<link rel="icon" type="image/png" href="cx-avitar-dark.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+/* ─── Reset & Base ────────────────────────────────────────── */
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  background: #020C12;
+  color: #fff;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+  line-height: 1.6;
+}
+a { text-decoration: none; color: inherit; }
+img { max-width: 100%; }
+button { cursor: pointer; border: none; background: none; font-family: inherit; }
+
+/* ─── CSS Variables ───────────────────────────────────────── */
+:root {
+  --accent: #5CA7DC;
+  --accent-90: rgba(92,167,220,0.9);
+  --accent-80: rgba(92,167,220,0.8);
+  --accent-30: rgba(92,167,220,0.3);
+  --accent-20: rgba(92,167,220,0.2);
+  --accent-10: rgba(92,167,220,0.1);
+  --accent-05: rgba(92,167,220,0.05);
+  --bg: #020C12;
+  --bg-footer: #010810;
+  --white-60: rgba(255,255,255,0.6);
+  --white-50: rgba(255,255,255,0.5);
+  --white-40: rgba(255,255,255,0.4);
+  --white-30: rgba(255,255,255,0.3);
+  --white-20: rgba(255,255,255,0.2);
+  --white-10: rgba(255,255,255,0.1);
+  --white-06: rgba(255,255,255,0.06);
+  --white-03: rgba(255,255,255,0.03);
+  --white-02: rgba(255,255,255,0.02);
+  --primary-300: #8DC2E8;
+  --primary-400-20: rgba(58,152,210,0.2);
+  --primary-400-05: rgba(58,152,210,0.05);
+}
+
+/* ─── Navigation ──────────────────────────────────────────── */
+.nav {
+  position: fixed; top: 0; z-index: 50; width: 100%;
+  border-bottom: 1px solid var(--white-06);
+  background: rgba(2,12,18,0.8);
+  backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px);
+}
+.nav-inner {
+  max-width: 80rem; margin: 0 auto;
+  display: flex; align-items: center; justify-content: space-between;
+  height: 4rem; padding: 0 1.5rem;
+}
+.nav-logo { height: 2.88rem; margin: -0.75rem 0; }
+.nav-links { display: flex; align-items: center; gap: 2rem; }
+.nav-links a {
+  font-size: 0.875rem; color: var(--white-60);
+  transition: color 0.2s;
+}
+.nav-links a:hover { color: #fff; }
+.nav-cta {
+  display: inline-block;
+  border-radius: 0.5rem; padding: 0.5rem 1rem;
+  font-size: 0.875rem; font-weight: 600;
+  background: var(--accent); color: var(--bg);
+  transition: all 0.2s;
+}
+.nav-cta:hover { opacity: 0.9; box-shadow: 0 4px 20px rgba(92,167,220,0.25); }
+
+/* ─── Hero ────────────────────────────────────────────────── */
+.hero {
+  position: relative; display: flex; align-items: center; justify-content: center;
+  min-height: 100vh; padding-top: 4rem; overflow: hidden;
+}
+.hero-ambient { position: absolute; inset: 0; pointer-events: none; }
+.hero-blob {
+  position: absolute; border-radius: 50%;
+}
+.hero-blob-1 { left: 25%; top: 25%; width: 600px; height: 600px; background: rgba(92,167,220,0.07); filter: blur(120px); }
+.hero-blob-2 { right: 25%; bottom: 25%; width: 500px; height: 500px; background: rgba(58,152,210,0.05); filter: blur(100px); }
+.hero-blob-3 { left: 50%; top: 50%; width: 400px; height: 400px; transform: translate(-50%,-50%); background: rgba(92,167,220,0.03); filter: blur(80px); }
+
+.hero-canvas {
+  position: absolute; inset: 0; width: 100%; height: 100%;
+  pointer-events: none; opacity: 0.72;
+}
+
+.hero-content {
+  position: relative; z-index: 10;
+  max-width: 64rem; margin: 0 auto; padding: 0 1.5rem;
+  text-align: center;
+}
+
+.hero-badge {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  border-radius: 9999px; border: 1px solid var(--accent-20);
+  background: var(--accent-05); padding: 0.375rem 1rem;
+  font-size: 0.875rem; color: var(--accent); margin-bottom: 1.5rem;
+}
+.hero-badge svg { width: 14px; height: 14px; }
+
+.hero-title {
+  font-size: clamp(3rem, 7vw, 4.5rem); font-weight: 800;
+  line-height: 1.1; letter-spacing: -0.025em;
+  margin-bottom: 1.5rem;
+}
+.hero-title-gradient {
+  background: linear-gradient(to right, var(--accent), var(--accent-80), var(--primary-300));
+  -webkit-background-clip: text; background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.hero-desc {
+  max-width: 42rem; margin: 0 auto 2.5rem;
+  font-size: clamp(1.05rem, 2vw, 1.25rem);
+  line-height: 1.7; color: var(--white-50);
+}
+
+.hero-buttons { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 1rem; }
+.btn-primary {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  border-radius: 0.75rem; padding: 0.875rem 2rem;
+  font-size: 1rem; font-weight: 600;
+  background: var(--accent); color: var(--bg);
+  transition: all 0.2s;
+}
+.btn-primary:hover { opacity: 0.9; box-shadow: 0 8px 30px rgba(92,167,220,0.2); }
+.btn-primary svg { transition: transform 0.2s; }
+.btn-primary:hover svg:last-child { transform: translateX(2px); }
+
+.btn-secondary {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  border-radius: 0.75rem; padding: 0.875rem 2rem;
+  font-size: 1rem; font-weight: 500;
+  border: 1px solid var(--white-10); background: rgba(255,255,255,0.05);
+  color: #fff; transition: all 0.2s;
+}
+.btn-secondary:hover { border-color: var(--white-20); background: rgba(255,255,255,0.1); }
+
+.hero-demo-link {
+  margin-top: 1rem; font-size: 0.875rem; color: var(--white-40);
+}
+.hero-demo-link a {
+  color: rgba(92,167,220,0.7);
+  text-decoration: underline; text-underline-offset: 2px;
+  transition: color 0.2s;
+}
+.hero-demo-link a:hover { color: var(--accent); }
+
+.scroll-indicator {
+  margin-top: 1.5rem; display: flex; justify-content: center;
+}
+.scroll-indicator a {
+  color: var(--white-20); transition: color 0.2s;
+  animation: bounce 1s infinite;
+}
+.scroll-indicator a:hover { color: var(--white-40); }
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(6px); }
+}
+
+/* ─── Stats ───────────────────────────────────────────────── */
+.stats {
+  position: relative; overflow: hidden;
+  border-top: 1px solid var(--white-06); border-bottom: 1px solid var(--white-06);
+  background: var(--white-02);
+}
+.stats-grid {
+  position: relative; max-width: 64rem; margin: 0 auto;
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 2rem;
+  padding: 4rem 1.5rem;
+}
+.stat { text-align: center; }
+.stat-value { font-size: clamp(2rem, 4vw, 3rem); font-weight: 700; }
+.stat-label { margin-top: 0.5rem; font-size: 0.875rem; color: var(--white-50); }
+
+/* ─── Section shared ──────────────────────────────────────── */
+.section { position: relative; padding: 6rem 1.5rem; }
+.section-inner { max-width: 80rem; margin: 0 auto; }
+.section-header { text-align: center; margin-bottom: 4rem; }
+.section-label {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  font-size: 0.875rem; font-weight: 500;
+  text-transform: uppercase; letter-spacing: 0.1em;
+  color: var(--accent); margin-bottom: 1rem;
+}
+.section-label svg { width: 16px; height: 16px; }
+.section-title { font-size: clamp(1.875rem, 4vw, 2.25rem); font-weight: 700; margin-bottom: 1rem; }
+.section-desc { max-width: 42rem; margin: 0 auto; color: var(--white-50); }
+
+/* ─── Features ────────────────────────────────────────────── */
+.features-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem;
+}
+.feature-card {
+  position: relative; border-radius: 1rem;
+  border: 1px solid var(--white-10); background: var(--white-03);
+  padding: 1.5rem; backdrop-filter: blur(4px);
+  transition: all 0.3s;
+}
+.feature-card:hover {
+  border-color: var(--accent-30); background: rgba(255,255,255,0.06);
+  box-shadow: 0 8px 30px rgba(92,167,220,0.05);
+}
+.feature-icon {
+  display: inline-flex; padding: 0.75rem; border-radius: 0.75rem;
+  background: var(--accent-10); color: var(--accent);
+  margin-bottom: 1rem; transition: background 0.3s;
+}
+.feature-card:hover .feature-icon { background: var(--accent-20); }
+.feature-icon svg { width: 24px; height: 24px; }
+.feature-card h3 { font-size: 1.125rem; font-weight: 600; margin-bottom: 0.5rem; }
+.feature-card p { font-size: 0.875rem; line-height: 1.7; color: var(--white-60); }
+
+/* ─── Install ─────────────────────────────────────────────── */
+.install {
+  position: relative; overflow: hidden;
+  border-top: 1px solid var(--white-06); border-bottom: 1px solid var(--white-06);
+  background: var(--white-02);
+}
+.install-inner { max-width: 56rem; margin: 0 auto; }
+.install-commands { display: flex; flex-direction: column; gap: 1.5rem; }
+.cmd-label {
+  display: flex; align-items: center; gap: 0.5rem;
+  font-size: 0.875rem; color: var(--white-40); margin-bottom: 0.5rem;
+}
+.cmd-label svg { width: 16px; height: 16px; }
+.cmd-box {
+  position: relative; border-radius: 0.75rem;
+  border: 1px solid var(--white-10); background: #0a1628;
+  padding: 1rem; font-family: 'SF Mono', 'Fira Code', monospace;
+  font-size: 0.875rem;
+}
+.cmd-box code {
+  display: block; overflow-x: auto; padding-right: 2.5rem;
+  color: var(--accent-90); white-space: nowrap;
+}
+.copy-btn {
+  position: absolute; right: 0.75rem; top: 50%; transform: translateY(-50%);
+  padding: 0.375rem; border-radius: 0.375rem;
+  color: var(--white-50); transition: all 0.2s;
+}
+.copy-btn:hover { color: #fff; background: rgba(255,255,255,0.1); }
+.copy-btn svg { width: 16px; height: 16px; }
+
+.install-steps {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem;
+  margin-top: 3rem;
+}
+.install-step {
+  display: flex; align-items: flex-start; gap: 0.75rem;
+  border-radius: 0.75rem; border: 1px solid var(--white-06);
+  background: var(--white-02); padding: 1rem;
+}
+.install-step svg { flex-shrink: 0; width: 20px; height: 20px; color: var(--accent); margin-top: 2px; }
+.install-step span { font-size: 0.875rem; color: var(--white-60); }
+
+/* ─── Architecture ────────────────────────────────────────── */
+.arch-inner { max-width: 64rem; margin: 0 auto; }
+.arch-diagram {
+  border-radius: 1rem; border: 1px solid var(--white-10);
+  background: var(--white-02); padding: 2rem;
+}
+.arch-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+.arch-col {
+  border-radius: 0.75rem; padding: 1.5rem; text-align: center;
+}
+.arch-col-accent { border: 1px solid var(--accent-20); background: var(--accent-05); }
+.arch-col-primary { border: 1px solid var(--primary-400-20); background: var(--primary-400-05); }
+.arch-col-neutral { border: 1px solid var(--white-10); background: var(--white-03); }
+.arch-col svg.arch-icon { width: 40px; height: 40px; margin: 0 auto 0.75rem; }
+.arch-col h3 { font-weight: 600; margin-bottom: 0.25rem; }
+.arch-col .arch-sub { font-size: 0.75rem; color: var(--white-40); }
+.arch-checklist { margin-top: 1rem; text-align: left; display: flex; flex-direction: column; gap: 0.375rem; }
+.arch-check {
+  display: flex; align-items: center; gap: 0.5rem;
+  font-size: 0.75rem; color: var(--white-50);
+}
+.arch-check svg { width: 12px; height: 12px; flex-shrink: 0; }
+.arch-platforms {
+  margin-top: 1.5rem; padding-top: 1.5rem;
+  border-top: 1px solid var(--white-06);
+  display: flex; flex-wrap: wrap; justify-content: center; gap: 1rem;
+}
+.arch-tag {
+  border-radius: 9999px; border: 1px solid var(--white-10);
+  padding: 0.25rem 0.75rem; font-size: 0.75rem; color: var(--white-30);
+}
+
+/* ─── CTA ─────────────────────────────────────────────────── */
+.cta {
+  position: relative; overflow: hidden;
+  border-top: 1px solid var(--white-06);
+  padding: 6rem 1.5rem;
+}
+.cta-blob {
+  position: absolute; left: 50%; top: 50%; width: 500px; height: 500px;
+  transform: translate(-50%,-50%); border-radius: 50%;
+  background: rgba(92,167,220,0.06); filter: blur(120px);
+  pointer-events: none;
+}
+.cta-inner { position: relative; max-width: 48rem; margin: 0 auto; text-align: center; }
+.cta-title { font-size: clamp(1.875rem, 5vw, 3rem); font-weight: 700; margin-bottom: 1rem; }
+.cta-desc { font-size: 1.125rem; color: var(--white-50); margin-bottom: 2.5rem; }
+.cta-buttons { display: flex; flex-wrap: wrap; justify-content: center; gap: 1rem; }
+
+/* ─── Footer ──────────────────────────────────────────────── */
+.footer {
+  border-top: 1px solid var(--white-06);
+  background: var(--bg-footer); padding: 3rem 1.5rem;
+}
+.footer-inner {
+  max-width: 80rem; margin: 0 auto;
+  display: flex; flex-direction: column; align-items: center; gap: 1.5rem;
+}
+.footer-row {
+  width: 100%; display: flex; align-items: center; justify-content: space-between;
+}
+.footer-logo { height: 3rem; margin: -0.75rem 0; }
+.footer-links { display: flex; align-items: center; gap: 1.5rem; font-size: 0.875rem; color: var(--white-30); }
+.footer-links a { transition: color 0.2s; }
+.footer-links a:hover { color: var(--white-60); }
+.footer-copy { font-size: 0.75rem; color: var(--white-20); text-align: center; margin-top: 1rem; }
+
+/* ─── Responsive ──────────────────────────────────────────── */
+@media (max-width: 1024px) {
+  .features-grid { grid-template-columns: repeat(2, 1fr); }
+  .arch-grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 768px) {
+  .nav-links { display: none; }
+  .stats-grid { grid-template-columns: repeat(2, 1fr); }
+  .features-grid { grid-template-columns: 1fr; }
+  .install-steps { grid-template-columns: 1fr; }
+  .hero-buttons { flex-direction: column; }
+  .footer-row { flex-direction: column; gap: 1rem; text-align: center; }
+}
+</style>
+</head>
+<body>
+
+<!-- ═══ INLINE SVG ICONS (hidden) ═══ -->
+<svg xmlns="http://www.w3.org/2000/svg" style="display:none">
+  <symbol id="i-sparkles" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"/><path d="M5 3v4"/><path d="M19 17v4"/><path d="M3 5h4"/><path d="M17 19h4"/></symbol>
+  <symbol id="i-terminal" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 17 10 11 4 5"/><line x1="12" x2="20" y1="19" y2="19"/></symbol>
+  <symbol id="i-arrow-right" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></symbol>
+  <symbol id="i-code2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m18 16 4-4-4-4"/><path d="m6 8-4 4 4 4"/><path d="m14.5 4-5 16"/></symbol>
+  <symbol id="i-chevron-down" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></symbol>
+  <symbol id="i-layers" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83Z"/><path d="m22 17.65-9.17 4.16a2 2 0 0 1-1.66 0L2 17.65"/><path d="m22 12.65-9.17 4.16a2 2 0 0 1-1.66 0L2 12.65"/></symbol>
+  <symbol id="i-workflow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="8" height="8" x="3" y="3" rx="2"/><path d="M7 11v4a2 2 0 0 0 2 2h4"/><rect width="8" height="8" x="13" y="13" rx="2"/></symbol>
+  <symbol id="i-network" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="16" y="16" width="6" height="6" rx="1"/><rect x="2" y="16" width="6" height="6" rx="1"/><rect x="9" y="2" width="6" height="6" rx="1"/><path d="M5 16v-3a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v3"/><path d="M12 12V8"/></symbol>
+  <symbol id="i-database" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5V19A9 3 0 0 0 21 19V5"/><path d="M3 12A9 3 0 0 0 21 12"/></symbol>
+  <symbol id="i-cpu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="16" height="16" x="4" y="4" rx="2"/><rect width="6" height="6" x="9" y="9" rx="1"/><path d="M15 2v2"/><path d="M15 20v2"/><path d="M2 15h2"/><path d="M2 9h2"/><path d="M20 15h2"/><path d="M20 9h2"/><path d="M9 2v2"/><path d="M9 20v2"/></symbol>
+  <symbol id="i-users" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></symbol>
+  <symbol id="i-shield" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/></symbol>
+  <symbol id="i-eye" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2.062 12.348a1 1 0 0 1 0-.696 10.75 10.75 0 0 1 19.876 0 1 1 0 0 1 0 .696 10.75 10.75 0 0 1-19.876 0"/><circle cx="12" cy="12" r="3"/></symbol>
+  <symbol id="i-message-square" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></symbol>
+  <symbol id="i-bar-chart" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v16a2 2 0 0 0 2 2h16"/><path d="M7 16h8"/><path d="M7 11h12"/><path d="M7 6h3"/></symbol>
+  <symbol id="i-globe" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></symbol>
+  <symbol id="i-copy" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></symbol>
+  <symbol id="i-zap" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z"/></symbol>
+  <symbol id="i-play" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="6 3 20 12 6 21 6 3"/></symbol>
+  <symbol id="i-check-circle" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="m9 11 3 3L22 4"/></symbol>
+  <symbol id="i-bot" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 8V4H8"/><rect width="16" height="12" x="4" y="8" rx="2"/><path d="M2 14h2"/><path d="M20 14h2"/><path d="M15 13v2"/><path d="M9 13v2"/></symbol>
+</svg>
+
+<!-- ═══ NAVIGATION ═══ -->
+<nav class="nav">
+  <div class="nav-inner">
+    <img class="nav-logo" src="cx-builder-dark.png" alt="CX-Builder">
+    <div class="nav-links">
+      <a href="#features">Features</a>
+      <a href="#install">Install</a>
+      <a href="#architecture">Architecture</a>
+      <a href="https://github.com/dtsoden/cx-builder" target="_blank" rel="noopener noreferrer">GitHub</a>
+    </div>
+    <a href="#install" class="nav-cta">Get Started</a>
+  </div>
+</nav>
+
+<!-- ═══ HERO ═══ -->
+<section class="hero">
+  <div class="hero-ambient">
+    <div class="hero-blob hero-blob-1"></div>
+    <div class="hero-blob hero-blob-2"></div>
+    <div class="hero-blob hero-blob-3"></div>
+  </div>
+  <canvas id="synaptic-canvas" class="hero-canvas"></canvas>
+
+  <div class="hero-content">
+    <div class="hero-badge">
+      <svg><use href="#i-sparkles"/></svg>
+      <span>AI Agent Development Platform</span>
+    </div>
+
+    <h1 class="hero-title">
+      Build Intelligent Agents.<br>
+      <span class="hero-title-gradient">Ship With Confidence.</span>
+    </h1>
+
+    <p class="hero-desc">
+      Design, orchestrate, and deploy AI agents, chatbots, and RAG pipelines
+      with a visual drag-and-drop builder. One command to install.
+      Enterprise-grade from day one.
+    </p>
+
+    <div class="hero-buttons">
+      <a href="#install" class="btn-primary">
+        <svg style="width:20px;height:20px"><use href="#i-terminal"/></svg>
+        Deploy in 60 Seconds
+        <svg style="width:16px;height:16px"><use href="#i-arrow-right"/></svg>
+      </a>
+      <a href="https://github.com/dtsoden/cx-builder" target="_blank" rel="noopener noreferrer" class="btn-secondary">
+        <svg style="width:20px;height:20px"><use href="#i-code2"/></svg>
+        View on GitHub
+      </a>
+    </div>
+
+    <div class="scroll-indicator">
+      <a href="#stats"><svg style="width:24px;height:24px"><use href="#i-chevron-down"/></svg></a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ STATS ═══ -->
+<section class="stats" id="stats">
+  <div class="stats-grid">
+    <div class="stat">
+      <div class="stat-value" data-target="35" data-suffix="+">0+</div>
+      <div class="stat-label">AI Models Supported</div>
+    </div>
+    <div class="stat">
+      <div class="stat-value" data-target="42" data-suffix="+">0+</div>
+      <div class="stat-label">Data Source Connectors</div>
+    </div>
+    <div class="stat">
+      <div class="stat-value" data-target="50" data-suffix="+">0+</div>
+      <div class="stat-label">Pre-Built Templates</div>
+    </div>
+    <div class="stat">
+      <div class="stat-value" data-target="39" data-suffix="+">0+</div>
+      <div class="stat-label">Tool Integrations</div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ FEATURES ═══ -->
+<section class="section" id="features">
+  <div class="section-inner">
+    <div class="section-header">
+      <div class="section-label"><svg><use href="#i-layers"/></svg> Platform Capabilities</div>
+      <h2 class="section-title">Everything You Need to Build AI at Scale</h2>
+      <p class="section-desc">From visual flow design to multi-agent orchestration, CX-Builder provides the complete toolkit for enterprise AI development.</p>
+    </div>
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon"><svg><use href="#i-workflow"/></svg></div>
+        <h3>Visual Drag-and-Drop Builder</h3>
+        <p>Design AI workflows on an intuitive canvas. Three builder modes — Assistant, Chatflow, and Agentflow — scale from simple chatbots to complex multi-agent systems.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon"><svg><use href="#i-network"/></svg></div>
+        <h3>Multi-Agent Orchestration</h3>
+        <p>Create teams of AI agents with supervisor-worker patterns. Agents collaborate, delegate tasks, and solve complex problems through hierarchical coordination.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon"><svg><use href="#i-database"/></svg></div>
+        <h3>RAG Pipelines Built In</h3>
+        <p>Connect 42+ data sources — PDFs, databases, APIs, cloud storage — and build retrieval-augmented generation pipelines with pgvector-powered semantic search.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon"><svg><use href="#i-cpu"/></svg></div>
+        <h3>35+ LLM Integrations</h3>
+        <p>OpenAI, Anthropic Claude, Google Gemini, Mistral, Groq, AWS Bedrock, and local models via Ollama. Switch providers without rewriting workflows.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon"><svg><use href="#i-users"/></svg></div>
+        <h3>Human-in-the-Loop</h3>
+        <p>Keep humans in control with approval gates, review checkpoints, and input requests embedded directly into automated agent workflows.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon"><svg><use href="#i-shield"/></svg></div>
+        <h3>Enterprise Security</h3>
+        <p>Role-based access control, SSO, JWT authentication, encrypted credentials, rate limiting, and full audit trails. Deploy on-premises or in your cloud.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon"><svg><use href="#i-eye"/></svg></div>
+        <h3>Full Observability</h3>
+        <p>Execution traces, visual debugging, and integrations with LangFuse, LangSmith, and other analytics platforms for complete pipeline visibility.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon"><svg><use href="#i-message-square"/></svg></div>
+        <h3>Embeddable Chat Widget</h3>
+        <p>Deploy your agents anywhere with a customizable chat widget, REST APIs, and TypeScript / Python SDKs for seamless integration.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon"><svg><use href="#i-bar-chart"/></svg></div>
+        <h3>50+ Ready-Made Templates</h3>
+        <p>Customer support bots, RAG pipelines, SQL agents, research assistants, and multi-agent teams — production-tested templates to start building instantly.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ INSTALL ═══ -->
+<section class="install section" id="install">
+  <div class="install-inner">
+    <div class="section-header">
+      <div class="section-label"><svg><use href="#i-terminal"/></svg> One-Line Install</div>
+      <h2 class="section-title">From Zero to Running in 60 Seconds</h2>
+      <p class="section-desc">Just Docker — nothing else required. No git clone, no manual config. The installer generates all secrets automatically and starts the full stack.</p>
+    </div>
+    <div class="install-commands">
+      <div>
+        <div class="cmd-label"><svg><use href="#i-globe"/></svg> Linux / macOS</div>
+        <div class="cmd-box">
+          <code id="cmd-linux">curl -fsSL https://raw.githubusercontent.com/dtsoden/CX-Builder/master/install.sh | bash</code>
+          <button class="copy-btn" onclick="copyCmd('cmd-linux', this)" aria-label="Copy command">
+            <svg><use href="#i-copy"/></svg>
+          </button>
+        </div>
+      </div>
+      <div>
+        <div class="cmd-label"><svg><use href="#i-globe"/></svg> Windows (PowerShell)</div>
+        <div class="cmd-box">
+          <code id="cmd-win">irm https://raw.githubusercontent.com/dtsoden/CX-Builder/master/install.ps1 | iex</code>
+          <button class="copy-btn" onclick="copyCmd('cmd-win', this)" aria-label="Copy command">
+            <svg><use href="#i-copy"/></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="install-steps">
+      <div class="install-step">
+        <svg><use href="#i-zap"/></svg>
+        <span>Auto-generates secure passwords, JWT secrets &amp; database credentials</span>
+      </div>
+      <div class="install-step">
+        <svg><use href="#i-play"/></svg>
+        <span>Starts the full stack — app server + pgvector PostgreSQL</span>
+      </div>
+      <div class="install-step">
+        <svg><use href="#i-check-circle"/></svg>
+        <span>Ready at localhost:9800 — open your browser and build</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ ARCHITECTURE ═══ -->
+<section class="section" id="architecture">
+  <div class="arch-inner">
+    <div class="section-header">
+      <div class="section-label"><svg><use href="#i-layers"/></svg> Architecture</div>
+      <h2 class="section-title">Production-Ready by Default</h2>
+      <p class="section-desc">A containerized stack with pgvector-powered semantic search, multi-platform support, and enterprise-grade security — ready for any scale.</p>
+    </div>
+    <div class="arch-diagram">
+      <div class="arch-grid">
+        <!-- CX-Builder App -->
+        <div class="arch-col arch-col-accent">
+          <svg class="arch-icon" style="color:var(--accent)"><use href="#i-bot"/></svg>
+          <h3>CX-Builder App</h3>
+          <p class="arch-sub">Visual Builder + REST API</p>
+          <div class="arch-checklist">
+            <div class="arch-check"><svg style="color:var(--accent)"><use href="#i-check-circle"/></svg> Drag-and-drop canvas</div>
+            <div class="arch-check"><svg style="color:var(--accent)"><use href="#i-check-circle"/></svg> Agent orchestration engine</div>
+            <div class="arch-check"><svg style="color:var(--accent)"><use href="#i-check-circle"/></svg> API + SDK access</div>
+            <div class="arch-check"><svg style="color:var(--accent)"><use href="#i-check-circle"/></svg> Embeddable chat widget</div>
+          </div>
+        </div>
+        <!-- pgvector PostgreSQL -->
+        <div class="arch-col arch-col-primary">
+          <svg class="arch-icon" style="color:var(--primary-300)"><use href="#i-database"/></svg>
+          <h3>pgvector PostgreSQL</h3>
+          <p class="arch-sub">Vector + Relational DB</p>
+          <div class="arch-checklist">
+            <div class="arch-check"><svg style="color:var(--primary-300)"><use href="#i-check-circle"/></svg> Semantic similarity search</div>
+            <div class="arch-check"><svg style="color:var(--primary-300)"><use href="#i-check-circle"/></svg> Cosine, L2 &amp; inner product</div>
+            <div class="arch-check"><svg style="color:var(--primary-300)"><use href="#i-check-circle"/></svg> Persistent storage volumes</div>
+            <div class="arch-check"><svg style="color:var(--primary-300)"><use href="#i-check-circle"/></svg> No external vector DB needed</div>
+          </div>
+        </div>
+        <!-- Integrations -->
+        <div class="arch-col arch-col-neutral">
+          <svg class="arch-icon" style="color:var(--white-60)"><use href="#i-globe"/></svg>
+          <h3>Integrations</h3>
+          <p class="arch-sub">LLMs, Tools &amp; Data</p>
+          <div class="arch-checklist">
+            <div class="arch-check"><svg style="color:var(--white-40)"><use href="#i-check-circle"/></svg> OpenAI, Claude, Gemini &amp; more</div>
+            <div class="arch-check"><svg style="color:var(--white-40)"><use href="#i-check-circle"/></svg> Gmail, Slack, Jira, Notion</div>
+            <div class="arch-check"><svg style="color:var(--white-40)"><use href="#i-check-circle"/></svg> MCP protocol support</div>
+            <div class="arch-check"><svg style="color:var(--white-40)"><use href="#i-check-circle"/></svg> 42+ document loaders</div>
+          </div>
+        </div>
+      </div>
+      <div class="arch-platforms">
+        <span class="arch-tag">linux/amd64</span>
+        <span class="arch-tag">linux/arm64</span>
+        <span class="arch-tag">Apple Silicon</span>
+        <span class="arch-tag">AWS Graviton</span>
+        <span class="arch-tag">Docker Compose</span>
+        <span class="arch-tag">Apache 2.0</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ CTA ═══ -->
+<section class="cta">
+  <div class="cta-blob"></div>
+  <div class="cta-inner">
+    <h2 class="cta-title">
+      Start Building
+      <span class="hero-title-gradient">Today</span>
+    </h2>
+    <p class="cta-desc">
+      Open source. Self-hosted. Deploy the full platform with a single command
+      and start creating AI agents in minutes.
+    </p>
+    <div class="cta-buttons">
+      <a href="#install" class="btn-primary">
+        <svg style="width:20px;height:20px"><use href="#i-terminal"/></svg>
+        Install CX-Builder
+        <svg style="width:16px;height:16px"><use href="#i-arrow-right"/></svg>
+      </a>
+      <a href="https://github.com/dtsoden/cx-builder" target="_blank" rel="noopener noreferrer" class="btn-secondary">
+        View on GitHub
+        <svg style="width:16px;height:16px"><use href="#i-arrow-right"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ FOOTER ═══ -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-row">
+      <img class="footer-logo" src="cx-builder-dark.png" alt="CX-Builder">
+      <div class="footer-links">
+        <a href="https://github.com/dtsoden/cx-builder" target="_blank" rel="noopener noreferrer">GitHub</a>
+        <span>Apache 2.0 License</span>
+      </div>
+    </div>
+    <div class="footer-copy">&copy; 2026 CX-Builder. All rights reserved.</div>
+  </div>
+</footer>
+
+<!-- ═══ JAVASCRIPT ═══ -->
+<script>
+// ─── Synaptic neural network canvas ──────────────────────────
+(function() {
+  var canvas = document.getElementById('synaptic-canvas');
+  if (!canvas) return;
+  var ctx = canvas.getContext('2d');
+  if (!ctx) return;
+  var animId;
+  var nodes = [];
+
+  function resize() {
+    canvas.width = canvas.offsetWidth * window.devicePixelRatio;
+    canvas.height = canvas.offsetHeight * window.devicePixelRatio;
+    ctx.setTransform(window.devicePixelRatio, 0, 0, window.devicePixelRatio, 0, 0);
+  }
+
+  function init() {
+    resize();
+    var w = canvas.offsetWidth, h = canvas.offsetHeight;
+    var count = Math.min(Math.floor((w * h) / 18000), 120);
+    nodes = [];
+    for (var i = 0; i < count; i++) {
+      nodes.push({
+        x: Math.random() * w, y: Math.random() * h,
+        vx: (Math.random() - 0.5) * 0.3, vy: (Math.random() - 0.5) * 0.3,
+        r: Math.random() * 1.5 + 0.5,
+        pulse: Math.random() * Math.PI * 2,
+        pulseSpeed: Math.random() * 0.008 + 0.003
+      });
+    }
+  }
+
+  function draw() {
+    var w = canvas.offsetWidth, h = canvas.offsetHeight;
+    ctx.clearRect(0, 0, w, h);
+    var connDist = 160;
+
+    for (var i = 0; i < nodes.length; i++) {
+      var n = nodes[i];
+      n.x += n.vx; n.y += n.vy; n.pulse += n.pulseSpeed;
+      if (n.x < -20) n.x = w + 20;
+      if (n.x > w + 20) n.x = -20;
+      if (n.y < -20) n.y = h + 20;
+      if (n.y > h + 20) n.y = -20;
+    }
+
+    for (var i = 0; i < nodes.length; i++) {
+      for (var j = i + 1; j < nodes.length; j++) {
+        var dx = nodes[i].x - nodes[j].x, dy = nodes[i].y - nodes[j].y;
+        var dist = Math.sqrt(dx * dx + dy * dy);
+        if (dist < connDist) {
+          var alpha = (1 - dist / connDist) * 0.12;
+          var pulseAlpha = Math.sin(nodes[i].pulse) * 0.5 + 0.5;
+          var finalAlpha = alpha * (0.6 + pulseAlpha * 0.4);
+          ctx.beginPath();
+          ctx.moveTo(nodes[i].x, nodes[i].y);
+          ctx.lineTo(nodes[j].x, nodes[j].y);
+          ctx.strokeStyle = 'rgba(92,167,220,' + (finalAlpha * 1.2) + ')';
+          ctx.lineWidth = 0.6;
+          ctx.stroke();
+        }
+      }
+    }
+
+    for (var i = 0; i < nodes.length; i++) {
+      var n = nodes[i];
+      var glow = Math.sin(n.pulse) * 0.5 + 0.5;
+      var a = 0.18 + glow * 0.3;
+      ctx.beginPath();
+      ctx.arc(n.x, n.y, n.r * 3.5, 0, Math.PI * 2);
+      ctx.fillStyle = 'rgba(92,167,220,' + (a * 0.18) + ')';
+      ctx.fill();
+      ctx.beginPath();
+      ctx.arc(n.x, n.y, n.r, 0, Math.PI * 2);
+      ctx.fillStyle = 'rgba(92,167,220,' + a + ')';
+      ctx.fill();
+    }
+    animId = requestAnimationFrame(draw);
+  }
+
+  init(); draw();
+  window.addEventListener('resize', init);
+})();
+
+// ─── Animated counters ───────────────────────────────────────
+(function() {
+  var counters = document.querySelectorAll('.stat-value[data-target]');
+  var observer = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting && !entry.target.dataset.started) {
+        entry.target.dataset.started = '1';
+        var target = parseInt(entry.target.dataset.target);
+        var suffix = entry.target.dataset.suffix || '';
+        var start = 0, duration = 1800;
+        var startTime = null;
+        function step(ts) {
+          if (!startTime) startTime = ts;
+          var progress = Math.min((ts - startTime) / duration, 1);
+          var eased = 1 - Math.pow(1 - progress, 3);
+          entry.target.textContent = Math.floor(eased * target) + suffix;
+          if (progress < 1) requestAnimationFrame(step);
+        }
+        requestAnimationFrame(step);
+      }
+    });
+  }, { threshold: 0.3 });
+  counters.forEach(function(el) { observer.observe(el); });
+})();
+
+// ─── Copy to clipboard ──────────────────────────────────────
+function copyCmd(id, btn) {
+  var code = document.getElementById(id);
+  navigator.clipboard.writeText(code.textContent.trim());
+  var svg = btn.querySelector('svg use');
+  svg.setAttribute('href', '#i-check');
+  btn.style.color = 'var(--accent)';
+  setTimeout(function() {
+    svg.setAttribute('href', '#i-copy');
+    btn.style.color = '';
+  }, 2000);
+}
+
+// ─── Smooth scroll ───────────────────────────────────────────
+document.querySelectorAll('a[href^="#"]').forEach(function(a) {
+  a.addEventListener('click', function(e) {
+    var target = document.querySelector(this.getAttribute('href'));
+    if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth' }); }
+  });
+});
+</script>
+</body>
+</html>
