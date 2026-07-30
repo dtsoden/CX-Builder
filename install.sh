@@ -262,6 +262,74 @@ EOF
     info "Configuration written to $ENV_FILE"
 }
 
+# ── Orphaned data volumes ────────────────────────────────────────────────────
+# Docker volumes outlive both containers and the project folder. If the folder
+# (and its .env) was deleted while the volumes remained, the installer would
+# generate a NEW database password that the surviving database rejects,
+# producing a crash loop whose error never mentions volumes. Detect that here.
+#
+# The encryption key lives in the cxbuilder_data volume as encryption.key, not
+# in .env, so keeping the data is safe: only the Postgres password has to be
+# reconciled.
+RESET_DB_PASSWORD=0
+
+check_orphaned_volumes() {
+    local pg app
+    pg=$(docker volume ls -q --filter "name=^cx-builder_postgres_data$" 2>/dev/null)
+    app=$(docker volume ls -q --filter "name=^cx-builder_cxbuilder_data$" 2>/dev/null)
+    [ -z "$pg" ] && [ -z "$app" ] && return 0     # clean machine
+    [ -f "$ENV_FILE" ] && return 0                # .env present, still paired
+
+    echo ""
+    warn "Existing CX-Builder data was found, but its configuration is gone."
+    echo ""
+    echo "  Docker volumes survive deleting containers AND deleting the folder."
+    echo "  These still exist on this machine:"
+    [ -n "$pg" ]  && echo "    cx-builder_postgres_data   (your database)"
+    [ -n "$app" ] && echo "    cx-builder_cxbuilder_data  (uploads, encryption key)"
+    echo ""
+    echo "  The database still expects the OLD password, which was in the .env"
+    echo "  file you deleted. A new install would generate a new password and"
+    echo "  fail to connect."
+    echo ""
+    echo "  1) Keep my existing data  (recommended)"
+    echo "     Updates the database to accept the new password. Flows,"
+    echo "     credentials and uploads are preserved."
+    echo ""
+    echo "  2) Start completely fresh"
+    echo "     DELETES both volumes. Everything is lost and cannot be undone."
+    echo ""
+    echo "  3) Cancel"
+    echo "     Stop so you can back up or restore your old .env first."
+    echo ""
+    printf "  Choose [1]: "
+    read -r choice < /dev/tty
+    [ -z "$choice" ] && choice=1
+
+    case "$choice" in
+        1)
+            RESET_DB_PASSWORD=1
+            info "Keeping existing data. The database password will be updated to match."
+            ;;
+        2)
+            echo ""
+            warn "This permanently deletes your database and uploads."
+            printf "  Type DELETE to confirm: "
+            read -r confirm < /dev/tty
+            if [ "$confirm" != "DELETE" ]; then error "Not confirmed. Nothing was changed."; exit 1; fi
+            docker volume rm cx-builder_postgres_data cx-builder_cxbuilder_data >/dev/null 2>&1
+            info "Volumes removed. Starting fresh."
+            ;;
+        *)
+            echo ""
+            info "Cancelled. Nothing was changed."
+            echo "  Your data is still in the Docker volumes listed above."
+            echo "  Restore the old docker/.env to use it, or re-run and choose 1."
+            exit 0
+            ;;
+    esac
+}
+
 # ── Launch ───────────────────────────────────────────────────────────────────
 launch() {
     echo ""
@@ -311,6 +379,31 @@ launch() {
         export PORT="$configured_port"
     fi
 
+    # Reconcile the surviving database with the newly generated password before
+    # the app container tries to connect. Postgres only applies POSTGRES_PASSWORD
+    # when initialising an empty data directory.
+    if [ "$RESET_DB_PASSWORD" = "1" ]; then
+        local pgpw dbu dbn h
+        pgpw=$(grep -E '^POSTGRES_PASSWORD=' "$ENV_FILE" | head -1 | cut -d= -f2-)
+        dbu=$(grep -E '^POSTGRES_USER=' "$ENV_FILE" | head -1 | cut -d= -f2-)
+        dbn=$(grep -E '^POSTGRES_DB=' "$ENV_FILE" | head -1 | cut -d= -f2-)
+        info "Starting the database to update its password..."
+        $COMPOSE_CMD -f "$COMPOSE_FILE" up -d postgres >/dev/null 2>&1
+        for _ in $(seq 1 60); do
+            h=$(docker inspect --format '{{.State.Health.Status}}' cx-builder-postgres-1 2>/dev/null)
+            [ "$h" = "healthy" ] && break
+            sleep 2
+        done
+        if docker exec -e NEWPW="$pgpw" cx-builder-postgres-1 sh -c              "psql -v ON_ERROR_STOP=1 -U $dbu -d $dbn -c \"ALTER USER $dbu WITH PASSWORD '\$NEWPW';\"" >/dev/null 2>&1; then
+            info "Database password updated. Your data is intact."
+        else
+            error "Could not update the database password."
+            echo "  Restore your old docker/.env, or re-run and choose option 2."
+            exit 1
+        fi
+        echo ""
+    fi
+
     info "Pulling images and starting CX-Builder..."
     echo ""
 
@@ -336,5 +429,6 @@ launch() {
 # ── Main ─────────────────────────────────────────────────────────────────────
 banner
 preflight
+check_orphaned_volumes
 configure
 launch

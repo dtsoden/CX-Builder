@@ -236,6 +236,72 @@ HTTP_DENY_LIST=
     Write-Info "Configuration written to $EnvFile"
 }
 
+# ── Orphaned data volumes ────────────────────────────────────────────────────
+# Docker volumes outlive both containers and the project folder. If the folder
+# (and its .env) was deleted while the volumes remained, the installer would
+# generate a NEW database password that the surviving database will reject,
+# producing a crash loop whose error never mentions volumes. Detect that here.
+#
+# The encryption key lives in the cxbuilder_data volume as encryption.key, not
+# in .env, so keeping the data is safe: only the Postgres password has to be
+# reconciled.
+$script:ResetDbPassword = $false
+
+function Test-OrphanedVolumes {
+    $pg  = docker volume ls -q --filter "name=^cx-builder_postgres_data$" 2>$null
+    $app = docker volume ls -q --filter "name=^cx-builder_cxbuilder_data$" 2>$null
+    if (-not $pg -and -not $app) { return }          # clean machine, nothing to do
+    if (Test-Path $EnvFile)      { return }          # .env present, credentials still paired
+
+    Write-Host ""
+    Write-Warn "Existing CX-Builder data was found, but its configuration is gone."
+    Write-Host ""
+    Write-Host "  Docker volumes survive deleting containers AND deleting the folder."
+    Write-Host "  These still exist on this machine:"
+    if ($pg)  { Write-Host "    cx-builder_postgres_data   (your database)" }
+    if ($app) { Write-Host "    cx-builder_cxbuilder_data  (uploads, encryption key)" }
+    Write-Host ""
+    Write-Host "  The database still expects the OLD password, which was in the .env"
+    Write-Host "  file you deleted. A new install would generate a new password and"
+    Write-Host "  fail to connect."
+    Write-Host ""
+    Write-Host "  1) Keep my existing data  (recommended)"
+    Write-Host "     Updates the database to accept the new password. Flows,"
+    Write-Host "     credentials and uploads are preserved."
+    Write-Host ""
+    Write-Host "  2) Start completely fresh"
+    Write-Host "     DELETES both volumes. Everything is lost and cannot be undone."
+    Write-Host ""
+    Write-Host "  3) Cancel"
+    Write-Host "     Stop so you can back up or restore your old .env first."
+    Write-Host ""
+
+    $choice = Read-Host "  Choose [1]"
+    if ([string]::IsNullOrWhiteSpace($choice)) { $choice = "1" }
+
+    switch ($choice) {
+        "1" {
+            $script:ResetDbPassword = $true
+            Write-Info "Keeping existing data. The database password will be updated to match."
+        }
+        "2" {
+            Write-Host ""
+            Write-Warn "This permanently deletes your database and uploads."
+            $confirm = Read-Host "  Type DELETE to confirm"
+            if ($confirm -ne "DELETE") { Write-Err "Not confirmed. Nothing was changed."; exit 1 }
+            docker volume rm cx-builder_postgres_data cx-builder_cxbuilder_data 2>&1 | Out-Null
+            Write-Info "Volumes removed. Starting fresh."
+        }
+        default {
+            Write-Host ""
+            Write-Info "Cancelled. Nothing was changed."
+            Write-Host "  Your data is still in the Docker volumes listed above."
+            Write-Host "  Restore the old docker/.env to use it, or re-run and choose 1."
+            exit 0
+        }
+    }
+}
+
 # ── Launch ───────────────────────────────────────────────────────────────────
 function Start-CXBuilder {
     Write-Host ""
@@ -282,6 +348,27 @@ function Start-CXBuilder {
     Write-Info "Pulling images and starting CX-Builder..."
     Write-Host ""
 
+    # Reconcile the surviving database with the newly generated password before
+    # the app container tries to connect. Postgres only applies POSTGRES_PASSWORD
+    # when initialising an empty data directory, so an existing volume keeps the
+    # old password and must be altered directly.
+    if ($script:ResetDbPassword) {
+        $pgpw = (Select-String -Path $EnvFile -Pattern '^POSTGRES_PASSWORD=(.+)$').Matches.Groups[1].Value
+        $dbu  = (Select-String -Path $EnvFile -Pattern '^POSTGRES_USER=(.+)$').Matches.Groups[1].Value
+        $dbn  = (Select-String -Path $EnvFile -Pattern '^POSTGRES_DB=(.+)$').Matches.Groups[1].Value
+        Write-Info "Starting the database to update its password..."
+        docker compose -f $ComposeFile up -d postgres | Out-Null
+        for ($i = 0; $i -lt 60; $i++) {
+            $h = docker inspect --format '{{.State.Health.Status}}' cx-builder-postgres-1 2>$null
+            if ($h -eq "healthy") { break }
+            Start-Sleep -Seconds 2
+        }
+        docker exec -e NEWPW="$pgpw" cx-builder-postgres-1 sh -c "psql -v ON_ERROR_STOP=1 -U $dbu -d $dbn -c \"ALTER USER $dbu WITH PASSWORD '`$NEWPW';\"" | Out-Null
+        if ($LASTEXITCODE -eq 0) { Write-Info "Database password updated. Your data is intact." }
+        else { Write-Err "Could not update the database password. Restore your old .env, or re-run and choose option 2."; exit 1 }
+        Write-Host ""
+    }
+
     # Docker Compose writes progress to stderr, which PowerShell treats as a
     # terminating error when $ErrorActionPreference is "Stop".  Temporarily
     # relax the preference so progress messages don't abort the script.
@@ -315,5 +402,6 @@ function Start-CXBuilder {
 # ── Main ─────────────────────────────────────────────────────────────────────
 Write-Banner
 Test-Preflight
+Test-OrphanedVolumes
 Set-Configuration
 Start-CXBuilder
