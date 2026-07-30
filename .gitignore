@@ -126,3 +126,6 @@ apps/*/
 
 # Maintainer-only notes, never published
 MAINTAINER.local.md
+
+# Article automation machinery, local only, never published
+marketing/
