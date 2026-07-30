@@ -40,6 +40,8 @@ from the Docker build.
 
 ## Known cleanups
 
-- The page uses em dashes throughout, including in the `<title>`.
-- It says nothing about CX-Builder being independently maintained, which is worth
-  considering now that upstream Flowise has been discontinued.
+- The page says nothing about CX-Builder being independently maintained, which is
+  worth considering now that upstream Flowise has been discontinued.
+- Numeric claims (document loaders, LLM integrations, templates) are counted from
+  `packages/components/nodes/` and `packages/server/marketplaces/`. Re-check them when
+  the base version changes; they were wrong once already.
