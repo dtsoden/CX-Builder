@@ -186,4 +186,9 @@ localhost will be blocked until it is turned off.
 The amd64 image was booted end to end: migrations applied, `/api/v1/ping` returned 200,
 `/api/v1/version` reported 3.1.4, the marketplace folder derivation resolved correctly
 (Chat 24 chatflow, Agents-V1 14 v1, Agents-V2 13 v2, Tools 13 tool), and the UI served
-with CX-Builder branding. The arm64 image was built but not booted.
+with CX-Builder branding.
+
+The arm64 image was booted separately on an Apple Silicon M4: it pulled, started and
+reached the account setup screen, which only renders after migrations have applied and
+the server has bound its port. Docker selects the native architecture by default when
+the manifest offers it, so this exercised the arm64 layer rather than Rosetta.
