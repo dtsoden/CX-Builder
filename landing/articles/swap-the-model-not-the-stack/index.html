@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>A better model shipped. Is yours a dropdown or a rewrite?</title>
+<meta name="description" content="Claude Opus 5 lands at about half the cost of the strongest frontier models. The gain goes to teams who can change the model behind an agent without a rebuild.">
+<link rel="canonical" href="https://cx-builder.com/articles/swap-the-model-not-the-stack/">
+<meta name="robots" content="index, follow, max-image-preview:large">
+
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://cx-builder.com/articles/swap-the-model-not-the-stack/">
+<meta property="og:site_name" content="CX-Builder">
+<meta property="og:title" content="A better model shipped. Is yours a dropdown or a rewrite?">
+<meta property="og:description" content="Claude Opus 5 lands at about half the cost of the strongest frontier models. The gain goes to teams who can change the model behind an agent without a rebuild.">
+<meta property="og:image" content="https://cx-builder.com/articles/swap-the-model-not-the-stack/images/hero-interchangeable-processors.webp">
+<meta property="og:image:width" content="1600">
+<meta property="og:image:height" content="900">
+<meta property="og:image:alt" content="A pile of identical computer processors stacked on a wooden surface">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="A better model shipped. Is yours a dropdown or a rewrite?">
+<meta name="twitter:description" content="Claude Opus 5 lands at about half the cost of the strongest frontier models. The gain goes to teams who can change the model behind an agent without a rebuild.">
+<meta name="twitter:image" content="https://cx-builder.com/articles/swap-the-model-not-the-stack/images/hero-interchangeable-processors.webp">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "A better model shipped. Is yours a dropdown or a rewrite?",
+  "description": "Claude Opus 5 lands at about half the cost of the strongest frontier models. The gain goes to teams who can change the model behind an agent without a rebuild.",
+  "image": "https://cx-builder.com/articles/swap-the-model-not-the-stack/images/hero-interchangeable-processors.webp",
+  "datePublished": "2026-07-30",
+  "dateModified": "2026-07-30",
+  "author": { "@type": "Person", "name": "David Soden" },
+  "publisher": {
+    "@type": "Organization",
+    "name": "CX-Builder",
+    "logo": { "@type": "ImageObject", "url": "https://cx-builder.com/cx-builder-dark.png" }
+  },
+  "mainEntityOfPage": { "@type": "WebPage", "@id": "https://cx-builder.com/articles/swap-the-model-not-the-stack/" }
+}
+</script>
+
+<link rel="icon" type="image/png" href="/cx-avitar-dark.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Source+Serif+4:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+  :root {
+    --accent:#5CA7DC; --dark:#020C12; --dark-footer:#010810;
+    --ink:#12212B; --ink-soft:#4A5B66; --rule:#E2E8ED;
+  }
+  body { font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif; background:#fff; color:var(--ink); -webkit-font-smoothing:antialiased; line-height:1.6; }
+  a { color:inherit; text-decoration:none; }
+  img { max-width:100%; height:auto; display:block; }
+  svg { width:100%; }
+
+  /* header / footer: dark, matches cx-builder.com */
+  .nav { background:rgba(2,12,18,0.96); border-bottom:1px solid rgba(255,255,255,0.06); position:sticky; top:0; z-index:50; }
+  .nav-inner { max-width:80rem; margin:0 auto; display:flex; align-items:center; justify-content:space-between; height:4rem; padding:0 1.5rem; }
+  .nav-logo { height:2.88rem; margin:-0.75rem 0; }
+  .nav-links { display:flex; align-items:center; gap:2rem; }
+  .nav-links a { font-size:0.875rem; color:rgba(255,255,255,0.6); transition:color .2s; }
+  .nav-links a:hover, .nav-links a.on { color:#fff; }
+  .nav-cta { border-radius:.5rem; padding:.5rem 1rem; font-size:.875rem; font-weight:600; background:var(--accent); color:var(--dark); }
+
+  .wrap { max-width:46rem; margin:0 auto; padding:0 1.5rem; }
+  .crumb { padding:2.5rem 0 1.25rem; font-size:.875rem; color:var(--ink-soft); }
+  .crumb a:hover { color:var(--accent); }
+
+  .kicker { font-size:.75rem; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:var(--accent); margin-bottom:1rem; }
+  h1 { font-family:'Source Serif 4',Georgia,serif; font-size:clamp(2.1rem,5.5vw,3.1rem); font-weight:700; line-height:1.12; letter-spacing:-.015em; }
+  .standfirst { font-family:'Source Serif 4',Georgia,serif; font-style:italic; font-size:clamp(1.1rem,2.4vw,1.35rem); line-height:1.55; color:var(--ink-soft); margin-top:1.25rem; }
+
+  .byline { display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:1rem;
+            border-top:1px solid var(--rule); border-bottom:1px solid var(--rule); margin:2rem 0 2.5rem; padding:.9rem 0; font-size:.9rem; color:var(--ink-soft); }
+  .share-li { display:inline-flex; align-items:center; gap:.45rem; background:#0A66C2; color:#fff; font-weight:600; font-size:.8rem; padding:.5rem .85rem; border-radius:.375rem; }
+  .share-li:hover { background:#004182; }
+  .share-li svg { width:14px; height:14px; fill:currentColor; }
+
+  figure { margin:2.5rem 0; }
+  figure img { border-radius:.5rem; }
+  figcaption { font-size:.8rem; color:var(--ink-soft); margin-top:.6rem; }
+
+  h2 { font-family:'Source Serif 4',Georgia,serif; font-size:clamp(1.5rem,3.2vw,1.9rem); font-weight:700; line-height:1.25; margin:2.75rem 0 1rem; }
+  p { margin-bottom:1.15rem; font-size:1.06rem; }
+  .wrap ul { margin:0 0 1.15rem 1.25rem; }
+  .wrap ul li { margin-bottom:.5rem; font-size:1.06rem; }
+  .wrap p a, .wrap li a { color:var(--accent); text-decoration:underline; text-underline-offset:2px; }
+
+  .box { background:var(--dark); color:#fff; border-radius:.75rem; padding:1.75rem; margin:2.75rem 0; }
+  .box h3 { font-size:1.05rem; font-weight:700; margin-bottom:.6rem; }
+  .box p { color:rgba(255,255,255,0.72); margin-bottom:0; font-size:1rem; }
+
+  .more { border-top:1px solid var(--rule); margin-top:3rem; padding:1.5rem 0 4rem; display:flex; gap:1.5rem; flex-wrap:wrap; font-size:.9rem; }
+  .more a { color:var(--accent); }
+
+  .footer { background:var(--dark-footer); color:rgba(255,255,255,0.55); padding:2.5rem 1.5rem; }
+  .footer-inner { max-width:80rem; margin:0 auto; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:1rem; font-size:.85rem; }
+  .footer-links { display:flex; gap:1.5rem; }
+  .footer-links a:hover { color:#fff; }
+  .footer-logo { height:2rem; }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="/"><img class="nav-logo" src="/cx-builder-dark.png" alt="CX-Builder"></a>
+    <div class="nav-links">
+      <a href="/#features">Features</a>
+      <a href="/#install">Install</a>
+      <a href="/articles/" class="on">Articles</a>
+      <a href="https://github.com/dtsoden/cx-builder" target="_blank" rel="noopener noreferrer">GitHub</a>
+    </div>
+    <a href="/#install" class="nav-cta">Get Started</a>
+  </div>
+</nav>
+
+<div class="wrap">
+  <div class="crumb"><a href="/articles/">&larr; All articles</a></div>
+
+  <div class="kicker">Model strategy &bull; Field note</div>
+  <h1>A better model shipped. Is yours a dropdown or a rewrite?</h1>
+  <p class="standfirst">Frontier capability keeps getting cheaper at the same sticker price. The businesses that gain from that are the ones who can change the model behind an agent without touching anything else.</p>
+
+  <div class="byline">
+    <span>David Soden &bull; 5 min read &bull; 30 July 2026</span>
+    <a class="share-li" href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fcx-builder.com%2Farticles%2Fswap-the-model-not-the-stack%2F" target="_blank" rel="noopener noreferrer">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.34V9h3.41v1.56h.05c.48-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.55V9h3.57v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.72V1.72C24 .77 23.2 0 22.22 0z"/></svg>
+      Share on LinkedIn
+    </a>
+  </div>
+
+  <figure>
+    <img src="images/hero-interchangeable-processors.webp" width="1600" height="900" alt="A pile of identical computer processors stacked on a wooden surface">
+    <figcaption>The part that does the thinking should be the part you can lift out.</figcaption>
+  </figure>
+
+  <h2>What happened</h2>
+  <p>Anthropic shipped <a href="https://www.anthropic.com/news/claude-opus-5" target="_blank" rel="noopener noreferrer">Claude Opus 5</a> at the same price as the model it replaces. It posts state-of-the-art numbers on coding and knowledge tests, gets close to the strongest model on the market for roughly half the cost, and is meaningfully better at long multi-step work: checking its own output, catching its own mistakes, finishing jobs that used to stall halfway.</p>
+  <p>The detail that matters if you run operations sits further down the benchmark list. It leads on business automation tasks. Not chat quality. Automation.</p>
+  <p>This is not a turning point, and treating it as one would be silly. It is the fourth or fifth time in two years that the price of a given level of capability has roughly halved. The regularity is the story, not the release.</p>
+
+  <h2>Why this matters to your business</h2>
+  <p>Two things change when capability gets cheaper at a fixed sticker price, and both happen whether or not anyone on your team is paying attention.</p>
+  <p>The first is that your list of tasks marked "not worth automating" is out of date. Everything you assessed and rejected last year, you rejected against a particular cost and a particular error rate. Both moved. Some of that work would clear the bar today, and nobody is going to raise it, because the decision is already filed as settled.</p>
+
+  <figure>
+    <img src="images/falling-cost-curve.webp" width="1400" height="788" alt="A candlestick trading chart on a dark screen showing a sustained downward price trend" loading="lazy">
+    <figcaption>The cost of a given level of capability keeps stepping down. Budgets rarely step down with it.</figcaption>
+  </figure>
+
+  <p>The second is less comfortable. Whatever model you standardised on will not be the right default in twelve months. That is no criticism of the choice; it is the shape of the market right now. The risk was never picking the wrong model. The risk is building so that changing it becomes a project.</p>
+  <p>That difference has a price attached. When the model is welded into an application, switching means a rewrite, a test cycle, a release, and a fight over priorities. So it does not happen. You keep paying more for less, quarter after quarter, because the migration is never quite worth scheduling.</p>
+
+  <h2>Why this is a CX-Builder use case</h2>
+  <p>In CX-Builder the model is a node in a flow, not the ground the flow is built on. The agent's instructions, the documents it retrieves from, the approval gate, the connectors into your helpdesk and your CRM: none of it knows which model produced the answer. Change the node, keep the rest.</p>
+  <p>That turns a migration into an afternoon. More useful, it makes a real comparison possible. You can stand a new model next to your current one over the same conversations and look at what actually comes out, rather than trusting a benchmark run on somebody else's work.</p>
+  <p>Because it runs on your own infrastructure, the choice stays yours, including the option to put a small cheap model on the routine majority of tickets and reserve the expensive one for the cases that need judgment. The number to manage is cost per resolved ticket, not cost per token.</p>
+
+  <figure>
+    <img src="images/side-by-side-evaluation.webp" width="1400" height="788" alt="Two monitors side by side on a desk, each displaying a chat interface" loading="lazy">
+    <figcaption>A swap you can evaluate is a swap you can defend to whoever owns the budget.</figcaption>
+  </figure>
+
+  <h2>What this looks like if you build it</h2>
+  <p>Keep model selection at the edge of the flow. The agentflow holds the instructions and the tools. A vector store holds your policies and product documentation, so answers stay grounded in your material no matter which model reads it. A human-in-the-loop node holds anything above your risk line. The model is one configured node those pieces call, and swapping it changes nothing else.</p>
+  <p>To judge a swap, replay a sample of last month's real conversations through both versions and compare the results against how a person actually resolved each case. Watch cost per resolution and how often things escalate to a human. Those move budgets. Accuracy on a public test set does not.</p>
+
+  <div class="box">
+    <h3>The takeaway</h3>
+    <p>Book a recurring hour each quarter to re-test three things: the model behind your busiest agent, and two tasks you ruled out last year as too expensive or too unreliable to automate. The technology repriced itself while you were looking elsewhere. The list you built against the old prices is what costs you now.</p>
+  </div>
+
+  <div class="more">
+    <a href="/articles/">All articles</a>
+    <a href="/articles/the-cost-of-getting-it-wrong/">Your AI agent should not have the final say</a>
+    <a href="/#install">Install CX-Builder</a>
+    <a href="https://github.com/dtsoden/cx-builder" target="_blank" rel="noopener noreferrer">View on GitHub</a>
+  </div>
+</div>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <img class="footer-logo" src="/cx-builder-dark.png" alt="CX-Builder">
+    <div class="footer-links">
+      <a href="/">Home</a>
+      <a href="/articles/">Articles</a>
+      <a href="https://github.com/dtsoden/cx-builder" target="_blank" rel="noopener noreferrer">GitHub</a>
+      <a href="https://ainews.davidsoden.com/" target="_blank" rel="noopener noreferrer">AI News</a>
+    </div>
+    <span>&copy; 2026 CX-Builder</span>
+  </div>
+</footer>
+
+</body>
+</html>
