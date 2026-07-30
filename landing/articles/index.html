@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Articles: agent design notes from CX-Builder</title>
+<meta name="description" content="Field notes on agentic AI, customer experience automation and what the shift means for businesses that run support, service and operations.">
+<link rel="canonical" href="https://cx-builder.com/articles/">
+<meta name="robots" content="index, follow, max-image-preview:large">
+
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://cx-builder.com/articles/">
+<meta property="og:site_name" content="CX-Builder">
+<meta property="og:title" content="Articles: agent design notes from CX-Builder">
+<meta property="og:description" content="Field notes on agentic AI, customer experience automation and what the shift means for businesses that run support, service and operations.">
+<meta property="og:image" content="https://cx-builder.com/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="icon" type="image/png" href="/cx-avitar-dark.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Source+Serif+4:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+  :root { --accent:#5CA7DC; --dark:#020C12; --dark-footer:#010810; }
+  body { font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif; background:var(--dark); color:#fff; -webkit-font-smoothing:antialiased; line-height:1.6; }
+  a { color:inherit; text-decoration:none; }
+  img { max-width:100%; display:block; }
+
+  .nav { background:rgba(2,12,18,0.96); border-bottom:1px solid rgba(255,255,255,0.06); position:sticky; top:0; z-index:50; }
+  .nav-inner { max-width:80rem; margin:0 auto; display:flex; align-items:center; justify-content:space-between; height:4rem; padding:0 1.5rem; }
+  .nav-logo { height:2.88rem; margin:-0.75rem 0; }
+  .nav-links { display:flex; align-items:center; gap:2rem; }
+  .nav-links a { font-size:.875rem; color:rgba(255,255,255,.6); transition:color .2s; }
+  .nav-links a:hover, .nav-links a.on { color:#fff; }
+  .nav-cta { border-radius:.5rem; padding:.5rem 1rem; font-size:.875rem; font-weight:600; background:var(--accent); color:var(--dark); }
+
+  .head { max-width:80rem; margin:0 auto; padding:4.5rem 1.5rem 2.5rem; }
+  .head .kicker { font-size:.75rem; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:rgba(255,255,255,.45); margin-bottom:1rem; }
+  .head h1 { font-family:'Source Serif 4',Georgia,serif; font-size:clamp(2.2rem,5.5vw,3.4rem); font-weight:700; line-height:1.12; letter-spacing:-.015em; max-width:36rem; }
+  .head p { color:rgba(255,255,255,.5); margin-top:1.25rem; max-width:34rem; }
+
+  .grid { max-width:80rem; margin:0 auto; padding:0 1.5rem 5rem; display:grid; grid-template-columns:repeat(auto-fill,minmax(20rem,1fr)); gap:1.75rem; }
+  .card { border:1px solid rgba(255,255,255,.08); border-radius:.75rem; overflow:hidden; background:rgba(255,255,255,.02); transition:border-color .2s, transform .2s; }
+  .card:hover { border-color:rgba(92,167,220,.4); transform:translateY(-2px); }
+  .card img { aspect-ratio:16/9; object-fit:cover; width:100%; }
+  .card-body { padding:1.25rem 1.35rem 1.5rem; }
+  .meta { font-family:ui-monospace,SFMono-Regular,Menlo,monospace; font-size:.72rem; letter-spacing:.06em; text-transform:uppercase; color:var(--accent); margin-bottom:.6rem; }
+  .card h2 { font-family:'Source Serif 4',Georgia,serif; font-size:1.3rem; font-weight:700; line-height:1.3; margin-bottom:.55rem; }
+  .card p { font-size:.92rem; color:rgba(255,255,255,.5); }
+
+  .footer { background:var(--dark-footer); color:rgba(255,255,255,.55); padding:2.5rem 1.5rem; }
+  .footer-inner { max-width:80rem; margin:0 auto; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:1rem; font-size:.85rem; }
+  .footer-links { display:flex; gap:1.5rem; }
+  .footer-links a:hover { color:#fff; }
+  .footer-logo { height:2rem; }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="/"><img class="nav-logo" src="/cx-builder-dark.png" alt="CX-Builder"></a>
+    <div class="nav-links">
+      <a href="/#features">Features</a>
+      <a href="/#install">Install</a>
+      <a href="/articles/" class="on">Articles</a>
+      <a href="https://github.com/dtsoden/cx-builder" target="_blank" rel="noopener noreferrer">GitHub</a>
+    </div>
+    <a href="/#install" class="nav-cta">Get Started</a>
+  </div>
+</nav>
+
+<header class="head">
+  <div class="kicker">Articles</div>
+  <h1>Notes on building agents that businesses can actually trust.</h1>
+  <p>What is changing in agentic AI and customer experience, and what it means if you run support, service or operations. New pieces Monday, Wednesday and Friday.</p>
+</header>
+
+<main class="grid" id="cards">
+  <!-- NEWEST FIRST. New cards are inserted directly below this comment. -->
+  <a class="card" href="/articles/the-cost-of-getting-it-wrong/">
+    <img src="/articles/the-cost-of-getting-it-wrong/images/hero-inspecting-output.webp" alt="A worker inspecting sheets under bright light in a factory" loading="lazy">
+    <div class="card-body">
+      <div class="meta">Jul 30, 2026 &bull; 6 min read</div>
+      <h2>Your AI agent should not have the final say. Here is why.</h2>
+      <p>Costs are climbing while the gains flatten. The answer is not a smarter model, it is being deliberate about which decisions an agent makes alone.</p>
+    </div>
+  </a>
+</main>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <img class="footer-logo" src="/cx-builder-dark.png" alt="CX-Builder">
+    <div class="footer-links">
+      <a href="/">Home</a>
+      <a href="/articles/">Articles</a>
+      <a href="https://github.com/dtsoden/cx-builder" target="_blank" rel="noopener noreferrer">GitHub</a>
+      <a href="https://ainews.davidsoden.com/" target="_blank" rel="noopener noreferrer">AI News</a>
+    </div>
+    <span>&copy; 2026 CX-Builder</span>
+  </div>
+</footer>
+
+</body>
+</html>
