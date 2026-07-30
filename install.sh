@@ -255,6 +255,8 @@ LOG_LEVEL=
 STORAGE_TYPE=
 SHOW_COMMUNITY_NODES=
 IFRAME_ORIGINS=
+HTTP_SECURITY_CHECK=
+HTTP_DENY_LIST=
 EOF
 
     info "Configuration written to $ENV_FILE"
@@ -263,6 +265,30 @@ EOF
 # ── Launch ───────────────────────────────────────────────────────────────────
 launch() {
     echo ""
+
+    # Read the port we actually configured in .env.
+    local configured_port
+    configured_port=$(grep -E '^PORT=' "$ENV_FILE" | head -1 | cut -d= -f2)
+
+    # Docker Compose gives shell environment variables precedence over the .env
+    # file. PORT is a common variable to have exported, and if it is set to
+    # something else the stack silently binds the wrong port, or fails outright
+    # when that port is taken. Force the environment to agree with .env.
+    if [ -n "${PORT:-}" ] && [ "${PORT}" != "$configured_port" ]; then
+        warn "PORT is set to '${PORT}' in your shell."
+        warn "Docker Compose would use that instead of the $configured_port in .env."
+        warn "Overriding it to $configured_port for this install."
+        echo ""
+    fi
+    export PORT="$configured_port"
+
+    # Fail early with a readable message rather than a raw Docker bind error.
+    if command -v lsof >/dev/null 2>&1 && lsof -iTCP:"$configured_port" -sTCP:LISTEN -t >/dev/null 2>&1; then
+        error "Port $configured_port is already in use."
+        echo "  Free that port, or set a different PORT in $ENV_FILE and re-run."
+        exit 1
+    fi
+
     info "Pulling images and starting CX-Builder..."
     echo ""
 

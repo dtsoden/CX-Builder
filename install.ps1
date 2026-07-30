@@ -228,6 +228,8 @@ LOG_LEVEL=
 STORAGE_TYPE=
 SHOW_COMMUNITY_NODES=
 IFRAME_ORIGINS=
+HTTP_SECURITY_CHECK=
+HTTP_DENY_LIST=
 "@
 
     Set-Content -Path $EnvFile -Value $envContent -Encoding UTF8
@@ -237,6 +239,31 @@ IFRAME_ORIGINS=
 # ── Launch ───────────────────────────────────────────────────────────────────
 function Start-CXBuilder {
     Write-Host ""
+
+    # Read the port we actually configured in .env.
+    $configuredPort = (Select-String -Path $EnvFile -Pattern '^PORT=(.+)$').Matches.Groups[1].Value
+
+    # Docker Compose gives shell environment variables precedence over the .env
+    # file.  PORT is a common variable to have exported, and if it is set to
+    # something else the stack silently binds the wrong port, or fails outright
+    # when that port is taken.  Force the environment to agree with .env.
+    if ($env:PORT -and $env:PORT -ne $configuredPort) {
+        Write-Host "[WARN]  PORT is set to '$env:PORT' in your shell." -ForegroundColor Yellow
+        Write-Host "        Docker Compose would use that instead of the $configuredPort in .env." -ForegroundColor Yellow
+        Write-Host "        Overriding it to $configuredPort for this install." -ForegroundColor Yellow
+        Write-Host ""
+    }
+    $env:PORT = $configuredPort
+
+    # Fail early with a readable message rather than a raw Docker bind error.
+    $inUse = Get-NetTCPConnection -LocalPort ([int]$configuredPort) -State Listen -ErrorAction SilentlyContinue
+    if ($inUse) {
+        $owner = (Get-Process -Id $inUse[0].OwningProcess -ErrorAction SilentlyContinue).ProcessName
+        Write-Err "Port $configuredPort is already in use by '$owner' (PID $($inUse[0].OwningProcess))."
+        Write-Host "        Free that port, or set a different PORT in $EnvFile and re-run."
+        exit 1
+    }
+
     Write-Info "Pulling images and starting CX-Builder..."
     Write-Host ""
 
