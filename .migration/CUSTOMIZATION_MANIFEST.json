@@ -1,0 +1,574 @@
+{
+  "baseVersion": "3.1.4",
+  "baseVersionTag": "flowise@3.1.4",
+  "upstreamRepo": "https://github.com/FlowiseAI/Flowise",
+  "cxBuilderVersion": "5.0.0",
+  "previousBaseVersion": "3.0.12",
+  "upgradedOn": "2026-07-30",
+  "generatedBy": "git diff --name-status -M against pristine flowise@3.1.4",
+  "summary": {
+    "addedFiles": 17,
+    "modifiedFiles": 89,
+    "removedFiles": 81,
+    "renamedFiles": 64,
+    "brand": "CX-Builder™ (exclusive)"
+  },
+  "buildRequirements": {
+    "node": "^24 (.nvmrc pins v24.15.0)",
+    "pnpm": "^10.26.0",
+    "buildCommand": "pnpm build:docker",
+    "postBuild": "cd packages/server && pnpm exec oclif manifest",
+    "note": "build:docker skips @flowiseai/agentflow and @flowiseai/observe; neither server nor ui depends on them"
+  },
+  "marketplaceFolderRenames": {
+    "description": "Folder names drive canvas type. Template JSON is unmodified from upstream.",
+    "map": {
+      "chatflows": "Chat",
+      "agentflows": "Agents-V1",
+      "agentflowsv2": "Agents-V2",
+      "tools": "Tools"
+    },
+    "convention": [
+      "tools (case insensitive) -> type Tools, canvasType tool",
+      "*-V1 suffix -> canvasType v1, suffix stripped from display name",
+      "*-V2 suffix -> canvasType v2, suffix stripped from display name",
+      "otherwise -> canvasType chatflow, display equals folder name"
+    ]
+  },
+  "absorbedUpstream": {
+    "description": "Former CX-Builder customizations now shipped by Flowise itself. Do not re-apply; take upstream.",
+    "files": [
+      "packages/components/nodes/retrievers/AzureRerankRetriever/*",
+      "packages/components/credentials/AzureRerankerApi.credential.ts",
+      "packages/server/src/utils/fileValidation.ts",
+      "packages/components/src/validator.ts",
+      "packages/components/src/utils.ts",
+      "packages/components/src/validator.test.ts",
+      "packages/components/nodes/chatmodels/ChatCerebras/ChatCerebras.ts",
+      "packages/components/credentials/CerebrasApi.credential.ts",
+      "packages/components/models.json (chatCerebras entry)",
+      "packages/components/nodes/vectorstores/Postgres/** (schema qualification)",
+      "packages/server/src/enterprise/middleware/passport/index.ts (verifyTokenForBullMQDashboard)",
+      "packages/server/src/utils/rateLimit.ts (getRateLimiterById)",
+      "packages/server/src/index.ts (bullmq admin dashboard rate limiter)",
+      "packages/server/src/utils/logger.ts (hostname removed from log filenames)",
+      "packages/server/src/utils/constants.ts (/api/v1/metrics removed from whitelist)",
+      "packages/server/src/routes/get-upload-path (route removed upstream too)",
+      "packages/server/src/services/export-import/**",
+      "packages/server/src/services/documentstore/index.ts",
+      "packages/server/src/utils/createAttachment.ts",
+      "packages/components/nodes/tools/Composio/Composio.ts"
+    ]
+  },
+  "breakingChangesInherited": {
+    "HTTP_SECURITY_CHECK": "Flowise 3.1.0 enables outbound HTTP domain checks by default. Blocks localhost and internal addresses from HTTP node, web scrapers and some chat models. Exposed in docker-compose.yml and .env.example.",
+    "HTTP_DENY_LIST": "Additional comma-separated domains to block. Empty by default.",
+    "nodeVersion": "Node 20 is no longer supported; 3.1.x requires Node 24.",
+    "databaseMigrations": "3.1.x adds 6 migrations per dialect. They run automatically on first boot."
+  },
+  "addedFiles": {
+    "(root)": [
+      "install.ps1",
+      "install.sh"
+    ],
+    ".migration": [
+      ".migration/CUSTOMIZATION_MANIFEST.json",
+      ".migration/README.md"
+    ],
+    "docker": [
+      "docker/DOCKERHUB_README.md",
+      "docker/Dockerfile.local",
+      "docker/docker-compose.dev.yml",
+      "docker/docker-compose.local.yml"
+    ],
+    "packages/ui/public": [
+      "packages/ui/public/cx-icon-dark.png",
+      "packages/ui/public/cx-icon-dark.svg",
+      "packages/ui/public/cx-icon.png",
+      "packages/ui/public/cx-icon.svg"
+    ],
+    "packages/ui/src": [
+      "packages/ui/src/assets/images/cxbuilder_dark.svg",
+      "packages/ui/src/assets/images/cxbuilder_empty.svg",
+      "packages/ui/src/assets/images/cxbuilder_empty_dark.svg",
+      "packages/ui/src/assets/images/cxbuilder_white.svg",
+      "packages/ui/src/ui-component/EmptyStateImage.jsx"
+    ]
+  },
+  "modifiedFiles": {
+    "(root)": [
+      ".dockerignore",
+      "Dockerfile",
+      "README.md",
+      "package.json"
+    ],
+    "docker": [
+      "docker/.env.example",
+      "docker/docker-compose.yml"
+    ],
+    "packages/server/src": [
+      "packages/server/src/DataSource.ts",
+      "packages/server/src/enterprise/emails/verify_email_cloud.html",
+      "packages/server/src/enterprise/emails/workspace_add_cloud.html",
+      "packages/server/src/enterprise/emails/workspace_new_invite_cloud.html",
+      "packages/server/src/enterprise/emails/workspace_new_invite_enterprise.html",
+      "packages/server/src/enterprise/emails/workspace_update_invite_cloud.html",
+      "packages/server/src/enterprise/emails/workspace_update_invite_enterprise.html",
+      "packages/server/src/enterprise/emails/workspace_user_reset_password.html",
+      "packages/server/src/services/marketplaces/index.ts"
+    ],
+    "packages/ui": [
+      "packages/ui/index.html"
+    ],
+    "packages/ui/public": [
+      "packages/ui/public/favicon.ico",
+      "packages/ui/public/index.html",
+      "packages/ui/public/logo192.png",
+      "packages/ui/public/logo512.png",
+      "packages/ui/public/manifest.json"
+    ],
+    "packages/ui/src": [
+      "packages/ui/src/assets/images/robot.png",
+      "packages/ui/src/assets/scss/_themes-vars.module.scss",
+      "packages/ui/src/layout/MainLayout/Header/ProfileSection/index.jsx",
+      "packages/ui/src/layout/MainLayout/Header/index.jsx",
+      "packages/ui/src/layout/MainLayout/Sidebar/MenuList/NavItem/index.jsx",
+      "packages/ui/src/layout/MainLayout/index.jsx",
+      "packages/ui/src/menu-items/agentsettings.js",
+      "packages/ui/src/store/actions.js",
+      "packages/ui/src/store/reducers/customizationReducer.js",
+      "packages/ui/src/themes/compStyleOverride.js",
+      "packages/ui/src/themes/index.js",
+      "packages/ui/src/themes/palette.js",
+      "packages/ui/src/ui-component/button/FlowListMenu.jsx",
+      "packages/ui/src/ui-component/button/StyledButton.jsx",
+      "packages/ui/src/ui-component/button/StyledFab.jsx",
+      "packages/ui/src/ui-component/dialog/AboutDialog.jsx",
+      "packages/ui/src/ui-component/dialog/AgentflowGeneratorDialog.jsx",
+      "packages/ui/src/ui-component/dialog/ExportAsTemplateDialog.jsx",
+      "packages/ui/src/ui-component/dialog/PromptLangsmithHubDialog.jsx",
+      "packages/ui/src/ui-component/dialog/SaveChatflowDialog.jsx",
+      "packages/ui/src/ui-component/dialog/ViewLeadsDialog.jsx",
+      "packages/ui/src/ui-component/dialog/ViewMessagesDialog.jsx",
+      "packages/ui/src/ui-component/extended/Logo.jsx",
+      "packages/ui/src/ui-component/table/Table.jsx",
+      "packages/ui/src/views/agentexecutions/index.jsx",
+      "packages/ui/src/views/agentflows/index.jsx",
+      "packages/ui/src/views/agentflowsv2/Canvas.jsx",
+      "packages/ui/src/views/apikey/index.jsx",
+      "packages/ui/src/views/assistants/custom/CustomAssistantConfigurePreview.jsx",
+      "packages/ui/src/views/assistants/custom/CustomAssistantLayout.jsx",
+      "packages/ui/src/views/assistants/openai/OpenAIAssistantLayout.jsx",
+      "packages/ui/src/views/auth/signIn.jsx",
+      "packages/ui/src/views/canvas/AddNodes.jsx",
+      "packages/ui/src/views/canvas/CanvasHeader.jsx",
+      "packages/ui/src/views/canvas/NodeInputHandler.jsx",
+      "packages/ui/src/views/canvas/index.jsx",
+      "packages/ui/src/views/chatflows/APICodeDialog.jsx",
+      "packages/ui/src/views/chatflows/EmbedChat.jsx",
+      "packages/ui/src/views/chatflows/ShareChatbot.jsx",
+      "packages/ui/src/views/chatflows/index.jsx",
+      "packages/ui/src/views/chatmessage/ChatMessage.css",
+      "packages/ui/src/views/chatmessage/ValidationPopUp.jsx",
+      "packages/ui/src/views/credentials/index.jsx",
+      "packages/ui/src/views/datasets/DatasetItems.jsx",
+      "packages/ui/src/views/datasets/index.jsx",
+      "packages/ui/src/views/docstore/AddDocStoreDialog.jsx",
+      "packages/ui/src/views/docstore/DocumentStoreDetail.jsx",
+      "packages/ui/src/views/docstore/LoaderConfigPreviewChunks.jsx",
+      "packages/ui/src/views/docstore/ShowStoredChunks.jsx",
+      "packages/ui/src/views/docstore/UpsertHistorySideDrawer.jsx",
+      "packages/ui/src/views/docstore/VectorStoreQuery.jsx",
+      "packages/ui/src/views/docstore/index.jsx",
+      "packages/ui/src/views/evaluations/CreateEvaluationDialog.jsx",
+      "packages/ui/src/views/evaluations/index.jsx",
+      "packages/ui/src/views/evaluators/index.jsx",
+      "packages/ui/src/views/files/index.jsx",
+      "packages/ui/src/views/marketplaces/MarketplaceCanvasHeader.jsx",
+      "packages/ui/src/views/marketplaces/index.jsx",
+      "packages/ui/src/views/roles/index.jsx",
+      "packages/ui/src/views/serverlogs/index.jsx",
+      "packages/ui/src/views/settings/index.jsx",
+      "packages/ui/src/views/tools/index.jsx",
+      "packages/ui/src/views/users/index.jsx",
+      "packages/ui/src/views/variables/index.jsx",
+      "packages/ui/src/views/vectorstore/UpsertHistoryDialog.jsx",
+      "packages/ui/src/views/vectorstore/VectorStoreDialog.jsx",
+      "packages/ui/src/views/workspace/WorkspaceUsers.jsx",
+      "packages/ui/src/views/workspace/index.jsx"
+    ]
+  },
+  "removedFiles": {
+    "(root)": [
+      "CODE_OF_CONDUCT.md",
+      "CONTRIBUTING.md",
+      "SECURITY.md",
+      "artillery-load-test.yml"
+    ],
+    ".github": [
+      ".github/FUNDING.yml"
+    ],
+    ".github/ISSUE_TEMPLATE": [
+      ".github/ISSUE_TEMPLATE/bug_report.yml",
+      ".github/ISSUE_TEMPLATE/feature_request.yml"
+    ],
+    ".github/workflows": [
+      ".github/workflows/docker-image-dockerhub.yml",
+      ".github/workflows/docker-image-ecr.yml",
+      ".github/workflows/main.yml",
+      ".github/workflows/proprietary-path-guard.yml",
+      ".github/workflows/publish-agentflow.yml",
+      ".github/workflows/publish-observe.yml",
+      ".github/workflows/publish-package.yml",
+      ".github/workflows/test_docker_build.yml"
+    ],
+    ".husky": [
+      ".husky/pre-commit"
+    ],
+    "assets": [
+      "assets/Demo.png",
+      "assets/FloWiseAI.png",
+      "assets/FloWiseAI_black.png",
+      "assets/FloWiseAI_dark.png",
+      "assets/FloWiseAI_primary.png"
+    ],
+    "docker": [
+      "docker/Dockerfile",
+      "docker/README.md",
+      "docker/docker-compose-queue-prebuilt.yml",
+      "docker/docker-compose-queue-source.yml"
+    ],
+    "docker/worker": [
+      "docker/worker/.env.example",
+      "docker/worker/Dockerfile",
+      "docker/worker/README.md",
+      "docker/worker/docker-compose.yml"
+    ],
+    "docker/worker/healthcheck": [
+      "docker/worker/healthcheck/healthcheck.js",
+      "docker/worker/healthcheck/package.json"
+    ],
+    "i18n": [
+      "i18n/CODE_OF_CONDUCT-ZH.md",
+      "i18n/CONTRIBUTING-ZH.md",
+      "i18n/README-JA.md",
+      "i18n/README-KR.md",
+      "i18n/README-TW.md",
+      "i18n/README-ZH.md"
+    ],
+    "images": [
+      "images/flowise.gif",
+      "images/flowise.png",
+      "images/flowise_agentflow.gif",
+      "images/flowise_dark.svg",
+      "images/flowise_white.svg"
+    ],
+    "metrics/grafana": [
+      "metrics/grafana/grafana.dashboard.app.json.txt",
+      "metrics/grafana/grafana.dashboard.server.json.txt"
+    ],
+    "metrics/otel": [
+      "metrics/otel/compose.yaml",
+      "metrics/otel/otel.config.yml"
+    ],
+    "metrics/prometheus": [
+      "metrics/prometheus/prometheus.config.yml"
+    ],
+    "packages/ui/public": [
+      "packages/ui/public/favicon-16x16.png",
+      "packages/ui/public/favicon-32x32.png"
+    ],
+    "packages/ui/src": [
+      "packages/ui/src/assets/images/agentgraph.png",
+      "packages/ui/src/assets/images/agents_empty.svg",
+      "packages/ui/src/assets/images/api_empty.svg",
+      "packages/ui/src/assets/images/assistant_empty.svg",
+      "packages/ui/src/assets/images/chunks_empty.svg",
+      "packages/ui/src/assets/images/credential_empty.svg",
+      "packages/ui/src/assets/images/doc_store_details_empty.svg",
+      "packages/ui/src/assets/images/doc_store_empty.svg",
+      "packages/ui/src/assets/images/empty_datasets.svg",
+      "packages/ui/src/assets/images/empty_evals.svg",
+      "packages/ui/src/assets/images/empty_evaluators.svg",
+      "packages/ui/src/assets/images/executions_empty.svg",
+      "packages/ui/src/assets/images/flowise_dark.svg",
+      "packages/ui/src/assets/images/flowise_logo.png",
+      "packages/ui/src/assets/images/flowise_logo_dark.png",
+      "packages/ui/src/assets/images/flowise_white.svg",
+      "packages/ui/src/assets/images/google-login-white.png",
+      "packages/ui/src/assets/images/langfuse.png",
+      "packages/ui/src/assets/images/leads_empty.svg",
+      "packages/ui/src/assets/images/llmonitor.png",
+      "packages/ui/src/assets/images/logs_empty.svg",
+      "packages/ui/src/assets/images/message_empty.svg",
+      "packages/ui/src/assets/images/prompt_empty.svg",
+      "packages/ui/src/assets/images/roles_empty.svg",
+      "packages/ui/src/assets/images/tools_empty.svg",
+      "packages/ui/src/assets/images/upsert_history_empty.svg",
+      "packages/ui/src/assets/images/users_empty.svg",
+      "packages/ui/src/assets/images/validate_empty.svg",
+      "packages/ui/src/assets/images/variables_empty.svg",
+      "packages/ui/src/assets/images/workflow_empty.svg",
+      "packages/ui/src/assets/images/workspaces_empty.svg",
+      "packages/ui/src/layout/MainLayout/AnnouncementBanner.jsx"
+    ]
+  },
+  "renamedFiles": [
+    {
+      "from": "packages/server/marketplaces/agentflows/Agentic RAG.json",
+      "to": "packages/server/marketplaces/Agents-V1/Agentic RAG.json"
+    },
+    {
+      "from": "packages/server/marketplaces/agentflows/Branch Out Merge In.json",
+      "to": "packages/server/marketplaces/Agents-V1/Branch Out Merge In.json"
+    },
+    {
+      "from": "packages/server/marketplaces/agentflows/Customer Support Team Agents.json",
+      "to": "packages/server/marketplaces/Agents-V1/Customer Support Team Agents.json"
+    },
+    {
+      "from": "packages/server/marketplaces/agentflows/Essay Writing & Grading.json",
+      "to": "packages/server/marketplaces/Agents-V1/Essay Writing & Grading.json"
+    },
+    {
+      "from": "packages/server/marketplaces/agentflows/Human In Loop RAG.json",
+      "to": "packages/server/marketplaces/Agents-V1/Human In Loop RAG.json"
+    },
+    {
+      "from": "packages/server/marketplaces/agentflows/Lead Outreach.json",
+      "to": "packages/server/marketplaces/Agents-V1/Lead Outreach.json"
+    },
+    {
+      "from": "packages/server/marketplaces/agentflows/Multi Agents.json",
+      "to": "packages/server/marketplaces/Agents-V1/Multi Agents.json"
+    },
+    {
+      "from": "packages/server/marketplaces/agentflows/Patient Concierge.json",
+      "to": "packages/server/marketplaces/Agents-V1/Patient Concierge.json"
+    },
+    {
+      "from": "packages/server/marketplaces/agentflows/Plan and Execute.json",
+      "to": "packages/server/marketplaces/Agents-V1/Plan and Execute.json"
+    },
+    {
+      "from": "packages/server/marketplaces/agentflows/Portfolio Management Team.json",
+      "to": "packages/server/marketplaces/Agents-V1/Portfolio Management Team.json"
+    },
+    {
+      "from": "packages/server/marketplaces/agentflows/Prompt Engineering Team.json",
+      "to": "packages/server/marketplaces/Agents-V1/Prompt Engineering Team.json"
+    },
+    {
+      "from": "packages/server/marketplaces/agentflows/Software Team.json",
+      "to": "packages/server/marketplaces/Agents-V1/Software Team.json"
+    },
+    {
+      "from": "packages/server/marketplaces/agentflows/Support Routing System.json",
+      "to": "packages/server/marketplaces/Agents-V1/Support Routing System.json"
+    },
+    {
+      "from": "packages/server/marketplaces/agentflows/Text to SQL.json",
+      "to": "packages/server/marketplaces/Agents-V1/Text to SQL.json"
+    },
+    {
+      "from": "packages/server/marketplaces/agentflowsv2/Agentic RAG.json",
+      "to": "packages/server/marketplaces/Agents-V2/Agentic RAG.json"
+    },
+    {
+      "from": "packages/server/marketplaces/agentflowsv2/Agents Handoff.json",
+      "to": "packages/server/marketplaces/Agents-V2/Agents Handoff.json"
+    },
+    {
+      "from": "packages/server/marketplaces/agentflowsv2/Deep Research With Multi-turn Conversations.json",
+      "to": "packages/server/marketplaces/Agents-V2/Deep Research With Multi-turn Conversations.json"
+    },
+    {
+      "from": "packages/server/marketplaces/agentflowsv2/Deep Research With Subagents.json",
+      "to": "packages/server/marketplaces/Agents-V2/Deep Research With Subagents.json"
+    },
+    {
+      "from": "packages/server/marketplaces/agentflowsv2/Human In The Loop.json",
+      "to": "packages/server/marketplaces/Agents-V2/Human In The Loop.json"
+    },
+    {
+      "from": "packages/server/marketplaces/agentflowsv2/Interacting With API.json",
+      "to": "packages/server/marketplaces/Agents-V2/Interacting With API.json"
+    },
+    {
+      "from": "packages/server/marketplaces/agentflowsv2/Iterations.json",
+      "to": "packages/server/marketplaces/Agents-V2/Iterations.json"
+    },
+    {
+      "from": "packages/server/marketplaces/agentflowsv2/SQL Agent.json",
+      "to": "packages/server/marketplaces/Agents-V2/SQL Agent.json"
+    },
+    {
+      "from": "packages/server/marketplaces/agentflowsv2/Simple RAG.json",
+      "to": "packages/server/marketplaces/Agents-V2/Simple RAG.json"
+    },
+    {
+      "from": "packages/server/marketplaces/agentflowsv2/Structured Output.json",
+      "to": "packages/server/marketplaces/Agents-V2/Structured Output.json"
+    },
+    {
+      "from": "packages/server/marketplaces/agentflowsv2/Supervisor Worker.json",
+      "to": "packages/server/marketplaces/Agents-V2/Supervisor Worker.json"
+    },
+    {
+      "from": "packages/server/marketplaces/agentflowsv2/Translator.json",
+      "to": "packages/server/marketplaces/Agents-V2/Translator.json"
+    },
+    {
+      "from": "packages/server/marketplaces/agentflowsv2/Workplace Chat.json",
+      "to": "packages/server/marketplaces/Agents-V2/Workplace Chat.json"
+    },
+    {
+      "from": "packages/server/marketplaces/chatflows/Advanced Structured Output Parser.json",
+      "to": "packages/server/marketplaces/Chat/Advanced Structured Output Parser.json"
+    },
+    {
+      "from": "packages/server/marketplaces/chatflows/CSV Agent.json",
+      "to": "packages/server/marketplaces/Chat/CSV Agent.json"
+    },
+    {
+      "from": "packages/server/marketplaces/chatflows/Context Chat Engine.json",
+      "to": "packages/server/marketplaces/Chat/Context Chat Engine.json"
+    },
+    {
+      "from": "packages/server/marketplaces/chatflows/Conversation Chain.json",
+      "to": "packages/server/marketplaces/Chat/Conversation Chain.json"
+    },
+    {
+      "from": "packages/server/marketplaces/chatflows/Conversational Agent.json",
+      "to": "packages/server/marketplaces/Chat/Conversational Agent.json"
+    },
+    {
+      "from": "packages/server/marketplaces/chatflows/Conversational Retrieval QA Chain.json",
+      "to": "packages/server/marketplaces/Chat/Conversational Retrieval QA Chain.json"
+    },
+    {
+      "from": "packages/server/marketplaces/chatflows/Github Docs QnA.json",
+      "to": "packages/server/marketplaces/Chat/Github Docs QnA.json"
+    },
+    {
+      "from": "packages/server/marketplaces/chatflows/HuggingFace LLM Chain.json",
+      "to": "packages/server/marketplaces/Chat/HuggingFace LLM Chain.json"
+    },
+    {
+      "from": "packages/server/marketplaces/chatflows/Image Generation.json",
+      "to": "packages/server/marketplaces/Chat/Image Generation.json"
+    },
+    {
+      "from": "packages/server/marketplaces/chatflows/Input Moderation.json",
+      "to": "packages/server/marketplaces/Chat/Input Moderation.json"
+    },
+    {
+      "from": "packages/server/marketplaces/chatflows/LLM Chain.json",
+      "to": "packages/server/marketplaces/Chat/LLM Chain.json"
+    },
+    {
+      "from": "packages/server/marketplaces/chatflows/List Output Parser.json",
+      "to": "packages/server/marketplaces/Chat/List Output Parser.json"
+    },
+    {
+      "from": "packages/server/marketplaces/chatflows/Local QnA.json",
+      "to": "packages/server/marketplaces/Chat/Local QnA.json"
+    },
+    {
+      "from": "packages/server/marketplaces/chatflows/Multiple Documents QnA.json",
+      "to": "packages/server/marketplaces/Chat/Multiple Documents QnA.json"
+    },
+    {
+      "from": "packages/server/marketplaces/chatflows/OpenAI Assistant.json",
+      "to": "packages/server/marketplaces/Chat/OpenAI Assistant.json"
+    },
+    {
+      "from": "packages/server/marketplaces/chatflows/OpenAPI YAML Agent.json",
+      "to": "packages/server/marketplaces/Chat/OpenAPI YAML Agent.json"
+    },
+    {
+      "from": "packages/server/marketplaces/chatflows/Prompt Chaining.json",
+      "to": "packages/server/marketplaces/Chat/Prompt Chaining.json"
+    },
+    {
+      "from": "packages/server/marketplaces/chatflows/Query Engine.json",
+      "to": "packages/server/marketplaces/Chat/Query Engine.json"
+    },
+    {
+      "from": "packages/server/marketplaces/chatflows/ReAct Agent.json",
+      "to": "packages/server/marketplaces/Chat/ReAct Agent.json"
+    },
+    {
+      "from": "packages/server/marketplaces/chatflows/Replicate LLM.json",
+      "to": "packages/server/marketplaces/Chat/Replicate LLM.json"
+    },
+    {
+      "from": "packages/server/marketplaces/chatflows/SQL DB Chain.json",
+      "to": "packages/server/marketplaces/Chat/SQL DB Chain.json"
+    },
+    {
+      "from": "packages/server/marketplaces/chatflows/Simple Chat Engine.json",
+      "to": "packages/server/marketplaces/Chat/Simple Chat Engine.json"
+    },
+    {
+      "from": "packages/server/marketplaces/chatflows/SubQuestion Query Engine.json",
+      "to": "packages/server/marketplaces/Chat/SubQuestion Query Engine.json"
+    },
+    {
+      "from": "packages/server/marketplaces/chatflows/Tool Agent.json",
+      "to": "packages/server/marketplaces/Chat/Tool Agent.json"
+    },
+    {
+      "from": "packages/server/marketplaces/tools/Add Hubspot Contact.json",
+      "to": "packages/server/marketplaces/Tools/Add Hubspot Contact.json"
+    },
+    {
+      "from": "packages/server/marketplaces/tools/Create Airtable Record.json",
+      "to": "packages/server/marketplaces/Tools/Create Airtable Record.json"
+    },
+    {
+      "from": "packages/server/marketplaces/tools/Get Current DateTime.json",
+      "to": "packages/server/marketplaces/Tools/Get Current DateTime.json"
+    },
+    {
+      "from": "packages/server/marketplaces/tools/Get Stock Mover.json",
+      "to": "packages/server/marketplaces/Tools/Get Stock Mover.json"
+    },
+    {
+      "from": "packages/server/marketplaces/tools/Make Webhook.json",
+      "to": "packages/server/marketplaces/Tools/Make Webhook.json"
+    },
+    {
+      "from": "packages/server/marketplaces/tools/Perplexity AI Search.json",
+      "to": "packages/server/marketplaces/Tools/Perplexity AI Search.json"
+    },
+    {
+      "from": "packages/server/marketplaces/tools/Print or Export Text Document.json",
+      "to": "packages/server/marketplaces/Tools/Print or Export Text Document.json"
+    },
+    {
+      "from": "packages/server/marketplaces/tools/Send Discord Message.json",
+      "to": "packages/server/marketplaces/Tools/Send Discord Message.json"
+    },
+    {
+      "from": "packages/server/marketplaces/tools/Send Slack Message.json",
+      "to": "packages/server/marketplaces/Tools/Send Slack Message.json"
+    },
+    {
+      "from": "packages/server/marketplaces/tools/Send Teams Message.json",
+      "to": "packages/server/marketplaces/Tools/Send Teams Message.json"
+    },
+    {
+      "from": "packages/server/marketplaces/tools/SendGrid Email.json",
+      "to": "packages/server/marketplaces/Tools/SendGrid Email.json"
+    },
+    {
+      "from": "packages/server/marketplaces/tools/Spider Web Scraper.json",
+      "to": "packages/server/marketplaces/Tools/Spider Web Scraper.json"
+    },
+    {
+      "from": "packages/server/marketplaces/tools/Spider Web Search & Scrape.json",
+      "to": "packages/server/marketplaces/Tools/Spider Web Search & Scrape.json"
+    }
+  ]
+}
