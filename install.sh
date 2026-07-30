@@ -282,11 +282,33 @@ launch() {
     fi
     export PORT="$configured_port"
 
-    # Fail early with a readable message rather than a raw Docker bind error.
-    if command -v lsof >/dev/null 2>&1 && lsof -iTCP:"$configured_port" -sTCP:LISTEN -t >/dev/null 2>&1; then
-        error "Port $configured_port is already in use."
-        echo "  Free that port, or set a different PORT in $ENV_FILE and re-run."
-        exit 1
+    # If the configured port is taken, pick the next free one rather than dying with
+    # a raw Docker bind error. Never touch whatever already owns the busy port.
+    port_busy() {
+        if command -v lsof >/dev/null 2>&1; then
+            lsof -iTCP:"$1" -sTCP:LISTEN -t >/dev/null 2>&1
+        elif command -v ss >/dev/null 2>&1; then
+            ss -ltn "sport = :$1" 2>/dev/null | grep -q LISTEN
+        else
+            return 1   # cannot tell; let Docker decide
+        fi
+    }
+
+    if port_busy "$configured_port"; then
+        warn "Port $configured_port is already in use."
+        candidate=$((configured_port + 1))
+        while [ "$candidate" -lt 49000 ] && port_busy "$candidate"; do
+            candidate=$((candidate + 1))
+        done
+        if [ "$candidate" -ge 49000 ]; then
+            error "Could not find a free port. Set PORT manually in $ENV_FILE and re-run."
+            exit 1
+        fi
+        warn "Using port $candidate instead. Nothing on $configured_port was changed."
+        echo ""
+        sed -i.bak "s/^PORT=.*/PORT=$candidate/" "$ENV_FILE" && rm -f "$ENV_FILE.bak"
+        configured_port="$candidate"
+        export PORT="$configured_port"
     fi
 
     info "Pulling images and starting CX-Builder..."

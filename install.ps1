@@ -255,13 +255,28 @@ function Start-CXBuilder {
     }
     $env:PORT = $configuredPort
 
-    # Fail early with a readable message rather than a raw Docker bind error.
+    # If the configured port is taken, pick the next free one rather than dying with
+    # a raw Docker bind error. Never touch whatever already owns the busy port.
     $inUse = Get-NetTCPConnection -LocalPort ([int]$configuredPort) -State Listen -ErrorAction SilentlyContinue
     if ($inUse) {
         $owner = (Get-Process -Id $inUse[0].OwningProcess -ErrorAction SilentlyContinue).ProcessName
-        Write-Err "Port $configuredPort is already in use by '$owner' (PID $($inUse[0].OwningProcess))."
-        Write-Host "        Free that port, or set a different PORT in $EnvFile and re-run."
-        exit 1
+        Write-Host "[WARN]  Port $configuredPort is already in use by '$owner' (PID $($inUse[0].OwningProcess))." -ForegroundColor Yellow
+
+        # Search upward, staying well clear of the Windows ephemeral range (49152+).
+        $candidate = [int]$configuredPort + 1
+        while ($candidate -lt 49000 -and (Get-NetTCPConnection -LocalPort $candidate -State Listen -ErrorAction SilentlyContinue)) {
+            $candidate++
+        }
+        if ($candidate -ge 49000) {
+            Write-Err "Could not find a free port. Set PORT manually in $EnvFile and re-run."
+            exit 1
+        }
+
+        Write-Host "        Using port $candidate instead. Nothing on $configuredPort was changed." -ForegroundColor Yellow
+        Write-Host ""
+        (Get-Content $EnvFile) -replace "^PORT=.*", "PORT=$candidate" | Set-Content -Path $EnvFile -Encoding UTF8
+        $configuredPort = "$candidate"
+        $env:PORT = $configuredPort
     }
 
     Write-Info "Pulling images and starting CX-Builder..."
