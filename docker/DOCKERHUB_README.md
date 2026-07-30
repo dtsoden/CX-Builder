@@ -2,7 +2,13 @@
 
 **AI Agent Development Platform** - Build AI agents, chatbots, and RAG pipelines visually with drag-and-drop.
 
-CX-Builder is built on [Flowise](https://github.com/FlowiseAI/Flowise) with custom branding, pgvector PostgreSQL integration, and production-ready Docker deployment.
+CX-Builder has custom branding, pgvector PostgreSQL integration, and a production Docker deployment.
+
+CX-Builder is an independent fork of [Flowise](https://github.com/FlowiseAI/Flowise), tracking its final release, v3.1.4.
+
+> **Flowise was discontinued by its original team in July 2026.** Upstream development stopped on 27 July 2026, and upstream npm packages and Docker images are being marked deprecated on 10 August 2026. See the [sunset notice](https://flowiseai.com/sunset).
+>
+> This image is unaffected. It is built from source and published independently, and does not depend on upstream packages continuing to be published.
 
 ## Quick Start
 
@@ -93,4 +99,4 @@ docker compose up -d
 
 ## License
 
-Based on [Flowise](https://github.com/FlowiseAI/Flowise), licensed under [Apache License 2.0](https://github.com/dtsoden/CX-Builder/blob/master/LICENSE.md).
+A fork of [Flowise](https://github.com/FlowiseAI/Flowise), licensed under [Apache License 2.0](https://github.com/dtsoden/CX-Builder/blob/master/LICENSE.md). Attribution to FlowiseAI, Inc. is retained as the licence requires. Some inherited files, notably those under `packages/server/src/enterprise/`, are covered by a separate commercial licence.

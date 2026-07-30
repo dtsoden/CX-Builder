@@ -2,11 +2,17 @@
 
 **AI Agent Development Platform**
 
-Build AI agents, chatbots, and RAG pipelines visually with a drag-and-drop interface. CX-Builder is built on [Flowise](https://github.com/FlowiseAI/Flowise) v3.1.4 with custom branding, pgvector PostgreSQL integration, and production-ready Docker deployment.
+Build AI agents, chatbots, and RAG pipelines visually with a drag-and-drop interface. CX-Builder has pgvector PostgreSQL integration, custom branding, and a production Docker deployment.
+
+CX-Builder is an independent fork of [Flowise](https://github.com/FlowiseAI/Flowise), tracking its final release, v3.1.4.
+
+> **Flowise was discontinued by its original team in July 2026.** Active development stopped on 27 July 2026, the upstream repository is being archived on 10 August 2026, and upstream npm packages and Docker images are being marked deprecated on the same date. Support from the original team ends 31 August 2026. See the [sunset notice](https://flowiseai.com/sunset).
+>
+> This does not affect CX-Builder. The code is Apache 2.0 and CX-Builder builds entirely from source in this repository, so nothing here depends on upstream packages continuing to be published. CX-Builder is maintained independently from this point on.
 
 ## Quick Start (One-Liner)
 
-The fastest way to run CX-Builder. Just Docker — nothing else required. No git clone, no manual config. The installer generates all secrets automatically and starts the stack.
+The fastest way to run CX-Builder. Just Docker, nothing else required. No git clone, no manual config. The installer generates all secrets automatically and starts the stack.
 
 **Linux / macOS:**
 
@@ -113,7 +119,7 @@ cp .env.example .env   # edit passwords/secrets
 docker compose -f docker-compose.local.yml up -d --build
 ```
 
-This uses `docker/Dockerfile.local` which runs `pnpm install` and `pnpm build` inside the container — no local Node.js setup required.
+This uses `docker/Dockerfile.local` which runs `pnpm install` and `pnpm build` inside the container, so no local Node.js setup is required.
 
 ## Development
 
@@ -231,4 +237,6 @@ provenance attestations, not architectures.
 
 ## License
 
-This project is based on [Flowise](https://github.com/FlowiseAI/Flowise), licensed under [Apache License 2.0](LICENSE.md).
+This project is a fork of [Flowise](https://github.com/FlowiseAI/Flowise), licensed under [Apache License 2.0](LICENSE.md). Attribution to FlowiseAI, Inc. is retained as the licence requires, and remains in force after the upstream project's sunset. Forking is explicitly permitted by the sunset notice: "the Apache 2.0 licensed code is yours to keep building on."
+
+Note that not all of the inherited source is Apache 2.0. Files under `packages/server/src/enterprise/`, and individual files carrying their own copyright notice, are covered by a separate commercial licence. See [LICENSE.md](LICENSE.md) for the exact terms.
