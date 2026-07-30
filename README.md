@@ -119,7 +119,7 @@ cp .env.example .env   # edit passwords/secrets
 docker compose -f docker-compose.local.yml up -d --build
 ```
 
-This uses `docker/Dockerfile.local` which runs `pnpm install` and `pnpm build` inside the container, so no local Node.js setup is required.
+This uses `docker/Dockerfile.local`, which runs `pnpm install` and `pnpm build:docker` inside the container, so no local Node.js setup is required.
 
 ## Development
 
@@ -137,6 +137,10 @@ pnpm dev
 ```
 
 The UI dev server runs on port 5173, API on port 3000.
+
+`pnpm build` builds every package. Docker images use `pnpm build:docker` instead, which
+skips `@flowiseai/agentflow` and `@flowiseai/observe`; neither the server nor the UI
+depends on them.
 
 ### Docker dev mode (hot reload)
 

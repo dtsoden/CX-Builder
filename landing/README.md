@@ -10,6 +10,10 @@ history. iX-Studio is a separate concept; this page belongs with CX-Builder.
 | File | Purpose |
 |---|---|
 | `index.html` | The whole page. Self-contained apart from Google Fonts. |
+| `404.html` | Not-found page. Without it Cloudflare Pages serves `index.html` with a 200 for every path, which reads as a soft 404 to crawlers. |
+| `sitemap.xml` | Submitted to Google Search Console. |
+| `robots.txt` | Points crawlers at the sitemap. |
+| `og-image.png` | Social share card, 1200x630. |
 | `cx-builder-dark.png` | Logo, 189x51 |
 | `cx-avitar-dark.png` | Favicon / avatar, 93x92 |
 
