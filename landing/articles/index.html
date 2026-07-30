@@ -36,12 +36,13 @@
   .nav-links a:hover, .nav-links a.on { color:#fff; }
   .nav-cta { border-radius:.5rem; padding:.5rem 1rem; font-size:.875rem; font-weight:600; background:var(--accent); color:var(--dark); }
 
-  .head { max-width:80rem; margin:0 auto; padding:4.5rem 1.5rem 2.5rem; }
+  /* Hero is its own full-width row above the grid, not a grid column. */
+  .head { max-width:80rem; margin:0 auto; padding:4.5rem 1.5rem 3rem; border-bottom:1px solid rgba(255,255,255,.06); }
   .head .kicker { font-size:.75rem; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:rgba(255,255,255,.45); margin-bottom:1rem; }
-  .head h1 { font-family:'Source Serif 4',Georgia,serif; font-size:clamp(2.2rem,5.5vw,3.4rem); font-weight:700; line-height:1.12; letter-spacing:-.015em; max-width:36rem; }
-  .head p { color:rgba(255,255,255,.5); margin-top:1.25rem; max-width:34rem; }
+  .head h1 { font-family:'Source Serif 4',Georgia,serif; font-size:clamp(2.2rem,4.6vw,3.4rem); font-weight:700; line-height:1.14; letter-spacing:-.015em; max-width:54rem; }
+  .head p { color:rgba(255,255,255,.5); margin-top:1.35rem; max-width:44rem; font-size:1.05rem; }
 
-  .grid { max-width:80rem; margin:0 auto; padding:0 1.5rem 5rem; display:grid; grid-template-columns:repeat(auto-fill,minmax(20rem,1fr)); gap:1.75rem; }
+  .grid { max-width:80rem; margin:0 auto; padding:2.5rem 1.5rem 5rem; display:grid; grid-template-columns:repeat(auto-fill,minmax(20rem,1fr)); gap:1.75rem; }
   .card { border:1px solid rgba(255,255,255,.08); border-radius:.75rem; overflow:hidden; background:rgba(255,255,255,.02); transition:border-color .2s, transform .2s; }
   .card:hover { border-color:rgba(92,167,220,.4); transform:translateY(-2px); }
   .card img { aspect-ratio:16/9; object-fit:cover; width:100%; }
