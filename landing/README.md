@@ -30,10 +30,13 @@ change.
 
 ## Deploying
 
-The live copy is byte-identical to `index.html` here. Whatever hosts cx-builder.com is
-not wired to this directory, so publishing is still a manual step: update this file
-first, then deploy, so the repository stays the source of truth rather than a copy that
-drifts.
+This directory is the source for the maintainer's site at cx-builder.com, which is
+hosted on Cloudflare Pages as a direct-upload project. Pushing to GitHub does not
+deploy it; publishing is a separate manual step the maintainer runs.
+
+If you forked this project, point `landing/` at your own host and domain, or delete the
+directory entirely. Nothing else in the repository depends on it, and it is excluded
+from the Docker build.
 
 ## Known cleanups
 

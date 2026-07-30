@@ -123,3 +123,6 @@ apps/*/
 
 # Wrangler local state from Cloudflare Pages deploys
 .wrangler/
+
+# Maintainer-only notes, never published
+MAINTAINER.local.md

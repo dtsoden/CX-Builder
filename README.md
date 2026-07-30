@@ -186,57 +186,32 @@ See [`docker/.env.example`](docker/.env.example) for the full list with descript
 | `JWT_AUTH_TOKEN_SECRET` | -           | JWT signing secret (required)                    |
 | `CORS_ORIGINS`          | `*`         | Allowed CORS origins                             |
 
-## Pushing to Docker Hub
+## Forking this project
 
-The published image is multi-architecture: `linux/amd64` for PCs and Intel Macs,
-`linux/arm64` for Apple Silicon. Docker picks the right one automatically, so there
-is one tag, `latest`.
+CX-Builder is Apache 2.0 and forking is welcome.
 
-Multi-arch requires the `docker-container` buildx driver. The default `docker` driver
-can only produce one architecture and cannot emit a manifest list. Create the builder
-once:
+The published image `dsoden/cx-builder:latest` is built and pushed by the maintainer,
+so you cannot push to it. To run your own build, substitute the following. Nothing else
+in the repository needs to change.
 
-```bash
-docker buildx create --name multiarch --driver docker-container --use
-docker buildx inspect multiarch --bootstrap
-```
+| Where | Currently | Replace with |
+| --- | --- | --- |
+| `docker/docker-compose.yml` (`image:`) | `dsoden/cx-builder:latest` | your own registry path |
+| `install.sh` / `install.ps1` (`GITHUB_RAW`) | `dtsoden/CX-Builder` | your fork's `owner/repo` |
+| `landing/` | points at cx-builder.com and this repo | your own domain and repo, or delete it |
+| `.migration/` | records this fork's history | keep for reference, or replace with your own |
 
-Then build and push. Note this uses the root `Dockerfile`, not `docker/Dockerfile.local`:
-
-```bash
-docker buildx build --builder multiarch \
-  --platform linux/amd64,linux/arm64 \
-  -t dsoden/cx-builder:latest \
-  --push .
-```
-
-`--push` is required. buildx cannot load a multi-platform image into the local daemon,
-so there is no local image to `docker push` afterwards, and nothing reaches Docker Hub
-until every architecture has finished building.
-
-Verify what landed:
+You do not need Docker Hub at all to run CX-Builder. `docker/docker-compose.local.yml`
+builds from source locally and pulls nothing from a registry:
 
 ```bash
-docker manifest inspect dsoden/cx-builder:latest
+cd docker
+cp .env.example .env    # edit passwords and secrets
+docker compose -f docker-compose.local.yml up -d --build
 ```
 
-Expect `linux/amd64` and `linux/arm64`. Any `unknown/unknown` entries are SBOM and
-provenance attestations, not architectures.
-
-### Notes
-
-- **arm64 builds under QEMU emulation on an x86 host and is roughly 10-15x slower.**
-  A build that takes 50s for amd64 takes ~11 minutes for arm64. Budget 20-30 minutes
-  end to end including the upload.
-- **Before testing a fresh pull, delete the local copy** with
-  `docker rmi dsoden/cx-builder:latest`. Otherwise Docker reuses the stale local image
-  and the test proves nothing.
-- **pnpm 10 blocks postinstall scripts** for `canvas`, `sharp`, `puppeteer` and others.
-  This is expected and does not affect startup, but it is the first place to look if
-  image processing or screenshot nodes misbehave.
-- **`docker compose` gives shell environment variables precedence over `.env`.** If
-  `PORT` is exported in your shell, compose binds that instead of the value in
-  `docker/.env`. Check with `echo $PORT` before deploying, or pass `PORT=... ` inline.
+Publishing your own image is only necessary if you want to distribute it to other
+machines.
 
 ## License
 

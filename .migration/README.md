@@ -161,23 +161,6 @@ Corrected 2026-07-30. If these paths are ever edited, change them in all three p
   lists `oclif.manifest.json` in its `files` array and the CLI crash-loops without it.
 - UI build output is `packages/ui/build`, not `dist`.
 
-## Publishing the image
-
-`dsoden/cx-builder:latest` is multi-architecture (`linux/amd64` + `linux/arm64`). See
-"Pushing to Docker Hub" in the root README for exact commands. Two things are easy to
-get wrong:
-
-- It builds from the root `Dockerfile`, not `docker/Dockerfile.local`. The README
-  documented the wrong one until 2026-07-30.
-- It needs the `docker-container` buildx driver. The default driver cannot emit a
-  manifest list, so `--platform linux/amd64,linux/arm64` will not work.
-
-arm64 builds under QEMU emulation on x86 hosts at roughly 10-15x the amd64 time
-(~11 minutes versus ~50 seconds for the build stage).
-
-The Docker Hub repository description is `docker/DOCKERHUB_README.md`. It is not
-synced automatically; paste it into Docker Hub when it changes.
-
 ## Notes on the 3.0.12 to 3.1.4 upgrade
 
 Most of what used to be CX-Builder's own server-side code was adopted upstream during
