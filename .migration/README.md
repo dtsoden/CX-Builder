@@ -139,6 +139,17 @@ Upstream CI workflows, issue templates, funding config, `i18n/`, `images/`, `ass
 `metrics/`, `docker/worker/`, the queue compose files, `CONTRIBUTING.md`,
 `CODE_OF_CONDUCT.md`, `SECURITY.md`, and 29 unused image assets.
 
+## Storage paths must match the container user
+
+The image runs as `USER node`, so all storage paths must live under
+`/home/node/.flowise`, never `/root/.flowise`. A non-root user cannot write to
+`/root`, and the server crash-loops with EACCES if it tries.
+
+This was fixed in the installers in February but `docker/.env.example` was missed, so
+anyone following the manual `cp .env.example .env` path got a crash-looping stack.
+Corrected 2026-07-30. If these paths are ever edited, change them in all three places:
+`docker/.env.example`, `install.sh` and `install.ps1`.
+
 ## Build requirements
 
 - Node 24 (`.nvmrc` pins v24.15.0); 3.0.12 wanted Node 20

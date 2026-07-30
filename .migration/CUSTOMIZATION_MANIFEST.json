@@ -7,8 +7,8 @@
   "upgradedOn": "2026-07-30",
   "generatedBy": "git diff --name-status -M against pristine flowise@3.1.4",
   "summary": {
-    "addedFiles": 17,
-    "modifiedFiles": 89,
+    "addedFiles": 25,
+    "modifiedFiles": 90,
     "removedFiles": 81,
     "renamedFiles": 64,
     "brand": "CX-Builder™ (exclusive)"
@@ -81,6 +81,16 @@
       "docker/docker-compose.dev.yml",
       "docker/docker-compose.local.yml"
     ],
+    "landing": [
+      "landing/404.html",
+      "landing/README.md",
+      "landing/cx-avitar-dark.png",
+      "landing/cx-builder-dark.png",
+      "landing/index.html",
+      "landing/og-image.png",
+      "landing/robots.txt",
+      "landing/sitemap.xml"
+    ],
     "packages/ui/public": [
       "packages/ui/public/cx-icon-dark.png",
       "packages/ui/public/cx-icon-dark.svg",
@@ -98,6 +108,7 @@
   "modifiedFiles": {
     "(root)": [
       ".dockerignore",
+      ".gitignore",
       "Dockerfile",
       "README.md",
       "package.json"

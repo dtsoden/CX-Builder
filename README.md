@@ -101,7 +101,7 @@ docker compose up -d
        +-- cx-builder (port 9800)
        |     - Express + React UI
        |     - Connects to postgres via DATABASE_HOST
-       |     - Stores uploads/secrets in /root/.flowise
+       |     - Stores uploads/secrets in /home/node/.flowise
        |
        +-- postgres (internal, port 5432)
              - pgvector/pgvector:pg17
@@ -159,10 +159,13 @@ CX-Builder/
     docker-compose.dev.yml    # Dev mode with hot reload
     Dockerfile.local          # Multi-stage build from source
     .env.example              # Environment template (copy to .env)
+  landing/                    # cx-builder.com source (deployed to Cloudflare Pages)
   packages/
     server/                   # Express API + oclif CLI
     ui/                       # React + MUI frontend (Vite)
     components/               # LangChain node definitions
+    agentflow/                # @flowiseai/agentflow SDK, skipped by pnpm build:docker
+    observe/                  # @flowiseai/observe SDK, skipped by pnpm build:docker
     api-documentation/        # API docs
   Dockerfile                  # Optimized production build
 ```
