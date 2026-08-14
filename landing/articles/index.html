@@ -317,28 +317,6 @@
           <p>Agentic workloads use 10 to 100 times the tokens of a chatbot. The number that should drive your decisions is cost per completed task, not the price per token.</p>
         </div>
       </a>
-      <a class="card" href="/articles/swap-the-model-not-the-stack/"
-         data-category="Model strategy"
-         data-search="a better model shipped. is yours a dropdown or a rewrite? claude opus 5 lands at about half the cost of the strongest frontier models. the gain goes to teams who can change the model behind an agent without a rebuild. model strategy"
-         data-date="2026-07-30">
-        <img src="/articles/swap-the-model-not-the-stack/images/hero-interchangeable-processors.webp" alt="A pile of identical computer processors stacked on a wooden surface" loading="lazy" width="1600" height="900">
-        <div class="card-body">
-          <div class="meta"><span class="cat">Model strategy</span> &bull; Jul 30, 2026 &bull; 5 min read</div>
-          <h2>A better model shipped. Is yours a dropdown or a rewrite?</h2>
-          <p>Claude Opus 5 lands at about half the cost of the strongest frontier models. The gain goes to teams who can change the model behind an agent without a rebuild.</p>
-        </div>
-      </a>
-      <a class="card" href="/articles/the-cost-of-getting-it-wrong/"
-         data-category="Agent design"
-         data-search="your ai agent should not have the final say. here is why. ai costs are climbing while the gains flatten. the fix is not a smarter model, it is deciding which decisions an agent is allowed to make on its own. agent design"
-         data-date="2026-07-30">
-        <img src="/articles/the-cost-of-getting-it-wrong/images/hero-inspecting-output.webp" alt="A worker in uniform inspecting sheets under bright light in a factory" loading="lazy" width="1600" height="900">
-        <div class="card-body">
-          <div class="meta"><span class="cat">Agent design</span> &bull; Jul 30, 2026 &bull; 6 min read</div>
-          <h2>Your AI agent should not have the final say. Here is why.</h2>
-          <p>AI costs are climbing while the gains flatten. The fix is not a smarter model, it is deciding which decisions an agent is allowed to make on its own.</p>
-        </div>
-      </a>
 </main>
 
 <div class="empty" id="empty">
@@ -363,30 +341,80 @@
 <script>
 (function () {
   var PER_PAGE = 6;
-  var cards  = Array.prototype.slice.call(document.querySelectorAll('#cards .card'));
+  var TOTAL    = 8;
+  var grid   = document.getElementById('cards');
   var search = document.getElementById('search');
   var chips  = document.getElementById('chips');
   var pager  = document.getElementById('pager');
   var count  = document.getElementById('count');
   var empty  = document.getElementById('empty');
   var clear  = document.getElementById('clear');
-  var category = 'all', term = '', page = 1;
 
-  function matches(card) {
-    var okCat = category === 'all' || card.dataset.category === category;
-    var okTerm = !term || card.dataset.search.indexOf(term) !== -1;
-    return okCat && okTerm;
+  var category = 'all', term = '', page = 1;
+  var data = null;      // full index, fetched once
+  var loading = null;   // in-flight promise so we never fetch twice
+
+  // The first page of cards ships in the HTML. This only runs once the visitor
+  // searches, filters or pages, so the common case costs no extra request.
+  function ensureData() {
+    if (data) return Promise.resolve(data);
+    if (loading) return loading;
+    loading = fetch('/articles/articles.json')
+      .then(function (r) { return r.ok ? r.json() : []; })
+      .then(function (j) { data = j; return data; })
+      .catch(function () { data = []; return data; });
+    return loading;
+  }
+
+  function esc(s) {
+    return String(s).replace(/[&<>"]/g, function (c) {
+      return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c];
+    });
+  }
+
+  var MONTHS = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  function prettyDate(iso) {
+    var p = String(iso).split('-');
+    if (p.length !== 3) return iso;
+    return MONTHS[parseInt(p[1], 10) - 1] + ' ' + parseInt(p[2], 10) + ', ' + p[0];
+  }
+
+  function cardHTML(a) {
+    return '<a class="card" href="' + esc(a.u) + '">' +
+      '<img src="' + esc(a.i) + '" alt="' + esc(a.a) + '" loading="lazy" width="1600" height="900">' +
+      '<div class="card-body">' +
+        '<div class="meta"><span class="cat">' + esc(a.c) + '</span> &bull; ' + prettyDate(a.d) + ' &bull; ' + esc(a.r) + ' min read</div>' +
+        '<h2>' + esc(a.t) + '</h2>' +
+        '<p>' + esc(a.e) + '</p>' +
+      '</div></a>';
+  }
+
+  function matches(a) {
+    if (category !== 'all' && a.c !== category) return false;
+    if (!term) return true;
+    return (a.t + ' ' + a.e + ' ' + a.c).toLowerCase().indexOf(term) !== -1;
+  }
+
+  function mkBtn(label, target, opts) {
+    var b = document.createElement('button');
+    b.textContent = label;
+    if (opts && opts.current) { b.className = 'on'; b.setAttribute('aria-current', 'page'); }
+    if (opts && opts.disabled) b.disabled = true;
+    b.addEventListener('click', function () {
+      act(function () { page = target; });
+      document.querySelector('.controls').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+    return b;
   }
 
   function render() {
-    var visible = cards.filter(matches);
+    var visible = data.filter(matches);
     var pages = Math.max(1, Math.ceil(visible.length / PER_PAGE));
     if (page > pages) page = pages;
     var start = (page - 1) * PER_PAGE;
+    var slice = visible.slice(start, start + PER_PAGE);
 
-    cards.forEach(function (c) { c.style.display = 'none'; });
-    visible.slice(start, start + PER_PAGE).forEach(function (c) { c.style.display = ''; });
-
+    grid.innerHTML = slice.map(cardHTML).join('');
     empty.style.display = visible.length ? 'none' : 'block';
     count.textContent = visible.length
       ? 'Showing ' + (start + 1) + ' to ' + Math.min(start + PER_PAGE, visible.length) + ' of ' + visible.length + (visible.length === 1 ? ' article' : ' articles')
@@ -394,48 +422,49 @@
 
     pager.innerHTML = '';
     if (visible.length > PER_PAGE) {
-      var mk = function (label, target, opts) {
-        var b = document.createElement('button');
-        b.textContent = label;
-        if (opts && opts.current) { b.className = 'on'; b.setAttribute('aria-current', 'page'); }
-        if (opts && opts.disabled) b.disabled = true;
-        b.addEventListener('click', function () {
-          page = target;
-          render();
-          document.querySelector('.controls').scrollIntoView({ behavior: 'smooth', block: 'start' });
-        });
-        return b;
-      };
-      pager.appendChild(mk('Previous', page - 1, { disabled: page === 1 }));
-      for (var i = 1; i <= pages; i++) pager.appendChild(mk(String(i), i, { current: i === page }));
-      pager.appendChild(mk('Next', page + 1, { disabled: page === pages }));
+      pager.appendChild(mkBtn('Previous', page - 1, { disabled: page === 1 }));
+      for (var i = 1; i <= pages; i++) pager.appendChild(mkBtn(String(i), i, { current: i === page }));
+      pager.appendChild(mkBtn('Next', page + 1, { disabled: page === pages }));
     }
   }
 
+  // Load the index if needed, apply the change, then re-render.
+  function act(fn) {
+    ensureData().then(function () { fn(); render(); });
+  }
+
   search.addEventListener('input', function () {
-    term = this.value.trim().toLowerCase();
-    page = 1;
-    render();
+    act(function () { term = search.value.trim().toLowerCase(); page = 1; });
   });
 
   chips.addEventListener('click', function (e) {
     var btn = e.target.closest('.chip');
     if (!btn) return;
-    Array.prototype.forEach.call(chips.children, function (c) { c.classList.remove('on'); });
-    btn.classList.add('on');
-    category = btn.dataset.filter;
-    page = 1;
-    render();
+    act(function () {
+      Array.prototype.forEach.call(chips.children, function (c) { c.classList.remove('on'); });
+      btn.classList.add('on');
+      category = btn.dataset.filter;
+      page = 1;
+    });
   });
 
   clear.addEventListener('click', function () {
-    search.value = ''; term = ''; category = 'all'; page = 1;
-    Array.prototype.forEach.call(chips.children, function (c) { c.classList.remove('on'); });
-    chips.firstElementChild.classList.add('on');
-    render();
+    act(function () {
+      search.value = ''; term = ''; category = 'all'; page = 1;
+      Array.prototype.forEach.call(chips.children, function (c) { c.classList.remove('on'); });
+      chips.firstElementChild.classList.add('on');
+    });
   });
 
-  render();
+  // Initial pager, built from the count baked in at generate time so the page
+  // renders complete without fetching anything.
+  if (TOTAL > PER_PAGE) {
+    count.textContent = 'Showing 1 to ' + Math.min(PER_PAGE, TOTAL) + ' of ' + TOTAL + ' articles';
+    var pages = Math.ceil(TOTAL / PER_PAGE);
+    pager.appendChild(mkBtn('Previous', 1, { disabled: true }));
+    for (var i = 1; i <= pages; i++) pager.appendChild(mkBtn(String(i), i, { current: i === 1 }));
+    pager.appendChild(mkBtn('Next', 2, {}));
+  }
 })();
 </script>
 
