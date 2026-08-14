@@ -223,5 +223,3 @@ This project is a fork of [Flowise](https://github.com/FlowiseAI/Flowise), licen
 
 Note that not all of the inherited source is Apache 2.0. Files under `packages/server/src/enterprise/`, and individual files carrying their own copyright notice, are covered by a separate commercial licence. See [LICENSE.md](LICENSE.md) for the exact terms.
 
-
-![GitHub Downloads (all assets, all releases)](https://img.shields.io/github/downloads/dtsoden/CX-Builder/total)
