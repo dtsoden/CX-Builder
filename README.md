@@ -220,5 +220,6 @@ machines.
 ## License
 
 This project is a fork of [Flowise](https://github.com/FlowiseAI/Flowise), licensed under [Apache License 2.0](LICENSE.md). Attribution to FlowiseAI, Inc. is retained as the licence requires, and remains in force after the upstream project's sunset. Forking is explicitly permitted by the sunset notice: "the Apache 2.0 licensed code is yours to keep building on."
+![GitHub Downloads (all assets, all releases)](https://img.shields.io/github/downloads/<USER>/<REPO>/total)
 
 Note that not all of the inherited source is Apache 2.0. Files under `packages/server/src/enterprise/`, and individual files carrying their own copyright notice, are covered by a separate commercial licence. See [LICENSE.md](LICENSE.md) for the exact terms.
