@@ -50,6 +50,17 @@
   "blogPost": [
     {
       "@type": "BlogPosting",
+      "headline": "Your AI agents have logins. Most of them have no owner.",
+      "url": "https://cx-builder.com/articles/logins-with-no-owner/",
+      "datePublished": "2026-08-14",
+      "image": "https://cx-builder.com/articles/logins-with-no-owner/images/hero-card-reader-access.webp",
+      "author": {
+        "@type": "Person",
+        "name": "David Soden"
+      }
+    },
+    {
+      "@type": "BlogPosting",
       "headline": "Your AI agent's guardrails live in a file it can edit.",
       "url": "https://cx-builder.com/articles/guardrails-the-agent-can-edit/",
       "datePublished": "2026-08-12",
@@ -251,6 +262,17 @@
 <div class="count" id="count"></div>
 
 <main class="grid" id="cards">
+      <a class="card" href="/articles/logins-with-no-owner/"
+         data-category="Agent security"
+         data-search="your ai agents have logins. most of them have no owner. security teams can now list every ai agent running in a business. listing is not control. what matters is what each agent may do, and who decided that. agent security"
+         data-date="2026-08-14">
+        <img src="/articles/logins-with-no-owner/images/hero-card-reader-access.webp" alt="A man holding an access card up to a card reader mounted on a concrete wall" loading="lazy" width="1600" height="900">
+        <div class="card-body">
+          <div class="meta"><span class="cat">Agent security</span> &bull; Aug 14, 2026 &bull; 5 min read</div>
+          <h2>Your AI agents have logins. Most of them have no owner.</h2>
+          <p>Security teams can now list every AI agent running in a business. Listing is not control. What matters is what each agent may do, and who decided that.</p>
+        </div>
+      </a>
       <a class="card" href="/articles/guardrails-the-agent-can-edit/"
          data-category="Agent security"
          data-search="your ai agent&#x27;s guardrails live in a file it can edit. red teamers took root on an agentic ai through nothing but its chat box. the lesson is not tougher wording, it is putting rules where the agent cannot reach. agent security"
@@ -306,17 +328,6 @@
           <p>Enterprise AI spending hit $107 billion and the biggest firms now compete on running systems after go-live. That tells you where projects actually fail.</p>
         </div>
       </a>
-      <a class="card" href="/articles/cost-per-finished-job/"
-         data-category="Unit economics"
-         data-search="agents burn 100x the tokens. count the finished jobs. agentic workloads use 10 to 100 times the tokens of a chatbot. the number that should drive your decisions is cost per completed task, not the price per token. unit economics"
-         data-date="2026-07-31">
-        <img src="/articles/cost-per-finished-job/images/hero-metered-consumption.webp" alt="A row of industrial utility meters mounted on a blue wall" loading="lazy" width="1600" height="900">
-        <div class="card-body">
-          <div class="meta"><span class="cat">Unit economics</span> &bull; Jul 31, 2026 &bull; 5 min read</div>
-          <h2>Agents burn 100x the tokens. Count the finished jobs.</h2>
-          <p>Agentic workloads use 10 to 100 times the tokens of a chatbot. The number that should drive your decisions is cost per completed task, not the price per token.</p>
-        </div>
-      </a>
 </main>
 
 <div class="empty" id="empty">
@@ -341,7 +352,7 @@
 <script>
 (function () {
   var PER_PAGE = 6;
-  var TOTAL    = 8;
+  var TOTAL    = 9;
   var grid   = document.getElementById('cards');
   var search = document.getElementById('search');
   var chips  = document.getElementById('chips');
