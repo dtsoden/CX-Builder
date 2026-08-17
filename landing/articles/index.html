@@ -50,6 +50,17 @@
   "blogPost": [
     {
       "@type": "BlogPosting",
+      "headline": "What counts as a customer? Your AI agent has a guess.",
+      "url": "https://cx-builder.com/articles/what-counts-as-a-customer/",
+      "datePublished": "2026-08-17",
+      "image": "https://cx-builder.com/articles/what-counts-as-a-customer/images/hero-reviewing-the-numbers.webp",
+      "author": {
+        "@type": "Person",
+        "name": "David Soden"
+      }
+    },
+    {
+      "@type": "BlogPosting",
       "headline": "Your AI agents have logins. Most of them have no owner.",
       "url": "https://cx-builder.com/articles/logins-with-no-owner/",
       "datePublished": "2026-08-14",
@@ -252,6 +263,7 @@
         <button class="chip" data-filter="Agent design">Agent design</button>
         <button class="chip" data-filter="Agent security">Agent security</button>
         <button class="chip" data-filter="Architecture">Architecture</button>
+        <button class="chip" data-filter="Data foundations">Data foundations</button>
         <button class="chip" data-filter="Model strategy">Model strategy</button>
         <button class="chip" data-filter="Operations">Operations</button>
         <button class="chip" data-filter="Platform choice">Platform choice</button>
@@ -262,6 +274,17 @@
 <div class="count" id="count"></div>
 
 <main class="grid" id="cards">
+      <a class="card" href="/articles/what-counts-as-a-customer/"
+         data-category="Data foundations"
+         data-search="what counts as a customer? your ai agent has a guess. agents do not fail because the model is weak. they fail because nobody wrote down what a customer is, so the agent picked a definition and sounded sure about it. data foundations"
+         data-date="2026-08-17">
+        <img src="/articles/what-counts-as-a-customer/images/hero-reviewing-the-numbers.webp" alt="Two people at a meeting table holding printed charts and comparing the figures" loading="lazy" width="1600" height="900">
+        <div class="card-body">
+          <div class="meta"><span class="cat">Data foundations</span> &bull; Aug 17, 2026 &bull; 5 min read</div>
+          <h2>What counts as a customer? Your AI agent has a guess.</h2>
+          <p>Agents do not fail because the model is weak. They fail because nobody wrote down what a customer is, so the agent picked a definition and sounded sure about it.</p>
+        </div>
+      </a>
       <a class="card" href="/articles/logins-with-no-owner/"
          data-category="Agent security"
          data-search="your ai agents have logins. most of them have no owner. security teams can now list every ai agent running in a business. listing is not control. what matters is what each agent may do, and who decided that. agent security"
@@ -317,17 +340,6 @@
           <p>A roundup of 11 agentic AI platforms shows how many of them live inside software you already rent. Where the agent runs decides what you keep at renewal.</p>
         </div>
       </a>
-      <a class="card" href="/articles/who-owns-it-in-month-seven/"
-         data-category="Operations"
-         data-search="your ai pilot works. who still owns it in month seven? enterprise ai spending hit $107 billion and the biggest firms now compete on running systems after go-live. that tells you where projects actually fail. operations"
-         data-date="2026-08-03">
-        <img src="/articles/who-owns-it-in-month-seven/images/hero-running-it-live.webp" alt="A team seated at computer workstations monitoring a large digital display in a control room" loading="lazy" width="1600" height="900">
-        <div class="card-body">
-          <div class="meta"><span class="cat">Operations</span> &bull; Aug 3, 2026 &bull; 5 min read</div>
-          <h2>Your AI pilot works. Who still owns it in month seven?</h2>
-          <p>Enterprise AI spending hit $107 billion and the biggest firms now compete on running systems after go-live. That tells you where projects actually fail.</p>
-        </div>
-      </a>
 </main>
 
 <div class="empty" id="empty">
@@ -352,7 +364,7 @@
 <script>
 (function () {
   var PER_PAGE = 6;
-  var TOTAL    = 9;
+  var TOTAL    = 10;
   var grid   = document.getElementById('cards');
   var search = document.getElementById('search');
   var chips  = document.getElementById('chips');
