@@ -50,6 +50,17 @@
   "blogPost": [
     {
       "@type": "BlogPosting",
+      "headline": "The benchmark measured one question. Your agent asks 40.",
+      "url": "https://cx-builder.com/articles/measure-it-on-your-own-traffic/",
+      "datePublished": "2026-08-24",
+      "image": "https://cx-builder.com/articles/measure-it-on-your-own-traffic/images/hero-stress-test.webp",
+      "author": {
+        "@type": "Person",
+        "name": "David Soden"
+      }
+    },
+    {
+      "@type": "BlogPosting",
       "headline": "Your AI agent changed. Would you know if it got worse?",
       "url": "https://cx-builder.com/articles/know-before-the-customer-does/",
       "datePublished": "2026-08-21",
@@ -296,6 +307,17 @@
 <div class="count" id="count"></div>
 
 <main class="grid" id="cards">
+      <a class="card" href="/articles/measure-it-on-your-own-traffic/"
+         data-category="Model strategy"
+         data-search="the benchmark measured one question. your agent asks 40. a new open benchmark measures multi-turn agent traffic instead of single questions, and it explains why vendor performance numbers rarely predict your own bill. model strategy"
+         data-date="2026-08-24">
+        <img src="/articles/measure-it-on-your-own-traffic/images/hero-stress-test.webp" alt="A cardiologist watching monitors while a patient walks a treadmill during a cardiac stress test" loading="lazy" width="1600" height="900">
+        <div class="card-body">
+          <div class="meta"><span class="cat">Model strategy</span> &bull; Aug 24, 2026 &bull; 5 min read</div>
+          <h2>The benchmark measured one question. Your agent asks 40.</h2>
+          <p>A new open benchmark measures multi-turn agent traffic instead of single questions, and it explains why vendor performance numbers rarely predict your own bill.</p>
+        </div>
+      </a>
       <a class="card" href="/articles/know-before-the-customer-does/"
          data-category="Operations"
          data-search="your ai agent changed. would you know if it got worse? a whole tool category now exists to test ai agents, which tells you the market has accepted that agents drift. here is how to catch it before your customers do. operations"
@@ -351,17 +373,6 @@
           <p>Red teamers took root on an agentic AI through nothing but its chat box. The lesson is not tougher wording, it is putting rules where the agent cannot reach.</p>
         </div>
       </a>
-      <a class="card" href="/articles/give-your-agent-a-ceiling/"
-         data-category="Operations"
-         data-search="nothing stops a looping agent. give it a ceiling. aws added rate limits to its ai gateway. an agent that retries has no natural stopping point, so the ceiling has to sit outside it, on infrastructure you run. operations"
-         data-date="2026-08-10">
-        <img src="/articles/give-your-agent-a-ceiling/images/hero-pressure-gauge.webp" alt="An industrial pressure gauge mounted on a stainless steel tank beside a valve" loading="lazy" width="1600" height="900">
-        <div class="card-body">
-          <div class="meta"><span class="cat">Operations</span> &bull; Aug 10, 2026 &bull; 5 min read</div>
-          <h2>Nothing stops a looping agent. Give it a ceiling.</h2>
-          <p>AWS added rate limits to its AI gateway. An agent that retries has no natural stopping point, so the ceiling has to sit outside it, on infrastructure you run.</p>
-        </div>
-      </a>
 </main>
 
 <div class="empty" id="empty">
@@ -386,7 +397,7 @@
 <script>
 (function () {
   var PER_PAGE = 6;
-  var TOTAL    = 12;
+  var TOTAL    = 13;
   var grid   = document.getElementById('cards');
   var search = document.getElementById('search');
   var chips  = document.getElementById('chips');
