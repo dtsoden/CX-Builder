@@ -50,6 +50,17 @@
   "blogPost": [
     {
       "@type": "BlogPosting",
+      "headline": "Your recommendation engine ignores most of your catalog",
+      "url": "https://cx-builder.com/articles/the-catalog-nobody-sees/",
+      "datePublished": "2026-08-26",
+      "image": "https://cx-builder.com/articles/the-catalog-nobody-sees/images/hero-stocked-warehouse.webp",
+      "author": {
+        "@type": "Person",
+        "name": "David Soden"
+      }
+    },
+    {
+      "@type": "BlogPosting",
       "headline": "The benchmark measured one question. Your agent asks 40.",
       "url": "https://cx-builder.com/articles/measure-it-on-your-own-traffic/",
       "datePublished": "2026-08-24",
@@ -307,6 +318,17 @@
 <div class="count" id="count"></div>
 
 <main class="grid" id="cards">
+      <a class="card" href="/articles/the-catalog-nobody-sees/"
+         data-category="Data foundations"
+         data-search="your recommendation engine ignores most of your catalog generative recommenders reframe personalization as sequence prediction. the lesson for a business is smaller and cheaper: your niche products never get surfaced. data foundations"
+         data-date="2026-08-26">
+        <img src="/articles/the-catalog-nobody-sees/images/hero-stocked-warehouse.webp" alt="A narrow walkway between tall metal warehouse shelves stacked with stored merchandise" loading="lazy" width="1600" height="900">
+        <div class="card-body">
+          <div class="meta"><span class="cat">Data foundations</span> &bull; Aug 26, 2026 &bull; 5 min read</div>
+          <h2>Your recommendation engine ignores most of your catalog</h2>
+          <p>Generative recommenders reframe personalization as sequence prediction. The lesson for a business is smaller and cheaper: your niche products never get surfaced.</p>
+        </div>
+      </a>
       <a class="card" href="/articles/measure-it-on-your-own-traffic/"
          data-category="Model strategy"
          data-search="the benchmark measured one question. your agent asks 40. a new open benchmark measures multi-turn agent traffic instead of single questions, and it explains why vendor performance numbers rarely predict your own bill. model strategy"
@@ -362,17 +384,6 @@
           <p>Security teams can now list every AI agent running in a business. Listing is not control. What matters is what each agent may do, and who decided that.</p>
         </div>
       </a>
-      <a class="card" href="/articles/guardrails-the-agent-can-edit/"
-         data-category="Agent security"
-         data-search="your ai agent&#x27;s guardrails live in a file it can edit. red teamers took root on an agentic ai through nothing but its chat box. the lesson is not tougher wording, it is putting rules where the agent cannot reach. agent security"
-         data-date="2026-08-12">
-        <img src="/articles/guardrails-the-agent-can-edit/images/hero-open-gate-padlock.webp" alt="A metal gate standing open with a padlock still fastened to the frame" loading="lazy" width="1600" height="900">
-        <div class="card-body">
-          <div class="meta"><span class="cat">Agent security</span> &bull; Aug 12, 2026 &bull; 5 min read</div>
-          <h2>Your AI agent's guardrails live in a file it can edit.</h2>
-          <p>Red teamers took root on an agentic AI through nothing but its chat box. The lesson is not tougher wording, it is putting rules where the agent cannot reach.</p>
-        </div>
-      </a>
 </main>
 
 <div class="empty" id="empty">
@@ -397,7 +408,7 @@
 <script>
 (function () {
   var PER_PAGE = 6;
-  var TOTAL    = 13;
+  var TOTAL    = 14;
   var grid   = document.getElementById('cards');
   var search = document.getElementById('search');
   var chips  = document.getElementById('chips');
