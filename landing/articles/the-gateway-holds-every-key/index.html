@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-CBL2K7674N"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-CBL2K7674N');
+</script>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Attackers are not after your model. They want the gateway.</title>
+<meta name="description" content="Microsoft found intruders inside AI gateways and workflow tools, not models. That layer holds every credential you own. Here is what to check first.">
+<link rel="canonical" href="https://cx-builder.com/articles/the-gateway-holds-every-key/">
+<meta name="robots" content="index, follow, max-image-preview:large">
+
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://cx-builder.com/articles/the-gateway-holds-every-key/">
+<meta property="og:site_name" content="CX-Builder">
+<meta property="og:title" content="Attackers are not after your model. They want the gateway.">
+<meta property="og:description" content="Microsoft found intruders inside AI gateways and workflow tools, not models. That layer holds every credential you own. Here is what to check first.">
+<meta property="og:image" content="https://cx-builder.com/articles/the-gateway-holds-every-key/images/hero-vault-doors.webp">
+<meta property="og:image:width" content="1600">
+<meta property="og:image:height" content="900">
+<meta property="og:image:alt" content="Two heavy steel vault doors set into an old brick wall">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Attackers are not after your model. They want the gateway.">
+<meta name="twitter:description" content="Microsoft found intruders inside AI gateways and workflow tools, not models. That layer holds every credential you own. Here is what to check first.">
+<meta name="twitter:image" content="https://cx-builder.com/articles/the-gateway-holds-every-key/images/hero-vault-doors.webp">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Attackers are not after your model. They want the gateway.",
+  "description": "Microsoft found intruders inside AI gateways and workflow tools, not models. That layer holds every credential you own. Here is what to check first.",
+  "image": "https://cx-builder.com/articles/the-gateway-holds-every-key/images/hero-vault-doors.webp",
+  "datePublished": "2026-08-28",
+  "dateModified": "2026-08-28",
+  "author": { "@type": "Person", "name": "David Soden" },
+  "publisher": {
+    "@type": "Organization",
+    "name": "CX-Builder",
+    "logo": { "@type": "ImageObject", "url": "https://cx-builder.com/cx-builder-dark.png" }
+  },
+  "mainEntityOfPage": { "@type": "WebPage", "@id": "https://cx-builder.com/articles/the-gateway-holds-every-key/" }
+}
+</script>
+
+<link rel="icon" type="image/png" href="/cx-avitar-dark.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Source+Serif+4:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+  :root {
+    --accent:#5CA7DC; --dark:#020C12; --dark-footer:#010810;
+    --ink:#12212B; --ink-soft:#4A5B66; --rule:#E2E8ED;
+  }
+  body { font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif; background:#fff; color:var(--ink); -webkit-font-smoothing:antialiased; line-height:1.6; }
+  a { color:inherit; text-decoration:none; }
+  img { max-width:100%; height:auto; display:block; }
+  svg { width:100%; }
+
+  /* header / footer: dark, matches cx-builder.com */
+  .nav { background:rgba(2,12,18,0.96); border-bottom:1px solid rgba(255,255,255,0.06); position:sticky; top:0; z-index:50; }
+  .nav-inner { max-width:80rem; margin:0 auto; display:flex; align-items:center; justify-content:space-between; height:4rem; padding:0 1.5rem; }
+  .nav-logo { height:2.88rem; margin:-0.75rem 0; }
+  .nav-links { display:flex; align-items:center; gap:2rem; }
+  .nav-links a { font-size:0.875rem; color:rgba(255,255,255,0.6); transition:color .2s; }
+  .nav-links a:hover, .nav-links a.on { color:#fff; }
+  .nav-cta { border-radius:.5rem; padding:.5rem 1rem; font-size:.875rem; font-weight:600; background:var(--accent); color:var(--dark); }
+
+  .wrap { max-width:46rem; margin:0 auto; padding:0 1.5rem; }
+  .crumb { padding:2.5rem 0 1.25rem; font-size:.875rem; color:var(--ink-soft); }
+  .crumb a:hover { color:var(--accent); }
+
+  .kicker { font-size:.75rem; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:var(--accent); margin-bottom:1rem; }
+  h1 { font-family:'Source Serif 4',Georgia,serif; font-size:clamp(2.1rem,5.5vw,3.1rem); font-weight:700; line-height:1.12; letter-spacing:-.015em; }
+  .standfirst { font-family:'Source Serif 4',Georgia,serif; font-style:italic; font-size:clamp(1.1rem,2.4vw,1.35rem); line-height:1.55; color:var(--ink-soft); margin-top:1.25rem; }
+
+  .byline { display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:1rem;
+            border-top:1px solid var(--rule); border-bottom:1px solid var(--rule); margin:2rem 0 2.5rem; padding:.9rem 0; font-size:.9rem; color:var(--ink-soft); }
+  .share-li { display:inline-flex; align-items:center; gap:.45rem; background:#0A66C2; color:#fff; font-weight:600; font-size:.8rem; padding:.5rem .85rem; border-radius:.375rem; }
+  .share-li:hover { background:#004182; }
+  .share-li svg { width:14px; height:14px; fill:currentColor; }
+
+  figure { margin:2.5rem 0; }
+  figure img { border-radius:.5rem; }
+  figcaption { font-size:.8rem; color:var(--ink-soft); margin-top:.6rem; }
+
+  h2 { font-family:'Source Serif 4',Georgia,serif; font-size:clamp(1.5rem,3.2vw,1.9rem); font-weight:700; line-height:1.25; margin:2.75rem 0 1rem; }
+  p { margin-bottom:1.15rem; font-size:1.06rem; }
+  .wrap ul { margin:0 0 1.15rem 1.25rem; }
+  .wrap ul li { margin-bottom:.5rem; font-size:1.06rem; }
+  .wrap p a, .wrap li a { color:var(--accent); text-decoration:underline; text-underline-offset:2px; }
+
+  .box { background:var(--dark); color:#fff; border-radius:.75rem; padding:1.75rem; margin:2.75rem 0; }
+  .box h3 { font-size:1.05rem; font-weight:700; margin-bottom:.6rem; }
+  .box p { color:rgba(255,255,255,0.72); margin-bottom:0; font-size:1rem; }
+
+  .more { border-top:1px solid var(--rule); margin-top:3rem; padding:1.5rem 0 4rem; display:flex; gap:1.5rem; flex-wrap:wrap; font-size:.9rem; }
+  .more a { color:var(--accent); }
+
+  .footer { background:var(--dark-footer); color:rgba(255,255,255,0.55); padding:2.5rem 1.5rem; }
+  .footer-inner { max-width:80rem; margin:0 auto; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:1rem; font-size:.85rem; }
+  .footer-links { display:flex; gap:1.5rem; }
+  .footer-links a:hover { color:#fff; }
+  .footer-logo { height:2rem; }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="/"><img class="nav-logo" src="/cx-builder-dark.png" alt="CX-Builder"></a>
+    <div class="nav-links">
+      <a href="/#features">Features</a>
+      <a href="/#install">Install</a>
+      <a href="/articles/" class="on">Articles</a>
+      <a href="https://github.com/dtsoden/cx-builder" target="_blank" rel="noopener noreferrer">GitHub</a>
+    </div>
+    <a href="/#install" class="nav-cta">Get Started</a>
+  </div>
+</nav>
+
+<div class="wrap">
+  <div class="crumb"><a href="/articles/">&larr; All articles</a></div>
+
+  <div class="kicker">Agent security &bull; Field note</div>
+  <h1>Attackers are not after your model. They want the gateway.</h1>
+  <p class="standfirst">The interesting part of Microsoft's report is not the exploits. It is where they landed: the plumbing between your agents and everything those agents are allowed to reach.</p>
+
+  <div class="byline">
+    <span>David Soden &bull; 6 min read &bull; 28 August 2026</span>
+    <a class="share-li" href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fcx-builder.com%2Farticles%2Fthe-gateway-holds-every-key%2F" target="_blank" rel="noopener noreferrer">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.34V9h3.41v1.56h.05c.48-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.55V9h3.57v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.72V1.72C24 .77 23.2 0 22.22 0z"/></svg>
+      Share on LinkedIn
+    </a>
+  </div>
+
+  <figure>
+    <img src="images/hero-vault-doors.webp" width="1600" height="900" alt="Two heavy steel vault doors set into an old brick wall">
+    <figcaption>The gateway is the room where all the keys are kept. That is what makes it worth breaking into.</figcaption>
+  </figure>
+
+  <h2>What happened</h2>
+  <p>Microsoft Security published an investigation into <a href="https://www.microsoft.com/en-us/security/blog/2026/08/26/when-ai-infrastructure-becomes-target-securing-gateways-control-points/" target="_blank" rel="noopener noreferrer">intrusions into three AI enterprise workloads</a>: a model gateway, a document-processing pipeline, and a workflow orchestrator. Different companies, different software, same instinct from the attacker.</p>
+  <p>Nobody went after the model. They went after the layer underneath it. In the gateway case, two public vulnerabilities gave them command execution inside the process, and once there they simply took what was already sitting in memory and on disk: API keys, database connection strings, service tokens. They fingerprinted the host, opened a hosted database to pull more key material, left SSH keys for later, and started a cryptominer on hardware somebody else was paying for.</p>
+  <p>The document pipeline was quieter and worse. The intruders installed a hook in the running application so that any credential an administrator typed into the model configuration screen was captured from that point on. No miner, no shell, nothing loud. Just a permanent tap on the place where staff enter secrets.</p>
+
+  <h2>Why this matters to your business</h2>
+  <p>Every AI deployment eventually grows a piece of software that sits between the agents and everything else. It routes requests, holds the model accounts, remembers which system each flow is allowed to touch, and keeps the credentials to do it. That is a useful thing to have. It is also, by design, the single object in your estate that holds every key at once.</p>
+  <p>So the blast radius is not "one server". It is every model account you can be billed on, every database that piece of software could reach, and every document store it was indexing. Two of the three victims here were also paying, in compute, for someone else's mining operation while it happened.</p>
+  <p>Now the part worth taking to whoever runs your infrastructure. The flaws used in these intrusions were public and already fixed. This was not clever. It worked because the software in question was installed by a project team, has been quietly routing production traffic ever since, and does not appear on anyone's patching schedule. Ask who owns upgrades for the thing your AI agents run through. If the answer takes longer than a sentence, you have found the problem.</p>
+
+  <figure>
+    <img src="images/watching-the-gateway.webp" width="1400" height="787" alt="Two grey bullet security cameras mounted on a concrete wall" loading="lazy">
+    <figcaption>Traffic from a compromised gateway looks like gateway traffic. Watching the outside of the box is not enough.</figcaption>
+  </figure>
+
+  <h2>Why this is a CX-Builder use case</h2>
+  <p>None of this is an argument against running AI infrastructure. It is an argument for knowing exactly where yours lives and what it can reach.</p>
+  <p>CX-Builder runs on your own hardware, inside your own network, which changes the question from "what can we see of the vendor's stack" to "what have we allowed our own box to do". Credentials live in the platform's own store and attach to individual nodes, so a returns flow carries the token for the order system and nothing else. A compromise of one flow is not a compromise of every account you have.</p>
+  <p>Be honest about the trade, though. Self-hosting does not make the patching problem go away, it makes it yours. What you get is the ability to put the thing behind your own network policy, restrict what it is allowed to call out to, and see its behaviour with the tooling you already run. What you owe in return is an upgrade cadence somebody actually owns.</p>
+
+  <figure>
+    <img src="images/hands-on-the-rack.webp" width="1400" height="787" alt="An engineer connecting network cables at the back of a server rack" loading="lazy">
+    <figcaption>Self-hosted means the patch schedule is yours. That is the cost of the control.</figcaption>
+  </figure>
+
+  <h2>What this looks like if you build it</h2>
+  <p>Practically, it is a handful of choices made once. Deploy into a network segment with an egress allowlist, so the container can reach your model endpoints and the systems your flows need, and nothing else. Scope each credential to one connector rather than issuing one account with rights to everything. Put an approval step in front of any flow that writes to a customer record, so an unexpected action needs a person before it lands.</p>
+  <p>Then treat it like production software, because it is. Pin the version, watch the release notes, and schedule upgrades instead of doing them when something breaks. Keep an eye on what the box calls out to; a machine that suddenly starts talking to an address nobody recognises is the earliest signal you will get.</p>
+
+  <div class="box">
+    <h3>The takeaway</h3>
+    <p>This week, name the software that sits between your AI agents and your production systems, and name the person who patches it. Then list the credentials it holds and ask whether any single flow needs all of them. Most of the damage in these cases came from one process holding every key, and that is a decision you can reverse in an afternoon.</p>
+  </div>
+
+  <div class="more">
+    <a href="/articles/">All articles</a>
+    <a href="/#install">Install CX-Builder</a>
+    <a href="https://github.com/dtsoden/cx-builder" target="_blank" rel="noopener noreferrer">View on GitHub</a>
+  </div>
+</div>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <img class="footer-logo" src="/cx-builder-dark.png" alt="CX-Builder">
+    <div class="footer-links">
+      <a href="/">Home</a>
+      <a href="/articles/">Articles</a>
+      <a href="https://github.com/dtsoden/cx-builder" target="_blank" rel="noopener noreferrer">GitHub</a>
+      <a href="https://ainews.davidsoden.com/" target="_blank" rel="noopener noreferrer">AI News</a>
+    </div>
+    <span>&copy; 2026 CX-Builder</span>
+  </div>
+</footer>
+
+</body>
+</html>

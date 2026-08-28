@@ -50,6 +50,17 @@
   "blogPost": [
     {
       "@type": "BlogPosting",
+      "headline": "Attackers are not after your model. They want the gateway.",
+      "url": "https://cx-builder.com/articles/the-gateway-holds-every-key/",
+      "datePublished": "2026-08-28",
+      "image": "https://cx-builder.com/articles/the-gateway-holds-every-key/images/hero-vault-doors.webp",
+      "author": {
+        "@type": "Person",
+        "name": "David Soden"
+      }
+    },
+    {
+      "@type": "BlogPosting",
       "headline": "Your recommendation engine ignores most of your catalog",
       "url": "https://cx-builder.com/articles/the-catalog-nobody-sees/",
       "datePublished": "2026-08-26",
@@ -318,6 +329,17 @@
 <div class="count" id="count"></div>
 
 <main class="grid" id="cards">
+      <a class="card" href="/articles/the-gateway-holds-every-key/"
+         data-category="Agent security"
+         data-search="attackers are not after your model. they want the gateway. microsoft found intruders inside ai gateways and workflow tools, not models. that layer holds every credential you own. here is what to check first. agent security"
+         data-date="2026-08-28">
+        <img src="/articles/the-gateway-holds-every-key/images/hero-vault-doors.webp" alt="Two heavy steel vault doors set into an old brick wall" loading="lazy" width="1600" height="900">
+        <div class="card-body">
+          <div class="meta"><span class="cat">Agent security</span> &bull; Aug 28, 2026 &bull; 6 min read</div>
+          <h2>Attackers are not after your model. They want the gateway.</h2>
+          <p>Microsoft found intruders inside AI gateways and workflow tools, not models. That layer holds every credential you own. Here is what to check first.</p>
+        </div>
+      </a>
       <a class="card" href="/articles/the-catalog-nobody-sees/"
          data-category="Data foundations"
          data-search="your recommendation engine ignores most of your catalog generative recommenders reframe personalization as sequence prediction. the lesson for a business is smaller and cheaper: your niche products never get surfaced. data foundations"
@@ -373,17 +395,6 @@
           <p>Agents do not fail because the model is weak. They fail because nobody wrote down what a customer is, so the agent picked a definition and sounded sure about it.</p>
         </div>
       </a>
-      <a class="card" href="/articles/logins-with-no-owner/"
-         data-category="Agent security"
-         data-search="your ai agents have logins. most of them have no owner. security teams can now list every ai agent running in a business. listing is not control. what matters is what each agent may do, and who decided that. agent security"
-         data-date="2026-08-14">
-        <img src="/articles/logins-with-no-owner/images/hero-card-reader-access.webp" alt="A man holding an access card up to a card reader mounted on a concrete wall" loading="lazy" width="1600" height="900">
-        <div class="card-body">
-          <div class="meta"><span class="cat">Agent security</span> &bull; Aug 14, 2026 &bull; 5 min read</div>
-          <h2>Your AI agents have logins. Most of them have no owner.</h2>
-          <p>Security teams can now list every AI agent running in a business. Listing is not control. What matters is what each agent may do, and who decided that.</p>
-        </div>
-      </a>
 </main>
 
 <div class="empty" id="empty">
@@ -408,7 +419,7 @@
 <script>
 (function () {
   var PER_PAGE = 6;
-  var TOTAL    = 14;
+  var TOTAL    = 15;
   var grid   = document.getElementById('cards');
   var search = document.getElementById('search');
   var chips  = document.getElementById('chips');
