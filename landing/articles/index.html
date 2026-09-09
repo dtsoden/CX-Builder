@@ -50,6 +50,17 @@
   "blogPost": [
     {
       "@type": "BlogPosting",
+      "headline": "Your AI agent's access should expire when the job does",
+      "url": "https://cx-builder.com/articles/access-that-ends-with-the-job/",
+      "datePublished": "2026-09-09",
+      "image": "https://cx-builder.com/articles/access-that-ends-with-the-job/images/hero-meter-with-a-timer.webp",
+      "author": {
+        "@type": "Person",
+        "name": "David Soden"
+      }
+    },
+    {
+      "@type": "BlogPosting",
       "headline": "Zero retention at the model. Your logs keep everything.",
       "url": "https://cx-builder.com/articles/the-model-keeps-nothing/",
       "datePublished": "2026-09-07",
@@ -374,6 +385,17 @@
 <div class="count" id="count"></div>
 
 <main class="grid" id="cards">
+      <a class="card" href="/articles/access-that-ends-with-the-job/"
+         data-category="Agent security"
+         data-search="your ai agent&#x27;s access should expire when the job does agentic ai spawns logins faster than anyone can track them. the control that scales is access scoped to one task and set to expire when that task ends. agent security"
+         data-date="2026-09-09">
+        <img src="/articles/access-that-ends-with-the-job/images/hero-meter-with-a-timer.webp" alt="A digital parking meter on a city street with cars passing behind it" loading="lazy" width="1600" height="900">
+        <div class="card-body">
+          <div class="meta"><span class="cat">Agent security</span> &bull; Sep 9, 2026 &bull; 6 min read</div>
+          <h2>Your AI agent's access should expire when the job does</h2>
+          <p>Agentic AI spawns logins faster than anyone can track them. The control that scales is access scoped to one task and set to expire when that task ends.</p>
+        </div>
+      </a>
       <a class="card" href="/articles/the-model-keeps-nothing/"
          data-category="Governance"
          data-search="zero retention at the model. your logs keep everything. anthropic will let enterprises run claude with zero data retention on their own cloud. that moves the harder question to what your own pipeline still keeps. governance"
@@ -429,17 +451,6 @@
           <p>Microsoft found intruders inside AI gateways and workflow tools, not models. That layer holds every credential you own. Here is what to check first.</p>
         </div>
       </a>
-      <a class="card" href="/articles/the-catalog-nobody-sees/"
-         data-category="Data foundations"
-         data-search="your recommendation engine ignores most of your catalog generative recommenders reframe personalization as sequence prediction. the lesson for a business is smaller and cheaper: your niche products never get surfaced. data foundations"
-         data-date="2026-08-26">
-        <img src="/articles/the-catalog-nobody-sees/images/hero-stocked-warehouse.webp" alt="A narrow walkway between tall metal warehouse shelves stacked with stored merchandise" loading="lazy" width="1600" height="900">
-        <div class="card-body">
-          <div class="meta"><span class="cat">Data foundations</span> &bull; Aug 26, 2026 &bull; 5 min read</div>
-          <h2>Your recommendation engine ignores most of your catalog</h2>
-          <p>Generative recommenders reframe personalization as sequence prediction. The lesson for a business is smaller and cheaper: your niche products never get surfaced.</p>
-        </div>
-      </a>
 </main>
 
 <div class="empty" id="empty">
@@ -464,7 +475,7 @@
 <script>
 (function () {
   var PER_PAGE = 6;
-  var TOTAL    = 19;
+  var TOTAL    = 20;
   var grid   = document.getElementById('cards');
   var search = document.getElementById('search');
   var chips  = document.getElementById('chips');

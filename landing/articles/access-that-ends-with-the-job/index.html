@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-CBL2K7674N"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-CBL2K7674N');
+</script>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Your AI agent's access should expire when the job does</title>
+<meta name="description" content="Agentic AI spawns logins faster than anyone can track them. The control that scales is access scoped to one task and set to expire when that task ends.">
+<link rel="canonical" href="https://cx-builder.com/articles/access-that-ends-with-the-job/">
+<meta name="robots" content="index, follow, max-image-preview:large">
+
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://cx-builder.com/articles/access-that-ends-with-the-job/">
+<meta property="og:site_name" content="CX-Builder">
+<meta property="og:title" content="Your AI agent's access should expire when the job does">
+<meta property="og:description" content="Agentic AI spawns logins faster than anyone can track them. The control that scales is access scoped to one task and set to expire when that task ends.">
+<meta property="og:image" content="https://cx-builder.com/articles/access-that-ends-with-the-job/images/hero-meter-with-a-timer.webp">
+<meta property="og:image:width" content="1600">
+<meta property="og:image:height" content="900">
+<meta property="og:image:alt" content="A digital parking meter on a city street with cars passing behind it">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Your AI agent's access should expire when the job does">
+<meta name="twitter:description" content="Agentic AI spawns logins faster than anyone can track them. The control that scales is access scoped to one task and set to expire when that task ends.">
+<meta name="twitter:image" content="https://cx-builder.com/articles/access-that-ends-with-the-job/images/hero-meter-with-a-timer.webp">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Your AI agent's access should expire when the job does",
+  "description": "Agentic AI spawns logins faster than anyone can track them. The control that scales is access scoped to one task and set to expire when that task ends.",
+  "image": "https://cx-builder.com/articles/access-that-ends-with-the-job/images/hero-meter-with-a-timer.webp",
+  "datePublished": "2026-09-09",
+  "dateModified": "2026-09-09",
+  "author": { "@type": "Person", "name": "David Soden" },
+  "publisher": {
+    "@type": "Organization",
+    "name": "CX-Builder",
+    "logo": { "@type": "ImageObject", "url": "https://cx-builder.com/cx-builder-dark.png" }
+  },
+  "mainEntityOfPage": { "@type": "WebPage", "@id": "https://cx-builder.com/articles/access-that-ends-with-the-job/" }
+}
+</script>
+
+<link rel="icon" type="image/png" href="/cx-avitar-dark.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Source+Serif+4:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+  :root {
+    --accent:#5CA7DC; --dark:#020C12; --dark-footer:#010810;
+    --ink:#12212B; --ink-soft:#4A5B66; --rule:#E2E8ED;
+  }
+  body { font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif; background:#fff; color:var(--ink); -webkit-font-smoothing:antialiased; line-height:1.6; }
+  a { color:inherit; text-decoration:none; }
+  img { max-width:100%; height:auto; display:block; }
+  svg { width:100%; }
+
+  /* header / footer: dark, matches cx-builder.com */
+  .nav { background:rgba(2,12,18,0.96); border-bottom:1px solid rgba(255,255,255,0.06); position:sticky; top:0; z-index:50; }
+  .nav-inner { max-width:80rem; margin:0 auto; display:flex; align-items:center; justify-content:space-between; height:4rem; padding:0 1.5rem; }
+  .nav-logo { height:2.88rem; margin:-0.75rem 0; }
+  .nav-links { display:flex; align-items:center; gap:2rem; }
+  .nav-links a { font-size:0.875rem; color:rgba(255,255,255,0.6); transition:color .2s; }
+  .nav-links a:hover, .nav-links a.on { color:#fff; }
+  .nav-cta { border-radius:.5rem; padding:.5rem 1rem; font-size:.875rem; font-weight:600; background:var(--accent); color:var(--dark); }
+
+  .wrap { max-width:46rem; margin:0 auto; padding:0 1.5rem; }
+  .crumb { padding:2.5rem 0 1.25rem; font-size:.875rem; color:var(--ink-soft); }
+  .crumb a:hover { color:var(--accent); }
+
+  .kicker { font-size:.75rem; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:var(--accent); margin-bottom:1rem; }
+  h1 { font-family:'Source Serif 4',Georgia,serif; font-size:clamp(2.1rem,5.5vw,3.1rem); font-weight:700; line-height:1.12; letter-spacing:-.015em; }
+  .standfirst { font-family:'Source Serif 4',Georgia,serif; font-style:italic; font-size:clamp(1.1rem,2.4vw,1.35rem); line-height:1.55; color:var(--ink-soft); margin-top:1.25rem; }
+
+  .byline { display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:1rem;
+            border-top:1px solid var(--rule); border-bottom:1px solid var(--rule); margin:2rem 0 2.5rem; padding:.9rem 0; font-size:.9rem; color:var(--ink-soft); }
+  .share-li { display:inline-flex; align-items:center; gap:.45rem; background:#0A66C2; color:#fff; font-weight:600; font-size:.8rem; padding:.5rem .85rem; border-radius:.375rem; }
+  .share-li:hover { background:#004182; }
+  .share-li svg { width:14px; height:14px; fill:currentColor; }
+
+  figure { margin:2.5rem 0; }
+  figure img { border-radius:.5rem; }
+  figcaption { font-size:.8rem; color:var(--ink-soft); margin-top:.6rem; }
+
+  h2 { font-family:'Source Serif 4',Georgia,serif; font-size:clamp(1.5rem,3.2vw,1.9rem); font-weight:700; line-height:1.25; margin:2.75rem 0 1rem; }
+  p { margin-bottom:1.15rem; font-size:1.06rem; }
+  .wrap ul { margin:0 0 1.15rem 1.25rem; }
+  .wrap ul li { margin-bottom:.5rem; font-size:1.06rem; }
+  .wrap p a, .wrap li a { color:var(--accent); text-decoration:underline; text-underline-offset:2px; }
+
+  .box { background:var(--dark); color:#fff; border-radius:.75rem; padding:1.75rem; margin:2.75rem 0; }
+  .box h3 { font-size:1.05rem; font-weight:700; margin-bottom:.6rem; }
+  .box p { color:rgba(255,255,255,0.72); margin-bottom:0; font-size:1rem; }
+
+  .more { border-top:1px solid var(--rule); margin-top:3rem; padding:1.5rem 0 4rem; display:flex; gap:1.5rem; flex-wrap:wrap; font-size:.9rem; }
+  .more a { color:var(--accent); }
+
+  .footer { background:var(--dark-footer); color:rgba(255,255,255,0.55); padding:2.5rem 1.5rem; }
+  .footer-inner { max-width:80rem; margin:0 auto; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:1rem; font-size:.85rem; }
+  .footer-links { display:flex; gap:1.5rem; }
+  .footer-links a:hover { color:#fff; }
+  .footer-logo { height:2rem; }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="/"><img class="nav-logo" src="/cx-builder-dark.png" alt="CX-Builder"></a>
+    <div class="nav-links">
+      <a href="/#features">Features</a>
+      <a href="/#install">Install</a>
+      <a href="/articles/" class="on">Articles</a>
+      <a href="https://github.com/dtsoden/cx-builder" target="_blank" rel="noopener noreferrer">GitHub</a>
+    </div>
+    <a href="/#install" class="nav-cta">Get Started</a>
+  </div>
+</nav>
+
+<div class="wrap">
+  <div class="crumb"><a href="/articles/">&larr; All articles</a></div>
+
+  <div class="kicker">Agent security &bull; Field note</div>
+  <h1>Your AI agent's access should expire when the job does</h1>
+  <p class="standfirst">Machine identities already outnumber people by more than a hundred to one. Standing access is what turns that count into an exposure, and it is the part you can fix this quarter.</p>
+
+  <div class="byline">
+    <span>David Soden &bull; 6 min read &bull; 9 September 2026</span>
+    <a class="share-li" href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fcx-builder.com%2Farticles%2Faccess-that-ends-with-the-job%2F" target="_blank" rel="noopener noreferrer">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.34V9h3.41v1.56h.05c.48-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.55V9h3.57v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.72V1.72C24 .77 23.2 0 22.22 0z"/></svg>
+      Share on LinkedIn
+    </a>
+  </div>
+
+  <figure>
+    <img src="images/hero-meter-with-a-timer.webp" width="1600" height="900" alt="A digital parking meter on a city street with cars passing behind it">
+    <figcaption>A meter grants access for a stated period and then stops. Most agent credentials never stop.</figcaption>
+  </figure>
+
+  <h2>What happened</h2>
+  <p>CDO Magazine published a practical guide to <a href="https://www.cdomagazine.tech/ai-governance/how-to-manage-agentic-ai-security-risk-and-control-to-protect-your-organization" target="_blank" rel="noopener noreferrer">managing agentic AI security, risk and control</a>. The argument is narrow and correct. Governance written for models covers accuracy, bias and disclosure. Software that calls APIs and takes actions on its own needs a different set of controls, and most businesses have not written them.</p>
+  <p>The mechanics are worth stating plainly. An agent that completes a multi-step task authenticates several times along the way. So do its sub-agents, and so does every tool process it starts. Each of those is an identity that some system has to recognise. Palo Alto Networks puts machine identities at 109 for every human one, driven largely by this pattern.</p>
+  <p>Three older controls break under that load. Static permissions cannot anticipate what an agent will need to reach, so they get widened until they cover everything. Human review cannot read decisions that arrive at machine speed. And when several agents share one service account, nothing in the log tells you which of them acted.</p>
+
+  <h2>Why this matters to your business</h2>
+  <p>The exposure is standing access. Permissions granted to an agent on its first day are still live on day four hundred, long after the job that justified them changed shape. A credential that never expires is a credential someone else has time to find.</p>
+  <p>The shared-account version costs you more than that. If four agents authenticate as the same account and one of them does something wrong, you cannot tell which. The only safe response is switching off all four while you work it out. That is an outage you agreed to in advance, at the moment you decided one login was simpler.</p>
+
+  <figure>
+    <img src="images/many-more-machines-than-people.webp" width="1400" height="787" alt="High angle view of people walking across a wide open concrete city square" loading="lazy">
+    <figcaption>Every person here is roughly a hundred machine identities in the same business.</figcaption>
+  </figure>
+
+  <p>Four signs the gap is already open in your own setup:</p>
+  <ul>
+    <li>Two or more agents authenticate as the same account.</li>
+    <li>An agent holds broad access it uses for one narrow task.</li>
+    <li>You can reconstruct what an agent did, but only after the fact.</li>
+    <li>Your risk team reviews an agent before launch and never again.</li>
+  </ul>
+
+  <h2>Why this is a CX-Builder use case</h2>
+  <p>The controls the article asks for are ordinary once you stop treating an agent as a single program. Give every agent, sub-agent and tool process its own identity. Scope its credential to the systems that one job touches, and give it an end date. Authorise the actions that move money or create legal obligation one at a time. Put those limits outside the model, where a prompt cannot reach them, and keep a record with a name attached to every action.</p>
+  <p>CX-Builder runs on your own infrastructure, which is what makes the first part cheap. Credentials live in your store, not a vendor's, so one flow can hold a connection scoped to one system while another flow holds a different one. There is no house account that everything shares because there is no reason to create one.</p>
+  <p>The per-action part is a human-in-the-loop gate. A refund above a threshold, a contract change, a record deletion: each stops and waits for a person who sees the proposed action and approves that action, not the agent in general. Everything under the threshold runs and is logged. The log stays on your host, which is what lets you answer the attribution question in the middle of an incident instead of a week later.</p>
+
+  <figure>
+    <img src="images/stamp-at-the-money-step.webp" width="1400" height="787" alt="A person's hand pressing a rubber stamp onto a paper document on a wooden desk" loading="lazy">
+    <figcaption>Approval belongs to the action, not to the agent that proposed it.</figcaption>
+  </figure>
+
+  <h2>What this looks like if you build it</h2>
+  <p>One flow per job, and one credential per flow, scoped to the systems that job actually reads and writes. An approval node sits ahead of every write that costs money or changes a commitment, so the flow pauses there rather than reporting afterwards. Iteration limits cap the retry loops that let a small mistake reach a hundred API calls. Runs are logged against the flow that produced them, which gives you the name you need when you ask who did this.</p>
+  <p>Rotation is the part teams skip, and self-hosting is what makes it survivable. When a credential is defined once and referenced by one flow, replacing it is a single edit rather than a hunt through every integration that borrowed it.</p>
+
+  <figure>
+    <img src="images/clocking-out-of-the-job.webp" width="1400" height="787" alt="A vintage factory time clock mounted beside a rack of punch cards on a brick wall" loading="lazy">
+    <figcaption>Access that clocks out with the shift is easier to reason about than access that never does.</figcaption>
+  </figure>
+
+  <p>The article suggests spreading this over twelve months, and the first ninety days are the ones that matter. Inventory the agents you already run, give each one an owner by name, and delete the shared credentials. Scoping and per-action approval get much easier once you know what exists.</p>
+
+  <div class="box">
+    <h3>The takeaway</h3>
+    <p>Take your busiest agent and write down every system its credential can reach. Cut that list to what the job needs, give the credential an expiry date, and put a person in front of the one action that would cost you real money. Do it for one agent this month, then repeat.</p>
+  </div>
+
+  <div class="more">
+    <a href="/articles/">All articles</a>
+    <a href="/#install">Install CX-Builder</a>
+    <a href="https://github.com/dtsoden/cx-builder" target="_blank" rel="noopener noreferrer">View on GitHub</a>
+  </div>
+</div>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <img class="footer-logo" src="/cx-builder-dark.png" alt="CX-Builder">
+    <div class="footer-links">
+      <a href="/">Home</a>
+      <a href="/articles/">Articles</a>
+      <a href="https://github.com/dtsoden/cx-builder" target="_blank" rel="noopener noreferrer">GitHub</a>
+      <a href="https://ainews.davidsoden.com/" target="_blank" rel="noopener noreferrer">AI News</a>
+    </div>
+    <span>&copy; 2026 CX-Builder</span>
+  </div>
+</footer>
+
+</body>
+</html>
