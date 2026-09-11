@@ -50,6 +50,17 @@
   "blogPost": [
     {
       "@type": "BlogPosting",
+      "headline": "Most of your work does not need an autonomous agent",
+      "url": "https://cx-builder.com/articles/how-much-agent-do-you-need/",
+      "datePublished": "2026-09-11",
+      "image": "https://cx-builder.com/articles/how-much-agent-do-you-need/images/hero-dials-and-switches.webp",
+      "author": {
+        "@type": "Person",
+        "name": "David Soden"
+      }
+    },
+    {
+      "@type": "BlogPosting",
       "headline": "Your AI agent's access should expire when the job does",
       "url": "https://cx-builder.com/articles/access-that-ends-with-the-job/",
       "datePublished": "2026-09-09",
@@ -385,6 +396,17 @@
 <div class="count" id="count"></div>
 
 <main class="grid" id="cards">
+      <a class="card" href="/articles/how-much-agent-do-you-need/"
+         data-category="Agent design"
+         data-search="most of your work does not need an autonomous agent ey published a way to score how agentic an ai system is. the useful move for a business is picking the lowest score that still finishes the job. agent design"
+         data-date="2026-09-11">
+        <img src="/articles/how-much-agent-do-you-need/images/hero-dials-and-switches.webp" alt="Close-up of rotary dials and toggle switches on an industrial machine control panel" loading="lazy" width="1600" height="900">
+        <div class="card-body">
+          <div class="meta"><span class="cat">Agent design</span> &bull; Sep 11, 2026 &bull; 5 min read</div>
+          <h2>Most of your work does not need an autonomous agent</h2>
+          <p>EY published a way to score how agentic an AI system is. The useful move for a business is picking the lowest score that still finishes the job.</p>
+        </div>
+      </a>
       <a class="card" href="/articles/access-that-ends-with-the-job/"
          data-category="Agent security"
          data-search="your ai agent&#x27;s access should expire when the job does agentic ai spawns logins faster than anyone can track them. the control that scales is access scoped to one task and set to expire when that task ends. agent security"
@@ -440,17 +462,6 @@
           <p>An agent-run development model reports gains of two to three times, but only on well-specified work. The limit is not the model. It is how clearly you defined done.</p>
         </div>
       </a>
-      <a class="card" href="/articles/the-gateway-holds-every-key/"
-         data-category="Agent security"
-         data-search="attackers are not after your model. they want the gateway. microsoft found intruders inside ai gateways and workflow tools, not models. that layer holds every credential you own. here is what to check first. agent security"
-         data-date="2026-08-28">
-        <img src="/articles/the-gateway-holds-every-key/images/hero-vault-doors.webp" alt="Two heavy steel vault doors set into an old brick wall" loading="lazy" width="1600" height="900">
-        <div class="card-body">
-          <div class="meta"><span class="cat">Agent security</span> &bull; Aug 28, 2026 &bull; 6 min read</div>
-          <h2>Attackers are not after your model. They want the gateway.</h2>
-          <p>Microsoft found intruders inside AI gateways and workflow tools, not models. That layer holds every credential you own. Here is what to check first.</p>
-        </div>
-      </a>
 </main>
 
 <div class="empty" id="empty">
@@ -475,7 +486,7 @@
 <script>
 (function () {
   var PER_PAGE = 6;
-  var TOTAL    = 20;
+  var TOTAL    = 21;
   var grid   = document.getElementById('cards');
   var search = document.getElementById('search');
   var chips  = document.getElementById('chips');
