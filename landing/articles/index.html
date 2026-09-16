@@ -50,6 +50,17 @@
   "blogPost": [
     {
       "@type": "BlogPosting",
+      "headline": "Integrations should outlive the agent you built them for",
+      "url": "https://cx-builder.com/articles/connect-it-once/",
+      "datePublished": "2026-09-16",
+      "image": "https://cx-builder.com/articles/connect-it-once/images/hero-structured-cabling.webp",
+      "author": {
+        "@type": "Person",
+        "name": "David Soden"
+      }
+    },
+    {
+      "@type": "BlogPosting",
       "headline": "A support agent built for your industry fits your rivals too",
       "url": "https://cx-builder.com/articles/built-for-your-industry/",
       "datePublished": "2026-09-14",
@@ -407,6 +418,17 @@
 <div class="count" id="count"></div>
 
 <main class="grid" id="cards">
+      <a class="card" href="/articles/connect-it-once/"
+         data-category="Architecture"
+         data-search="integrations should outlive the agent you built them for mcp makes each tool connection reusable instead of custom glue per agent. it changes what you maintain and what you must vet before it touches your data. architecture"
+         data-date="2026-09-16">
+        <img src="/articles/connect-it-once/images/hero-structured-cabling.webp" alt="A structured cabling patch panel with network cables running in neat parallel rows" loading="lazy" width="1600" height="900">
+        <div class="card-body">
+          <div class="meta"><span class="cat">Architecture</span> &bull; Sep 16, 2026 &bull; 6 min read</div>
+          <h2>Integrations should outlive the agent you built them for</h2>
+          <p>MCP makes each tool connection reusable instead of custom glue per agent. It changes what you maintain and what you must vet before it touches your data.</p>
+        </div>
+      </a>
       <a class="card" href="/articles/built-for-your-industry/"
          data-category="Platform choice"
          data-search="a support agent built for your industry fits your rivals too the agent market is splitting into platforms and specialists. a specialist support agent fits your industry&#x27;s average customer. your edge is in the exceptions. platform choice"
@@ -462,17 +484,6 @@
           <p>Microsoft's revised AI standard governs agent identities, tool permissions and actions, not just models. What buyers will ask is whether you kept the record.</p>
         </div>
       </a>
-      <a class="card" href="/articles/your-support-queue-is-three-queues/"
-         data-category="Agent design"
-         data-search="your support queue is three queues. route it that way. a roundup of seven agentic support platforms sorts every buyer into one segment. your ticket queue is not one segment, and buying it as one costs real money. agent design"
-         data-date="2026-09-02">
-        <img src="/articles/your-support-queue-is-three-queues/images/hero-sorting-packages.webp" alt="A warehouse worker examining a parcel before sorting it into the right lane" loading="lazy" width="1600" height="900">
-        <div class="card-body">
-          <div class="meta"><span class="cat">Agent design</span> &bull; Sep 2, 2026 &bull; 6 min read</div>
-          <h2>Your support queue is three queues. Route it that way.</h2>
-          <p>A roundup of seven agentic support platforms sorts every buyer into one segment. Your ticket queue is not one segment, and buying it as one costs real money.</p>
-        </div>
-      </a>
 </main>
 
 <div class="empty" id="empty">
@@ -497,7 +508,7 @@
 <script>
 (function () {
   var PER_PAGE = 6;
-  var TOTAL    = 22;
+  var TOTAL    = 23;
   var grid   = document.getElementById('cards');
   var search = document.getElementById('search');
   var chips  = document.getElementById('chips');

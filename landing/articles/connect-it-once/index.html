@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-CBL2K7674N"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-CBL2K7674N');
+</script>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Integrations should outlive the agent you built them for</title>
+<meta name="description" content="MCP makes each tool connection reusable instead of custom glue per agent. It changes what you maintain and what you must vet before it touches your data.">
+<link rel="canonical" href="https://cx-builder.com/articles/connect-it-once/">
+<meta name="robots" content="index, follow, max-image-preview:large">
+
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://cx-builder.com/articles/connect-it-once/">
+<meta property="og:site_name" content="CX-Builder">
+<meta property="og:title" content="Integrations should outlive the agent you built them for">
+<meta property="og:description" content="MCP makes each tool connection reusable instead of custom glue per agent. It changes what you maintain and what you must vet before it touches your data.">
+<meta property="og:image" content="https://cx-builder.com/articles/connect-it-once/images/hero-structured-cabling.webp">
+<meta property="og:image:width" content="1600">
+<meta property="og:image:height" content="900">
+<meta property="og:image:alt" content="A structured cabling patch panel with network cables running in neat parallel rows">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Integrations should outlive the agent you built them for">
+<meta name="twitter:description" content="MCP makes each tool connection reusable instead of custom glue per agent. It changes what you maintain and what you must vet before it touches your data.">
+<meta name="twitter:image" content="https://cx-builder.com/articles/connect-it-once/images/hero-structured-cabling.webp">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Integrations should outlive the agent you built them for",
+  "description": "MCP makes each tool connection reusable instead of custom glue per agent. It changes what you maintain and what you must vet before it touches your data.",
+  "image": "https://cx-builder.com/articles/connect-it-once/images/hero-structured-cabling.webp",
+  "datePublished": "2026-09-16",
+  "dateModified": "2026-09-16",
+  "author": { "@type": "Person", "name": "David Soden" },
+  "publisher": {
+    "@type": "Organization",
+    "name": "CX-Builder",
+    "logo": { "@type": "ImageObject", "url": "https://cx-builder.com/cx-builder-dark.png" }
+  },
+  "mainEntityOfPage": { "@type": "WebPage", "@id": "https://cx-builder.com/articles/connect-it-once/" }
+}
+</script>
+
+<link rel="icon" type="image/png" href="/cx-avitar-dark.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Source+Serif+4:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+  :root {
+    --accent:#5CA7DC; --dark:#020C12; --dark-footer:#010810;
+    --ink:#12212B; --ink-soft:#4A5B66; --rule:#E2E8ED;
+  }
+  body { font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif; background:#fff; color:var(--ink); -webkit-font-smoothing:antialiased; line-height:1.6; }
+  a { color:inherit; text-decoration:none; }
+  img { max-width:100%; height:auto; display:block; }
+  svg { width:100%; }
+
+  /* header / footer: dark, matches cx-builder.com */
+  .nav { background:rgba(2,12,18,0.96); border-bottom:1px solid rgba(255,255,255,0.06); position:sticky; top:0; z-index:50; }
+  .nav-inner { max-width:80rem; margin:0 auto; display:flex; align-items:center; justify-content:space-between; height:4rem; padding:0 1.5rem; }
+  .nav-logo { height:2.88rem; margin:-0.75rem 0; }
+  .nav-links { display:flex; align-items:center; gap:2rem; }
+  .nav-links a { font-size:0.875rem; color:rgba(255,255,255,0.6); transition:color .2s; }
+  .nav-links a:hover, .nav-links a.on { color:#fff; }
+  .nav-cta { border-radius:.5rem; padding:.5rem 1rem; font-size:.875rem; font-weight:600; background:var(--accent); color:var(--dark); }
+
+  .wrap { max-width:46rem; margin:0 auto; padding:0 1.5rem; }
+  .crumb { padding:2.5rem 0 1.25rem; font-size:.875rem; color:var(--ink-soft); }
+  .crumb a:hover { color:var(--accent); }
+
+  .kicker { font-size:.75rem; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:var(--accent); margin-bottom:1rem; }
+  h1 { font-family:'Source Serif 4',Georgia,serif; font-size:clamp(2.1rem,5.5vw,3.1rem); font-weight:700; line-height:1.12; letter-spacing:-.015em; }
+  .standfirst { font-family:'Source Serif 4',Georgia,serif; font-style:italic; font-size:clamp(1.1rem,2.4vw,1.35rem); line-height:1.55; color:var(--ink-soft); margin-top:1.25rem; }
+
+  .byline { display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:1rem;
+            border-top:1px solid var(--rule); border-bottom:1px solid var(--rule); margin:2rem 0 2.5rem; padding:.9rem 0; font-size:.9rem; color:var(--ink-soft); }
+  .share-li { display:inline-flex; align-items:center; gap:.45rem; background:#0A66C2; color:#fff; font-weight:600; font-size:.8rem; padding:.5rem .85rem; border-radius:.375rem; }
+  .share-li:hover { background:#004182; }
+  .share-li svg { width:14px; height:14px; fill:currentColor; }
+
+  figure { margin:2.5rem 0; }
+  figure img { border-radius:.5rem; }
+  figcaption { font-size:.8rem; color:var(--ink-soft); margin-top:.6rem; }
+
+  h2 { font-family:'Source Serif 4',Georgia,serif; font-size:clamp(1.5rem,3.2vw,1.9rem); font-weight:700; line-height:1.25; margin:2.75rem 0 1rem; }
+  p { margin-bottom:1.15rem; font-size:1.06rem; }
+  .wrap ul { margin:0 0 1.15rem 1.25rem; }
+  .wrap ul li { margin-bottom:.5rem; font-size:1.06rem; }
+  .wrap p a, .wrap li a { color:var(--accent); text-decoration:underline; text-underline-offset:2px; }
+
+  .box { background:var(--dark); color:#fff; border-radius:.75rem; padding:1.75rem; margin:2.75rem 0; }
+  .box h3 { font-size:1.05rem; font-weight:700; margin-bottom:.6rem; }
+  .box p { color:rgba(255,255,255,0.72); margin-bottom:0; font-size:1rem; }
+
+  .more { border-top:1px solid var(--rule); margin-top:3rem; padding:1.5rem 0 4rem; display:flex; gap:1.5rem; flex-wrap:wrap; font-size:.9rem; }
+  .more a { color:var(--accent); }
+
+  .footer { background:var(--dark-footer); color:rgba(255,255,255,0.55); padding:2.5rem 1.5rem; }
+  .footer-inner { max-width:80rem; margin:0 auto; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:1rem; font-size:.85rem; }
+  .footer-links { display:flex; gap:1.5rem; }
+  .footer-links a:hover { color:#fff; }
+  .footer-logo { height:2rem; }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="/"><img class="nav-logo" src="/cx-builder-dark.png" alt="CX-Builder"></a>
+    <div class="nav-links">
+      <a href="/#features">Features</a>
+      <a href="/#install">Install</a>
+      <a href="/articles/" class="on">Articles</a>
+      <a href="https://github.com/dtsoden/cx-builder" target="_blank" rel="noopener noreferrer">GitHub</a>
+    </div>
+    <a href="/#install" class="nav-cta">Get Started</a>
+  </div>
+</nav>
+
+<div class="wrap">
+  <div class="crumb"><a href="/articles/">&larr; All articles</a></div>
+
+  <div class="kicker">Architecture &bull; Field note</div>
+  <h1>Integrations should outlive the agent you built them for</h1>
+  <p class="standfirst">A standard interface turns each tool connection into something you build once and reuse everywhere. That changes what you own, and what you have to check before trusting it.</p>
+
+  <div class="byline">
+    <span>David Soden &bull; 6 min read &bull; 16 September 2026</span>
+    <a class="share-li" href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fcx-builder.com%2Farticles%2Fconnect-it-once%2F" target="_blank" rel="noopener noreferrer">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.34V9h3.41v1.56h.05c.48-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.55V9h3.57v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.72V1.72C24 .77 23.2 0 22.22 0z"/></svg>
+      Share on LinkedIn
+    </a>
+  </div>
+
+  <figure>
+    <img src="images/hero-structured-cabling.webp" width="1600" height="900" alt="A structured cabling patch panel with network cables running in neat parallel rows">
+    <figcaption>Somebody decided the shape of the plug once. Everything after that was cheaper.</figcaption>
+  </figure>
+
+  <h2>What happened</h2>
+  <p>HackerNoon published a plain walkthrough of <a href="https://hackernoon.com/how-mcp-is-changing-ai-agent-development" target="_blank" rel="noopener noreferrer">how the Model Context Protocol is changing agent development</a>. The problem it names is old and unglamorous. Run five AI applications that need to reach ten internal systems and the obvious approach takes fifty pieces of custom code, each written by a different person, each breaking on its own schedule.</p>
+  <p>MCP, which Anthropic released in late 2024, puts one standard interface in the middle. A server exposes a tool once. Any compatible client can call it. The connector stops belonging to the agent that first needed it and starts belonging to the business.</p>
+  <p>The piece is honest about what is still rough. Finding a server you can trust is mostly word of mouth. The protocol keeps moving between versions. A server written by somebody else is software you did not read, running against data you are responsible for.</p>
+
+  <h2>Why this matters to your business</h2>
+  <p>Count the tool connections you have already paid for. Order lookup. Ticket status. Customer record. Refund eligibility. Each one was scoped inside a project, budgeted inside that project, and is now maintained by whoever inherited it.</p>
+  <p>The bill arrives with the second agent. It either rebuilds the same connection or copies the first one, and a copy drifts. Six months later two versions of "look up an order" return slightly different answers, and the argument about which is correct takes longer than writing either of them did.</p>
+
+  <figure>
+    <img src="images/tangled-wires.webp" width="1400" height="788" alt="A dense tangle of power and communication cables knotted together outdoors" loading="lazy">
+    <figcaption>Every one of these was reasonable on the day it was added.</figcaption>
+  </figure>
+
+  <p>A standard interface changes the accounting. The connection to your order system becomes one service with one owner and one place to fix a bug, and the next agent costs a configuration line rather than a sprint. That saving compounds quietly as the number of agents grows.</p>
+  <p>The risk moves too. A server holds the credentials for the system it fronts, so adding one is a procurement decision even when it takes thirty seconds and costs nothing. Anyone who can add a server can widen what your agents reach. We have written before about <a href="/articles/the-gateway-holds-every-key/">the layer that holds every key</a>, and this is that layer with a friendlier name.</p>
+
+  <h2>Why this is a CX-Builder use case</h2>
+  <p>CX-Builder sits on both sides of that interface. It ships MCP tool nodes, including a custom one you point at any server you name, so an agent you build can call your order system or your ticket queue without a bespoke connector. It also publishes flows as MCP endpoints, which means the agent you build here becomes a tool that something else can call.</p>
+  <p>Self-hosting is what makes that comfortable. The servers run inside your network, the credentials stay on your side of the boundary, and you can read a server's code before it goes near a customer record. A shared connector is a good idea when you control who is allowed to share it.</p>
+
+  <figure>
+    <img src="images/warehouse-inventory-tablet.webp" width="1400" height="788" alt="Two warehouse workers checking stock levels together on a digital tablet" loading="lazy">
+    <figcaption>Stock lookup is the example everyone reaches for, because everyone has built it twice.</figcaption>
+  </figure>
+
+  <h2>What this looks like if you build it</h2>
+  <p>In an agentflow it is a node with a small block of config: a command to run, or a URL and the headers it needs. The server's tools then appear as things the agent can call, with the same approval gates and logging as anything else in the flow. Credentials go in variables rather than sitting in the node body.</p>
+  <p>Start narrow. One internal system, one server, one agent, and a reading of that server's source before it touches production. When a second agent wants the same behaviour it points at the server that already exists, and the connector you wrote in week one is still the only copy.</p>
+
+  <div class="box">
+    <h3>The takeaway</h3>
+    <p>List the systems your agents reach into today and mark the ones that are wired up more than once. Each duplicate is a maintenance bill and a chance for two answers to the same question. Take the one your business leans on hardest, make it a single shared service, and point the next agent at that.</p>
+  </div>
+
+  <div class="more">
+    <a href="/articles/">All articles</a>
+    <a href="/#install">Install CX-Builder</a>
+    <a href="https://github.com/dtsoden/cx-builder" target="_blank" rel="noopener noreferrer">View on GitHub</a>
+  </div>
+</div>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <img class="footer-logo" src="/cx-builder-dark.png" alt="CX-Builder">
+    <div class="footer-links">
+      <a href="/">Home</a>
+      <a href="/articles/">Articles</a>
+      <a href="https://github.com/dtsoden/cx-builder" target="_blank" rel="noopener noreferrer">GitHub</a>
+      <a href="https://ainews.davidsoden.com/" target="_blank" rel="noopener noreferrer">AI News</a>
+    </div>
+    <span>&copy; 2026 CX-Builder</span>
+  </div>
+</footer>
+
+</body>
+</html>
