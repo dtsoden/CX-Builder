@@ -50,6 +50,17 @@
   "blogPost": [
     {
       "@type": "BlogPosting",
+      "headline": "Your agent will be judged on numbers you never wrote down",
+      "url": "https://cx-builder.com/articles/count-it-before-the-agent-starts/",
+      "datePublished": "2026-09-18",
+      "image": "https://cx-builder.com/articles/count-it-before-the-agent-starts/images/hero-mark-before-you-cut.webp",
+      "author": {
+        "@type": "Person",
+        "name": "David Soden"
+      }
+    },
+    {
+      "@type": "BlogPosting",
       "headline": "Integrations should outlive the agent you built them for",
       "url": "https://cx-builder.com/articles/connect-it-once/",
       "datePublished": "2026-09-16",
@@ -418,6 +429,17 @@
 <div class="count" id="count"></div>
 
 <main class="grid" id="cards">
+      <a class="card" href="/articles/count-it-before-the-agent-starts/"
+         data-category="Operations"
+         data-search="your agent will be judged on numbers you never wrote down gartner expects over 40% of agentic ai projects to be cancelled by 2027 for unclear value. measure the process first, or you can&#x27;t prove the agent worked. operations"
+         data-date="2026-09-18">
+        <img src="/articles/count-it-before-the-agent-starts/images/hero-mark-before-you-cut.webp" alt="A hand marking a wooden plank with a pencil against a yellow tape measure" loading="lazy" width="1600" height="900">
+        <div class="card-body">
+          <div class="meta"><span class="cat">Operations</span> &bull; Sep 18, 2026 &bull; 5 min read</div>
+          <h2>Your agent will be judged on numbers you never wrote down</h2>
+          <p>Gartner expects over 40% of agentic AI projects to be cancelled by 2027 for unclear value. Measure the process first, or you can't prove the agent worked.</p>
+        </div>
+      </a>
       <a class="card" href="/articles/connect-it-once/"
          data-category="Architecture"
          data-search="integrations should outlive the agent you built them for mcp makes each tool connection reusable instead of custom glue per agent. it changes what you maintain and what you must vet before it touches your data. architecture"
@@ -473,17 +495,6 @@
           <p>Anthropic will let enterprises run Claude with zero data retention on their own cloud. That moves the harder question to what your own pipeline still keeps.</p>
         </div>
       </a>
-      <a class="card" href="/articles/the-policy-and-the-log/"
-         data-category="Governance"
-         data-search="your ai policy is a document. can you produce the log? microsoft&#x27;s revised ai standard governs agent identities, tool permissions and actions, not just models. what buyers will ask is whether you kept the record. governance"
-         data-date="2026-09-04">
-        <img src="/articles/the-policy-and-the-log/images/hero-archive-of-records.webp" alt="Rows of wooden card index drawers filling a long archive room" loading="lazy" width="1600" height="900">
-        <div class="card-body">
-          <div class="meta"><span class="cat">Governance</span> &bull; Sep 4, 2026 &bull; 6 min read</div>
-          <h2>Your AI policy is a document. Can you produce the log?</h2>
-          <p>Microsoft's revised AI standard governs agent identities, tool permissions and actions, not just models. What buyers will ask is whether you kept the record.</p>
-        </div>
-      </a>
 </main>
 
 <div class="empty" id="empty">
@@ -508,7 +519,7 @@
 <script>
 (function () {
   var PER_PAGE = 6;
-  var TOTAL    = 23;
+  var TOTAL    = 24;
   var grid   = document.getElementById('cards');
   var search = document.getElementById('search');
   var chips  = document.getElementById('chips');
