@@ -50,6 +50,17 @@
   "blogPost": [
     {
       "@type": "BlogPosting",
+      "headline": "Your customers are in six countries. Your agent is in one.",
+      "url": "https://cx-builder.com/articles/the-data-stays-in-the-country/",
+      "datePublished": "2026-09-23",
+      "image": "https://cx-builder.com/articles/the-data-stays-in-the-country/images/hero-city-at-night.webp",
+      "author": {
+        "@type": "Person",
+        "name": "David Soden"
+      }
+    },
+    {
+      "@type": "BlogPosting",
       "headline": "Customers don't want faster replies. Stop the handoffs.",
       "url": "https://cx-builder.com/articles/count-the-handoffs/",
       "datePublished": "2026-09-21",
@@ -440,6 +451,17 @@
 <div class="count" id="count"></div>
 
 <main class="grid" id="cards">
+      <a class="card" href="/articles/the-data-stays-in-the-country/"
+         data-category="Architecture"
+         data-search="your customers are in six countries. your agent is in one. asia pacific has a different data residency rule in almost every market. a support agent built once and run inside each country fits that better than one copy. architecture"
+         data-date="2026-09-23">
+        <img src="/articles/the-data-stays-in-the-country/images/hero-city-at-night.webp" alt="The Singapore waterfront at night, with lit office towers reflected in the bay" loading="lazy" width="1600" height="900">
+        <div class="card-body">
+          <div class="meta"><span class="cat">Architecture</span> &bull; Sep 23, 2026 &bull; 5 min read</div>
+          <h2>Your customers are in six countries. Your agent is in one.</h2>
+          <p>Asia Pacific has a different data residency rule in almost every market. A support agent built once and run inside each country fits that better than one copy.</p>
+        </div>
+      </a>
       <a class="card" href="/articles/count-the-handoffs/"
          data-category="Operations"
          data-search="customers don&#x27;t want faster replies. stop the handoffs. a five-minute reply that leads to three transfers costs the customer more than one slower answer that fixes it. count the handoffs, then build them out. operations"
@@ -495,17 +517,6 @@
           <p>EY published a way to score how agentic an AI system is. The useful move for a business is picking the lowest score that still finishes the job.</p>
         </div>
       </a>
-      <a class="card" href="/articles/access-that-ends-with-the-job/"
-         data-category="Agent security"
-         data-search="your ai agent&#x27;s access should expire when the job does agentic ai spawns logins faster than anyone can track them. the control that scales is access scoped to one task and set to expire when that task ends. agent security"
-         data-date="2026-09-09">
-        <img src="/articles/access-that-ends-with-the-job/images/hero-meter-with-a-timer.webp" alt="A digital parking meter on a city street with cars passing behind it" loading="lazy" width="1600" height="900">
-        <div class="card-body">
-          <div class="meta"><span class="cat">Agent security</span> &bull; Sep 9, 2026 &bull; 6 min read</div>
-          <h2>Your AI agent's access should expire when the job does</h2>
-          <p>Agentic AI spawns logins faster than anyone can track them. The control that scales is access scoped to one task and set to expire when that task ends.</p>
-        </div>
-      </a>
 </main>
 
 <div class="empty" id="empty">
@@ -530,7 +541,7 @@
 <script>
 (function () {
   var PER_PAGE = 6;
-  var TOTAL    = 25;
+  var TOTAL    = 26;
   var grid   = document.getElementById('cards');
   var search = document.getElementById('search');
   var chips  = document.getElementById('chips');
