@@ -50,6 +50,17 @@
   "blogPost": [
     {
       "@type": "BlogPosting",
+      "headline": "Make your agent check its own answer before anyone sees it",
+      "url": "https://cx-builder.com/articles/check-the-work-before-it-ships/",
+      "datePublished": "2026-09-30",
+      "image": "https://cx-builder.com/articles/check-the-work-before-it-ships/images/hero-chip-under-microscope.webp",
+      "author": {
+        "@type": "Person",
+        "name": "David Soden"
+      }
+    },
+    {
+      "@type": "BlogPosting",
       "headline": "Your support agent knows what you sold, not what came next",
       "url": "https://cx-builder.com/articles/after-the-handover/",
       "datePublished": "2026-09-28",
@@ -473,6 +484,17 @@
 <div class="count" id="count"></div>
 
 <main class="grid" id="cards">
+      <a class="card" href="/articles/check-the-work-before-it-ships/"
+         data-category="Agent design"
+         data-search="make your agent check its own answer before anyone sees it siemens now pairs its design agents with the tools that grade them. support agents need the same: a check against your own records before any reply goes out. agent design"
+         data-date="2026-09-30">
+        <img src="/articles/check-the-work-before-it-ships/images/hero-chip-under-microscope.webp" alt="A technician looks through a stereo microscope while holding a circuit board under a ring light" loading="lazy" width="1600" height="900">
+        <div class="card-body">
+          <div class="meta"><span class="cat">Agent design</span> &bull; Sep 30, 2026 &bull; 5 min read</div>
+          <h2>Make your agent check its own answer before anyone sees it</h2>
+          <p>Siemens now pairs its design agents with the tools that grade them. Support agents need the same: a check against your own records before any reply goes out.</p>
+        </div>
+      </a>
       <a class="card" href="/articles/after-the-handover/"
          data-category="Data foundations"
          data-search="your support agent knows what you sold, not what came next autodesk paid $3.6 billion to follow buildings past handover. most support agents stop at the sale. ground yours in each unit&#x27;s service history instead. data foundations"
@@ -528,17 +550,6 @@
           <p>Gartner expects over 40% of agentic AI projects to be cancelled by 2027 for unclear value. Measure the process first, or you can't prove the agent worked.</p>
         </div>
       </a>
-      <a class="card" href="/articles/connect-it-once/"
-         data-category="Architecture"
-         data-search="integrations should outlive the agent you built them for mcp makes each tool connection reusable instead of custom glue per agent. it changes what you maintain and what you must vet before it touches your data. architecture"
-         data-date="2026-09-16">
-        <img src="/articles/connect-it-once/images/hero-structured-cabling.webp" alt="A structured cabling patch panel with network cables running in neat parallel rows" loading="lazy" width="1600" height="900">
-        <div class="card-body">
-          <div class="meta"><span class="cat">Architecture</span> &bull; Sep 16, 2026 &bull; 6 min read</div>
-          <h2>Integrations should outlive the agent you built them for</h2>
-          <p>MCP makes each tool connection reusable instead of custom glue per agent. It changes what you maintain and what you must vet before it touches your data.</p>
-        </div>
-      </a>
 </main>
 
 <div class="empty" id="empty">
@@ -563,7 +574,7 @@
 <script>
 (function () {
   var PER_PAGE = 6;
-  var TOTAL    = 28;
+  var TOTAL    = 29;
   var grid   = document.getElementById('cards');
   var search = document.getElementById('search');
   var chips  = document.getElementById('chips');
