@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-CBL2K7674N"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-CBL2K7674N');
+</script>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Start your ops agent read-only. Let it earn the keys later.</title>
+<meta name="description" content="AWS built an agent that answers questions about live game servers and can change none of them. That is the right first agent for most operations teams.">
+<link rel="canonical" href="https://cx-builder.com/articles/read-only-first/">
+<meta name="robots" content="index, follow, max-image-preview:large">
+
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://cx-builder.com/articles/read-only-first/">
+<meta property="og:site_name" content="CX-Builder">
+<meta property="og:title" content="Start your ops agent read-only. Let it earn the keys later.">
+<meta property="og:description" content="AWS built an agent that answers questions about live game servers and can change none of them. That is the right first agent for most operations teams.">
+<meta property="og:image" content="https://cx-builder.com/articles/read-only-first/images/hero-control-room.webp">
+<meta property="og:image:width" content="1600">
+<meta property="og:image:height" content="900">
+<meta property="og:image:alt" content="Four operators at desks of monitors watching a wide wall display of a live warehouse system">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Start your ops agent read-only. Let it earn the keys later.">
+<meta name="twitter:description" content="AWS built an agent that answers questions about live game servers and can change none of them. That is the right first agent for most operations teams.">
+<meta name="twitter:image" content="https://cx-builder.com/articles/read-only-first/images/hero-control-room.webp">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Start your ops agent read-only. Let it earn the keys later.",
+  "description": "AWS built an agent that answers questions about live game servers and can change none of them. That is the right first agent for most operations teams.",
+  "image": "https://cx-builder.com/articles/read-only-first/images/hero-control-room.webp",
+  "datePublished": "2026-10-07",
+  "dateModified": "2026-10-07",
+  "author": { "@type": "Person", "name": "David Soden" },
+  "publisher": {
+    "@type": "Organization",
+    "name": "CX-Builder",
+    "logo": { "@type": "ImageObject", "url": "https://cx-builder.com/cx-builder-dark.png" }
+  },
+  "mainEntityOfPage": { "@type": "WebPage", "@id": "https://cx-builder.com/articles/read-only-first/" }
+}
+</script>
+
+<link rel="icon" type="image/png" href="/cx-avitar-dark.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Source+Serif+4:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+  :root {
+    --accent:#5CA7DC; --dark:#020C12; --dark-footer:#010810;
+    --ink:#12212B; --ink-soft:#4A5B66; --rule:#E2E8ED;
+  }
+  body { font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif; background:#fff; color:var(--ink); -webkit-font-smoothing:antialiased; line-height:1.6; }
+  a { color:inherit; text-decoration:none; }
+  img { max-width:100%; height:auto; display:block; }
+  svg { width:100%; }
+
+  /* header / footer: dark, matches cx-builder.com */
+  .nav { background:rgba(2,12,18,0.96); border-bottom:1px solid rgba(255,255,255,0.06); position:sticky; top:0; z-index:50; }
+  .nav-inner { max-width:80rem; margin:0 auto; display:flex; align-items:center; justify-content:space-between; height:4rem; padding:0 1.5rem; }
+  .nav-logo { height:2.88rem; margin:-0.75rem 0; }
+  .nav-links { display:flex; align-items:center; gap:2rem; }
+  .nav-links a { font-size:0.875rem; color:rgba(255,255,255,0.6); transition:color .2s; }
+  .nav-links a:hover, .nav-links a.on { color:#fff; }
+  .nav-cta { border-radius:.5rem; padding:.5rem 1rem; font-size:.875rem; font-weight:600; background:var(--accent); color:var(--dark); }
+
+  .wrap { max-width:46rem; margin:0 auto; padding:0 1.5rem; }
+  .crumb { padding:2.5rem 0 1.25rem; font-size:.875rem; color:var(--ink-soft); }
+  .crumb a:hover { color:var(--accent); }
+
+  .kicker { font-size:.75rem; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:var(--accent); margin-bottom:1rem; }
+  h1 { font-family:'Source Serif 4',Georgia,serif; font-size:clamp(2.1rem,5.5vw,3.1rem); font-weight:700; line-height:1.12; letter-spacing:-.015em; }
+  .standfirst { font-family:'Source Serif 4',Georgia,serif; font-style:italic; font-size:clamp(1.1rem,2.4vw,1.35rem); line-height:1.55; color:var(--ink-soft); margin-top:1.25rem; }
+
+  .byline { display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:1rem;
+            border-top:1px solid var(--rule); border-bottom:1px solid var(--rule); margin:2rem 0 2.5rem; padding:.9rem 0; font-size:.9rem; color:var(--ink-soft); }
+  .share-li { display:inline-flex; align-items:center; gap:.45rem; background:#0A66C2; color:#fff; font-weight:600; font-size:.8rem; padding:.5rem .85rem; border-radius:.375rem; }
+  .share-li:hover { background:#004182; }
+  .share-li svg { width:14px; height:14px; fill:currentColor; }
+
+  figure { margin:2.5rem 0; }
+  figure img { border-radius:.5rem; }
+  figcaption { font-size:.8rem; color:var(--ink-soft); margin-top:.6rem; }
+
+  h2 { font-family:'Source Serif 4',Georgia,serif; font-size:clamp(1.5rem,3.2vw,1.9rem); font-weight:700; line-height:1.25; margin:2.75rem 0 1rem; }
+  p { margin-bottom:1.15rem; font-size:1.06rem; }
+  .wrap ul { margin:0 0 1.15rem 1.25rem; }
+  .wrap ul li { margin-bottom:.5rem; font-size:1.06rem; }
+  .wrap p a, .wrap li a { color:var(--accent); text-decoration:underline; text-underline-offset:2px; }
+
+  .box { background:var(--dark); color:#fff; border-radius:.75rem; padding:1.75rem; margin:2.75rem 0; }
+  .box h3 { font-size:1.05rem; font-weight:700; margin-bottom:.6rem; }
+  .box p { color:rgba(255,255,255,0.72); margin-bottom:0; font-size:1rem; }
+
+  .more { border-top:1px solid var(--rule); margin-top:3rem; padding:1.5rem 0 4rem; display:flex; gap:1.5rem; flex-wrap:wrap; font-size:.9rem; }
+  .more a { color:var(--accent); }
+
+  .footer { background:var(--dark-footer); color:rgba(255,255,255,0.55); padding:2.5rem 1.5rem; }
+  .footer-inner { max-width:80rem; margin:0 auto; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:1rem; font-size:.85rem; }
+  .footer-links { display:flex; gap:1.5rem; }
+  .footer-links a:hover { color:#fff; }
+  .footer-logo { height:2rem; }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="/"><img class="nav-logo" src="/cx-builder-dark.png" alt="CX-Builder"></a>
+    <div class="nav-links">
+      <a href="/#features">Features</a>
+      <a href="/#install">Install</a>
+      <a href="/articles/" class="on">Articles</a>
+      <a href="https://github.com/dtsoden/cx-builder" target="_blank" rel="noopener noreferrer">GitHub</a>
+    </div>
+    <a href="/#install" class="nav-cta">Get Started</a>
+  </div>
+</nav>
+
+<div class="wrap">
+  <div class="crumb"><a href="/articles/">&larr; All articles</a></div>
+
+  <div class="kicker">Operations &bull; Field note</div>
+  <h1>Start your ops agent read-only. Let it earn the keys later.</h1>
+  <p class="standfirst">AWS built an agent that tells a game operations team what its servers are doing and cannot touch a single one of them. That limit is the reason it's worth copying.</p>
+
+  <div class="byline">
+    <span>David Soden &bull; 5 min read &bull; 7 October 2026</span>
+    <a class="share-li" href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fcx-builder.com%2Farticles%2Fread-only-first%2F" target="_blank" rel="noopener noreferrer">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.34V9h3.41v1.56h.05c.48-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.55V9h3.57v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.72V1.72C24 .77 23.2 0 22.22 0z"/></svg>
+      Share on LinkedIn
+    </a>
+  </div>
+
+  <figure>
+    <img src="images/hero-control-room.webp" width="1600" height="900" alt="Four operators at desks of monitors watching a wide wall display of a live warehouse system">
+    <figcaption>Most of what an operations team does in a crisis is ask questions. That part can be handed over first.</figcaption>
+  </figure>
+
+  <h2>What happened</h2>
+  <p>AWS published a walkthrough of an <a href="https://aws.amazon.com/blogs/gametech/how-agentic-ai-is-transforming-game-infrastructure-management/" target="_blank" rel="noopener noreferrer">agentic system for managing game server infrastructure</a>. An operations engineer types a question in plain language, such as which fleets are running hot, why a Kubernetes cluster is misbehaving, or where last month's spend went, and gets an answer drawn from live monitoring data. Before this, the same answer meant hopping between consoles and remembering command-line syntax.</p>
+  <p>Behind the chat window, one agent routes each question to one of three specialists: fleet scaling, cluster operations, and cost. Each specialist reads from monitoring APIs and from a knowledge base of the relevant documentation.</p>
+  <p>The detail worth noticing is in the permissions. The agents have read-only access to the infrastructure and the observability data. They can tell you a fleet needs more capacity. They cannot add it.</p>
+
+  <h2>Why this matters to your business</h2>
+  <p>The post lists the problems these teams face, and the one that travels furthest outside gaming is the knowledge silo. The person who understands the scaling policy is on holiday, or asleep, or left in the spring, and everyone else is guessing. AWS cites one launch where manual scaling decisions led to a two-hour queue spike and 12% player churn.</p>
+  <p>Every business with a peak has its version of that day: the sale, the billing run, the storm that floods the contact centre. The cost lands in hours, and it lands while the one person who knows what to check is unreachable.</p>
+  <p>An agent that only answers questions goes straight at that problem with very little downside. If it gets an answer wrong, a person reads it and checks before doing anything. Nothing in production changes because the agent misunderstood. Compare that with an agent given write access in its first week. One confident mistake during a peak and the clean-up costs more than the queue would have.</p>
+
+  <figure>
+    <img src="images/late-night-call.webp" width="1400" height="788" alt="A woman in glasses on a phone call at her desk late at night, a laptop and coffee in front of her" loading="lazy">
+    <figcaption>The 2am phone call to the one person who knows is the cost a read-only agent removes.</figcaption>
+  </figure>
+
+  <h2>Why this is a CX-Builder use case</h2>
+  <p>Take out the game servers and the pattern is general. You have systems your customers depend on, data about their state spread across several tools, and documentation that a handful of people have actually read. A read-only agent sits across all three and answers the questions your team asks each other in the middle of the night.</p>
+  <p>It works at the support desk too. An agent that can see order status, shipment tracking and the outage page answers "where is my order" accurately, and it has no way to refund, cancel or change anything while it does.</p>
+  <p>CX-Builder is built for this shape. A supervisor agent routes each question to specialist agents, each with its own tools and its own knowledge base. The tools are connectors to systems you already run, scoped to reads. Retrieval over runbooks and policy documents gives the agent the reasoning your senior people carry in their heads. Because CX-Builder is self-hosted, the monitoring data and customer records the agent reads stay on your own infrastructure.</p>
+  <p>Starting read-only is also how you earn the next step. After a month of logged questions and answers, you know which answers were right and where a person would happily have let the agent act. Those become the first write actions, each behind a human approval step until the record says it can run alone.</p>
+
+  <figure>
+    <img src="images/long-queue.webp" width="1400" height="788" alt="A long line of people waiting along the edge of a tree-lined city street" loading="lazy">
+    <figcaption>Every business has a launch day. The queue is what customers see when nobody can answer fast enough.</figcaption>
+  </figure>
+
+  <h2>What this looks like if you build it</h2>
+  <p>One agentflow, with a routing agent at the front and two or three specialists behind it, split by system rather than by question type. Each specialist gets tools that call read endpoints only, through credentials with no write permission, so the limit is enforced by the systems the agent calls whatever the prompt says. Runbooks and past incident notes go into a vector store per specialist. Every question and answer is logged so the team can review them weekly.</p>
+  <p>When a write action is finally added, it goes through a human-in-the-loop node that shows the proposed change and waits for someone to approve it.</p>
+
+  <div class="box">
+    <h3>The takeaway</h3>
+    <p>Pick the system your team gets paged about most and write down the ten questions people ask in the first ten minutes of an incident. Build an agent that answers those, with credentials that can read and nothing else. Run it for a quarter and read the log before you decide which answers should become actions.</p>
+  </div>
+
+  <div class="more">
+    <a href="/articles/">All articles</a>
+    <a href="/#install">Install CX-Builder</a>
+    <a href="https://github.com/dtsoden/cx-builder" target="_blank" rel="noopener noreferrer">View on GitHub</a>
+  </div>
+</div>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <img class="footer-logo" src="/cx-builder-dark.png" alt="CX-Builder">
+    <div class="footer-links">
+      <a href="/">Home</a>
+      <a href="/articles/">Articles</a>
+      <a href="https://github.com/dtsoden/cx-builder" target="_blank" rel="noopener noreferrer">GitHub</a>
+      <a href="https://ainews.davidsoden.com/" target="_blank" rel="noopener noreferrer">AI News</a>
+    </div>
+    <span>&copy; 2026 CX-Builder</span>
+  </div>
+</footer>
+
+</body>
+</html>
