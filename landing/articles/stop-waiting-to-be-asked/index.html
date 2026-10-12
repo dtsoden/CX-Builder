@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-CBL2K7674N"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-CBL2K7674N');
+</script>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Your AI assistant waits to be asked. Most work never is.</title>
+<meta name="description" content="Cisco is swapping prompted assistants for agents that start on their own. The part that pays off is choosing which events start work, and what runs unchecked.">
+<link rel="canonical" href="https://cx-builder.com/articles/stop-waiting-to-be-asked/">
+<meta name="robots" content="index, follow, max-image-preview:large">
+
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://cx-builder.com/articles/stop-waiting-to-be-asked/">
+<meta property="og:site_name" content="CX-Builder">
+<meta property="og:title" content="Your AI assistant waits to be asked. Most work never is.">
+<meta property="og:description" content="Cisco is swapping prompted assistants for agents that start on their own. The part that pays off is choosing which events start work, and what runs unchecked.">
+<meta property="og:image" content="https://cx-builder.com/articles/stop-waiting-to-be-asked/images/hero-phone-alert.webp">
+<meta property="og:image:width" content="1600">
+<meta property="og:image:height" content="900">
+<meta property="og:image:alt" content="A smartphone on a wooden table showing a bank alert that a credit card has been blocked">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Your AI assistant waits to be asked. Most work never is.">
+<meta name="twitter:description" content="Cisco is swapping prompted assistants for agents that start on their own. The part that pays off is choosing which events start work, and what runs unchecked.">
+<meta name="twitter:image" content="https://cx-builder.com/articles/stop-waiting-to-be-asked/images/hero-phone-alert.webp">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Your AI assistant waits to be asked. Most work never is.",
+  "description": "Cisco is swapping prompted assistants for agents that start on their own. The part that pays off is choosing which events start work, and what runs unchecked.",
+  "image": "https://cx-builder.com/articles/stop-waiting-to-be-asked/images/hero-phone-alert.webp",
+  "datePublished": "2026-10-12",
+  "dateModified": "2026-10-12",
+  "author": { "@type": "Person", "name": "David Soden" },
+  "publisher": {
+    "@type": "Organization",
+    "name": "CX-Builder",
+    "logo": { "@type": "ImageObject", "url": "https://cx-builder.com/cx-builder-dark.png" }
+  },
+  "mainEntityOfPage": { "@type": "WebPage", "@id": "https://cx-builder.com/articles/stop-waiting-to-be-asked/" }
+}
+</script>
+
+<link rel="icon" type="image/png" href="/cx-avitar-dark.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Source+Serif+4:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+  :root {
+    --accent:#5CA7DC; --dark:#020C12; --dark-footer:#010810;
+    --ink:#12212B; --ink-soft:#4A5B66; --rule:#E2E8ED;
+  }
+  body { font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif; background:#fff; color:var(--ink); -webkit-font-smoothing:antialiased; line-height:1.6; }
+  a { color:inherit; text-decoration:none; }
+  img { max-width:100%; height:auto; display:block; }
+  svg { width:100%; }
+
+  /* header / footer: dark, matches cx-builder.com */
+  .nav { background:rgba(2,12,18,0.96); border-bottom:1px solid rgba(255,255,255,0.06); position:sticky; top:0; z-index:50; }
+  .nav-inner { max-width:80rem; margin:0 auto; display:flex; align-items:center; justify-content:space-between; height:4rem; padding:0 1.5rem; }
+  .nav-logo { height:2.88rem; margin:-0.75rem 0; }
+  .nav-links { display:flex; align-items:center; gap:2rem; }
+  .nav-links a { font-size:0.875rem; color:rgba(255,255,255,0.6); transition:color .2s; }
+  .nav-links a:hover, .nav-links a.on { color:#fff; }
+  .nav-cta { border-radius:.5rem; padding:.5rem 1rem; font-size:.875rem; font-weight:600; background:var(--accent); color:var(--dark); }
+
+  .wrap { max-width:46rem; margin:0 auto; padding:0 1.5rem; }
+  .crumb { padding:2.5rem 0 1.25rem; font-size:.875rem; color:var(--ink-soft); }
+  .crumb a:hover { color:var(--accent); }
+
+  .kicker { font-size:.75rem; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:var(--accent); margin-bottom:1rem; }
+  h1 { font-family:'Source Serif 4',Georgia,serif; font-size:clamp(2.1rem,5.5vw,3.1rem); font-weight:700; line-height:1.12; letter-spacing:-.015em; }
+  .standfirst { font-family:'Source Serif 4',Georgia,serif; font-style:italic; font-size:clamp(1.1rem,2.4vw,1.35rem); line-height:1.55; color:var(--ink-soft); margin-top:1.25rem; }
+
+  .byline { display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:1rem;
+            border-top:1px solid var(--rule); border-bottom:1px solid var(--rule); margin:2rem 0 2.5rem; padding:.9rem 0; font-size:.9rem; color:var(--ink-soft); }
+  .share-li { display:inline-flex; align-items:center; gap:.45rem; background:#0A66C2; color:#fff; font-weight:600; font-size:.8rem; padding:.5rem .85rem; border-radius:.375rem; }
+  .share-li:hover { background:#004182; }
+  .share-li svg { width:14px; height:14px; fill:currentColor; }
+
+  figure { margin:2.5rem 0; }
+  figure img { border-radius:.5rem; }
+  figcaption { font-size:.8rem; color:var(--ink-soft); margin-top:.6rem; }
+
+  h2 { font-family:'Source Serif 4',Georgia,serif; font-size:clamp(1.5rem,3.2vw,1.9rem); font-weight:700; line-height:1.25; margin:2.75rem 0 1rem; }
+  p { margin-bottom:1.15rem; font-size:1.06rem; }
+  .wrap ul { margin:0 0 1.15rem 1.25rem; }
+  .wrap ul li { margin-bottom:.5rem; font-size:1.06rem; }
+  .wrap p a, .wrap li a { color:var(--accent); text-decoration:underline; text-underline-offset:2px; }
+
+  .box { background:var(--dark); color:#fff; border-radius:.75rem; padding:1.75rem; margin:2.75rem 0; }
+  .box h3 { font-size:1.05rem; font-weight:700; margin-bottom:.6rem; }
+  .box p { color:rgba(255,255,255,0.72); margin-bottom:0; font-size:1rem; }
+
+  .more { border-top:1px solid var(--rule); margin-top:3rem; padding:1.5rem 0 4rem; display:flex; gap:1.5rem; flex-wrap:wrap; font-size:.9rem; }
+  .more a { color:var(--accent); }
+
+  .footer { background:var(--dark-footer); color:rgba(255,255,255,0.55); padding:2.5rem 1.5rem; }
+  .footer-inner { max-width:80rem; margin:0 auto; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:1rem; font-size:.85rem; }
+  .footer-links { display:flex; gap:1.5rem; }
+  .footer-links a:hover { color:#fff; }
+  .footer-logo { height:2rem; }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="/"><img class="nav-logo" src="/cx-builder-dark.png" alt="CX-Builder"></a>
+    <div class="nav-links">
+      <a href="/#features">Features</a>
+      <a href="/#install">Install</a>
+      <a href="/articles/" class="on">Articles</a>
+      <a href="https://github.com/dtsoden/cx-builder" target="_blank" rel="noopener noreferrer">GitHub</a>
+    </div>
+    <a href="/#install" class="nav-cta">Get Started</a>
+  </div>
+</nav>
+
+<div class="wrap">
+  <div class="crumb"><a href="/articles/">&larr; All articles</a></div>
+
+  <div class="kicker">Agent design &bull; Field note</div>
+  <h1>Your AI assistant waits to be asked. Most work never is.</h1>
+  <p class="standfirst">Cisco is replacing the Webex assistants you prompt with agents that act on their own. The useful question for your business is which events should start work, and how much the agent may do before a person looks.</p>
+
+  <div class="byline">
+    <span>David Soden &bull; 5 min read &bull; 12 October 2026</span>
+    <a class="share-li" href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fcx-builder.com%2Farticles%2Fstop-waiting-to-be-asked%2F" target="_blank" rel="noopener noreferrer">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.34V9h3.41v1.56h.05c.48-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.55V9h3.57v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.72V1.72C24 .77 23.2 0 22.22 0z"/></svg>
+      Share on LinkedIn
+    </a>
+  </div>
+
+  <figure>
+    <img src="images/hero-phone-alert.webp" width="1600" height="900" alt="A smartphone on a wooden table showing a bank alert that a credit card has been blocked">
+    <figcaption>Your bank already works this way. Something happens, and the message arrives before you thought to ask.</figcaption>
+  </figure>
+
+  <h2>What happened</h2>
+  <p>Cisco has rolled out <a href="https://finance.yahoo.com/news/cisco-unveils-agentic-ai-tools-085813334.html" target="_blank" rel="noopener noreferrer">a broad set of agentic AI features</a> across Webex, its workplace products and its customer experience line. The change that matters most sits in Webex itself. Cisco says it is replacing prompt-driven assistants with what it calls AI teammates: agents that join meetings and spaces and carry out tasks across Webex and third-party apps, coordinated with other approved agents.</p>
+  <p>On the customer side it launched Dialog, which keeps context about each customer over time (we covered that part in <a href="/articles/the-customer-already-told-you/">an earlier note on agent memory</a>). The agents run inside Cisco's AI Defense guardrails, with Splunk supplying the telemetry.</p>
+  <p>Take away the product names and one shift is left. The old assistant waited for someone to type. The new one starts when something happens.</p>
+
+  <h2>Why waiting to be asked costs you</h2>
+  <p>A prompted assistant helps the people who remember to use it, at the moments they think to. That is rarely where the money leaks. Think of the refund request that sat over a long weekend in a shared inbox, or the large account that opened three tickets about the same outage that nobody connected, or the renewal that went quiet two months before the date. Nobody asks an assistant about any of these, because nobody noticed them in time.</p>
+
+  <figure>
+    <img src="images/parcels-left-at-door.webp" width="1400" height="788" alt="Cardboard boxes and padded envelopes piled on a doorstep in front of a green front door" loading="lazy">
+    <figcaption>Most lost revenue looks like this: something arrived, and nobody picked it up.</figcaption>
+  </figure>
+
+  <p>So most of the value in a proactive agent sits in its trigger list. Each trigger is a business decision that says this event matters enough for work to start before a human notices. Choose badly and you get an agent that pings people about noise all day, which teams learn to ignore within a week.</p>
+  <p>Proactive also means nobody is watching at the moment the agent acts. An agent that drafts a reply nobody requested is harmless. One that sends it, issues a credit or closes the ticket by itself carries a different kind of risk, and you have to draw that line for each action before anything goes live.</p>
+
+  <h2>Why this is a CX-Builder use case</h2>
+  <p>A CX-Builder agent flow does not have to start with a chat box. It can start from a webhook, so your helpdesk, CRM or billing system calls it the moment a ticket is reopened, a payment fails or a large customer goes quiet. It can also start on a schedule, which suits the sweep jobs: every morning, find the tickets older than 48 hours with no reply and propose a next step for each.</p>
+  <p>From there the flow does what a prompted assistant would. It pulls the customer's history, checks your knowledge base and drafts the message or the summary. What changes is where it stops. A human-in-the-loop step holds anything that reaches a customer or moves money until a person approves it. Everything else lands in the owner's queue as a suggestion they can take or ignore.</p>
+
+  <figure>
+    <img src="images/approving-on-phone.webp" width="1400" height="788" alt="A person at an office desk with sticky notes checking a message on a red smartphone" loading="lazy">
+    <figcaption>The agent does the noticing and the drafting. A person still presses send on anything that matters.</figcaption>
+  </figure>
+
+  <h2>What a builder would actually do</h2>
+  <p>Start an agent flow with the Webhook Trigger and point the helpdesk's "ticket reopened" event at it. Add a retriever over past tickets and help articles held in a vector store, an agent node that drafts the follow-up, a condition that routes by account tier, and a human input node in front of any step that sends a message or applies a credit. A second flow on a schedule runs the morning sweep and hands its list to the team lead.</p>
+  <p>Give each trigger its own small flow. That way you can switch one off by itself when it turns out to be noise.</p>
+
+  <div class="box">
+    <h3>The takeaway</h3>
+    <p>Write down the events where you lose money today because nobody noticed in time, and pick the most expensive one. Build one triggered flow for it that drafts only, with a person approving every send. Run it for a month, count what it caught that your team missed, and only then decide which actions it may take alone.</p>
+  </div>
+
+  <div class="more">
+    <a href="/articles/">All articles</a>
+    <a href="/#install">Install CX-Builder</a>
+    <a href="https://github.com/dtsoden/cx-builder" target="_blank" rel="noopener noreferrer">View on GitHub</a>
+  </div>
+</div>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <img class="footer-logo" src="/cx-builder-dark.png" alt="CX-Builder">
+    <div class="footer-links">
+      <a href="/">Home</a>
+      <a href="/articles/">Articles</a>
+      <a href="https://github.com/dtsoden/cx-builder" target="_blank" rel="noopener noreferrer">GitHub</a>
+      <a href="https://ainews.davidsoden.com/" target="_blank" rel="noopener noreferrer">AI News</a>
+    </div>
+    <span>&copy; 2026 CX-Builder</span>
+  </div>
+</footer>
+
+</body>
+</html>
