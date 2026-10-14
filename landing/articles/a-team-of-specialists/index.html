@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-CBL2K7674N"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-CBL2K7674N');
+</script>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>One agent can't know your whole business. Use specialists.</title>
+<meta name="description" content="A security firm runs twelve narrow AI agents instead of one generalist. For support teams the hard parts are routing and noticing when two agents disagree.">
+<link rel="canonical" href="https://cx-builder.com/articles/a-team-of-specialists/">
+<meta name="robots" content="index, follow, max-image-preview:large">
+
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://cx-builder.com/articles/a-team-of-specialists/">
+<meta property="og:site_name" content="CX-Builder">
+<meta property="og:title" content="One agent can't know your whole business. Use specialists.">
+<meta property="og:description" content="A security firm runs twelve narrow AI agents instead of one generalist. For support teams the hard parts are routing and noticing when two agents disagree.">
+<meta property="og:image" content="https://cx-builder.com/articles/a-team-of-specialists/images/hero-surgical-team.webp">
+<meta property="og:image:width" content="1600">
+<meta property="og:image:height" content="900">
+<meta property="og:image:alt" content="A surgical team in green scrubs at work in an operating room, each person at a different station">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="One agent can't know your whole business. Use specialists.">
+<meta name="twitter:description" content="A security firm runs twelve narrow AI agents instead of one generalist. For support teams the hard parts are routing and noticing when two agents disagree.">
+<meta name="twitter:image" content="https://cx-builder.com/articles/a-team-of-specialists/images/hero-surgical-team.webp">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "One agent can't know your whole business. Use specialists.",
+  "description": "A security firm runs twelve narrow AI agents instead of one generalist. For support teams the hard parts are routing and noticing when two agents disagree.",
+  "image": "https://cx-builder.com/articles/a-team-of-specialists/images/hero-surgical-team.webp",
+  "datePublished": "2026-10-14",
+  "dateModified": "2026-10-14",
+  "author": { "@type": "Person", "name": "David Soden" },
+  "publisher": {
+    "@type": "Organization",
+    "name": "CX-Builder",
+    "logo": { "@type": "ImageObject", "url": "https://cx-builder.com/cx-builder-dark.png" }
+  },
+  "mainEntityOfPage": { "@type": "WebPage", "@id": "https://cx-builder.com/articles/a-team-of-specialists/" }
+}
+</script>
+
+<link rel="icon" type="image/png" href="/cx-avitar-dark.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Source+Serif+4:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+  :root {
+    --accent:#5CA7DC; --dark:#020C12; --dark-footer:#010810;
+    --ink:#12212B; --ink-soft:#4A5B66; --rule:#E2E8ED;
+  }
+  body { font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif; background:#fff; color:var(--ink); -webkit-font-smoothing:antialiased; line-height:1.6; }
+  a { color:inherit; text-decoration:none; }
+  img { max-width:100%; height:auto; display:block; }
+  svg { width:100%; }
+
+  /* header / footer: dark, matches cx-builder.com */
+  .nav { background:rgba(2,12,18,0.96); border-bottom:1px solid rgba(255,255,255,0.06); position:sticky; top:0; z-index:50; }
+  .nav-inner { max-width:80rem; margin:0 auto; display:flex; align-items:center; justify-content:space-between; height:4rem; padding:0 1.5rem; }
+  .nav-logo { height:2.88rem; margin:-0.75rem 0; }
+  .nav-links { display:flex; align-items:center; gap:2rem; }
+  .nav-links a { font-size:0.875rem; color:rgba(255,255,255,0.6); transition:color .2s; }
+  .nav-links a:hover, .nav-links a.on { color:#fff; }
+  .nav-cta { border-radius:.5rem; padding:.5rem 1rem; font-size:.875rem; font-weight:600; background:var(--accent); color:var(--dark); }
+
+  .wrap { max-width:46rem; margin:0 auto; padding:0 1.5rem; }
+  .crumb { padding:2.5rem 0 1.25rem; font-size:.875rem; color:var(--ink-soft); }
+  .crumb a:hover { color:var(--accent); }
+
+  .kicker { font-size:.75rem; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:var(--accent); margin-bottom:1rem; }
+  h1 { font-family:'Source Serif 4',Georgia,serif; font-size:clamp(2.1rem,5.5vw,3.1rem); font-weight:700; line-height:1.12; letter-spacing:-.015em; }
+  .standfirst { font-family:'Source Serif 4',Georgia,serif; font-style:italic; font-size:clamp(1.1rem,2.4vw,1.35rem); line-height:1.55; color:var(--ink-soft); margin-top:1.25rem; }
+
+  .byline { display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:1rem;
+            border-top:1px solid var(--rule); border-bottom:1px solid var(--rule); margin:2rem 0 2.5rem; padding:.9rem 0; font-size:.9rem; color:var(--ink-soft); }
+  .share-li { display:inline-flex; align-items:center; gap:.45rem; background:#0A66C2; color:#fff; font-weight:600; font-size:.8rem; padding:.5rem .85rem; border-radius:.375rem; }
+  .share-li:hover { background:#004182; }
+  .share-li svg { width:14px; height:14px; fill:currentColor; }
+
+  figure { margin:2.5rem 0; }
+  figure img { border-radius:.5rem; }
+  figcaption { font-size:.8rem; color:var(--ink-soft); margin-top:.6rem; }
+
+  h2 { font-family:'Source Serif 4',Georgia,serif; font-size:clamp(1.5rem,3.2vw,1.9rem); font-weight:700; line-height:1.25; margin:2.75rem 0 1rem; }
+  p { margin-bottom:1.15rem; font-size:1.06rem; }
+  .wrap ul { margin:0 0 1.15rem 1.25rem; }
+  .wrap ul li { margin-bottom:.5rem; font-size:1.06rem; }
+  .wrap p a, .wrap li a { color:var(--accent); text-decoration:underline; text-underline-offset:2px; }
+
+  .box { background:var(--dark); color:#fff; border-radius:.75rem; padding:1.75rem; margin:2.75rem 0; }
+  .box h3 { font-size:1.05rem; font-weight:700; margin-bottom:.6rem; }
+  .box p { color:rgba(255,255,255,0.72); margin-bottom:0; font-size:1rem; }
+
+  .more { border-top:1px solid var(--rule); margin-top:3rem; padding:1.5rem 0 4rem; display:flex; gap:1.5rem; flex-wrap:wrap; font-size:.9rem; }
+  .more a { color:var(--accent); }
+
+  .footer { background:var(--dark-footer); color:rgba(255,255,255,0.55); padding:2.5rem 1.5rem; }
+  .footer-inner { max-width:80rem; margin:0 auto; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:1rem; font-size:.85rem; }
+  .footer-links { display:flex; gap:1.5rem; }
+  .footer-links a:hover { color:#fff; }
+  .footer-logo { height:2rem; }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="/"><img class="nav-logo" src="/cx-builder-dark.png" alt="CX-Builder"></a>
+    <div class="nav-links">
+      <a href="/#features">Features</a>
+      <a href="/#install">Install</a>
+      <a href="/articles/" class="on">Articles</a>
+      <a href="https://github.com/dtsoden/cx-builder" target="_blank" rel="noopener noreferrer">GitHub</a>
+    </div>
+    <a href="/#install" class="nav-cta">Get Started</a>
+  </div>
+</nav>
+
+<div class="wrap">
+  <div class="crumb"><a href="/articles/">&larr; All articles</a></div>
+
+  <div class="kicker">Architecture &bull; Field note</div>
+  <h1>One agent can't know your whole business. Use specialists.</h1>
+  <p class="standfirst">A security firm split its AI investigator into twelve narrow agents. The lesson for support teams is where the hard work moved: deciding who answers, and noticing when the answers don't agree.</p>
+
+  <div class="byline">
+    <span>David Soden &bull; 5 min read &bull; 14 October 2026</span>
+    <a class="share-li" href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fcx-builder.com%2Farticles%2Fa-team-of-specialists%2F" target="_blank" rel="noopener noreferrer">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.34V9h3.41v1.56h.05c.48-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.55V9h3.57v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.72V1.72C24 .77 23.2 0 22.22 0z"/></svg>
+      Share on LinkedIn
+    </a>
+  </div>
+
+  <figure>
+    <img src="images/hero-surgical-team.webp" width="1600" height="900" alt="A surgical team in green scrubs at work in an operating room, each person at a different station">
+    <figcaption>Nobody in the room does everything. Someone still has to run the room.</figcaption>
+  </figure>
+
+  <h2>What happened</h2>
+  <p>Group-IB, a security company, published <a href="https://www.group-ib.com/blog/agentic-ai-cybersecurity-next-step/" target="_blank" rel="noopener noreferrer">a description of how its AI investigator is built</a>. Instead of one agent that knows everything, it runs twelve specialists, each with its own tools: one for threat actors, one for malware, one for vulnerabilities, one for leaked credentials, and so on. An orchestration layer decides which specialist works next and pulls their findings together.</p>
+  <p>The authors are candid about where the difficulty sits. They name two problems as the hardest: routing, which means sending each question to the right specialist, and synthesis, which means deciding what the combined evidence actually supports. Their safeguards are plain ones. Specialists cross-check each other, answers have to be grounded in retrieved data, and chains of steps stay short, with a check back against the original goal at each step.</p>
+  <p>This is a vendor describing its own product, and the quality gains it reports come from its own testing. The design is the part worth borrowing, and it travels well outside security.</p>
+
+  <h2>Why this matters to your business</h2>
+  <p>Most companies build their first support agent as a generalist. One prompt, one knowledge base holding every policy, every tool attached. It demos well. In production it handles billing, returns and troubleshooting adequately and none of them well, and every mistake gets patched with another paragraph in the prompt. Eventually a fix for refunds breaks something in shipping, and nobody can say why, because there is only one thing to look at and it does everything.</p>
+  <p>There is a risk side too. Every tool the generalist holds can be triggered by any question. An agent that can both issue refunds and answer product questions can issue a refund while answering a product question.</p>
+  <p>Specialists change the cost of fixing things. When the returns agent gets something wrong, you change the returns agent, test it on returns, and nothing else moves. Each one carries only the documents and permissions its job needs, so a bad answer stays inside one topic.</p>
+
+  <figure>
+    <img src="images/mission-control-room.webp" width="1400" height="788" alt="Rows of operators at computer screens in a control room facing a large wall display with a world map" loading="lazy">
+    <figcaption>Splitting the work is easy. Deciding who handles each piece is the job.</figcaption>
+  </figure>
+
+  <h2>Why this is a CX-Builder use case</h2>
+  <p>The shape is a small team with a dispatcher. A routing agent reads the customer's message and hands it to a worker: a billing agent with read access to invoices, a returns agent with the returns policy and an order lookup, a technical agent searching only the product manuals. A final step assembles one reply from whatever came back.</p>
+  <p>Group-IB's two hard problems show up here unchanged. A router that sends a refund question to the technical agent produces a confident, well-sourced answer to the wrong question. So when the message is mixed or the router is unsure, the flow asks the customer a clarifying question or passes it to a person rather than guessing. And when two specialists disagree, say billing shows the customer inside warranty while returns says the window has closed, the flow hands both answers to a person, who decides. That disagreement is usually a gap in your own policy, and it is worth finding.</p>
+
+  <figure>
+    <img src="images/colleagues-checking-documents.webp" width="1400" height="788" alt="Two colleagues in an office reading through printed documents together" loading="lazy">
+    <figcaption>When two specialists disagree, a person should see both answers.</figcaption>
+  </figure>
+
+  <h2>What this looks like if you build it</h2>
+  <p>In CX-Builder this is one agentflow. A condition agent classifies the message and branches. Each branch is its own agent node with its own document store and its own short tool list. Each worker returns structured output (the answer, the source it relied on, how sure it is), which is what lets the merge step spot a conflict instead of blending it away. Conflicts and low-confidence routes go to a human input step, and iteration limits keep the chain short.</p>
+  <p>The execution trace records which specialist said what. When a customer disputes an answer, you can open the run and see which agent produced it and which document it leaned on.</p>
+
+  <div class="box">
+    <h3>The takeaway</h3>
+    <p>Pull last month's escalations from your current agent and sort them by topic. If one or two topics account for most of the failures, split those out into their own specialist first, with their own documents and permissions, and leave the rest alone. Group-IB has twelve; you don't need twelve on day one. Before you split anything, decide what happens when two specialists disagree, and make the answer a person who sees both.</p>
+  </div>
+  <div class="more">
+    <a href="/articles/">All articles</a>
+    <a href="/#install">Install CX-Builder</a>
+    <a href="https://github.com/dtsoden/cx-builder" target="_blank" rel="noopener noreferrer">View on GitHub</a>
+  </div>
+</div>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <img class="footer-logo" src="/cx-builder-dark.png" alt="CX-Builder">
+    <div class="footer-links">
+      <a href="/">Home</a>
+      <a href="/articles/">Articles</a>
+      <a href="https://github.com/dtsoden/cx-builder" target="_blank" rel="noopener noreferrer">GitHub</a>
+      <a href="https://ainews.davidsoden.com/" target="_blank" rel="noopener noreferrer">AI News</a>
+    </div>
+    <span>&copy; 2026 CX-Builder</span>
+  </div>
+</footer>
+
+</body>
+</html>
