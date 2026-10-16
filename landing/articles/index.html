@@ -50,6 +50,17 @@
   "blogPost": [
     {
       "@type": "BlogPosting",
+      "headline": "Intel wants agents on your own racks. Check your volume.",
+      "url": "https://cx-builder.com/articles/rent-the-model-until-the-volume-says-otherwise/",
+      "datePublished": "2026-10-16",
+      "image": "https://cx-builder.com/articles/rent-the-model-until-the-volume-says-otherwise/images/hero-server-aisle.webp",
+      "author": {
+        "@type": "Person",
+        "name": "David Soden"
+      }
+    },
+    {
+      "@type": "BlogPosting",
       "headline": "One agent can't know your whole business. Use specialists.",
       "url": "https://cx-builder.com/articles/a-team-of-specialists/",
       "datePublished": "2026-10-14",
@@ -550,6 +561,17 @@
 <div class="count" id="count"></div>
 
 <main class="grid" id="cards">
+      <a class="card" href="/articles/rent-the-model-until-the-volume-says-otherwise/"
+         data-category="Model strategy"
+         data-search="intel wants agents on your own racks. check your volume. intel&#x27;s new inference card runs large models in an ordinary server. owning hardware pays only at steady volume, so build agents that can switch models later. model strategy"
+         data-date="2026-10-16">
+        <img src="/articles/rent-the-model-until-the-volume-says-otherwise/images/hero-server-aisle.webp" alt="A long aisle of black server cabinets in a data center with a monitor cart at the far end" loading="lazy" width="1600" height="900">
+        <div class="card-body">
+          <div class="meta"><span class="cat">Model strategy</span> &bull; Oct 16, 2026 &bull; 5 min read</div>
+          <h2>Intel wants agents on your own racks. Check your volume.</h2>
+          <p>Intel's new inference card runs large models in an ordinary server. Owning hardware pays only at steady volume, so build agents that can switch models later.</p>
+        </div>
+      </a>
       <a class="card" href="/articles/a-team-of-specialists/"
          data-category="Architecture"
          data-search="one agent can&#x27;t know your whole business. use specialists. a security firm runs twelve narrow ai agents instead of one generalist. for support teams the hard parts are routing and noticing when two agents disagree. architecture"
@@ -605,17 +627,6 @@
           <p>Singapore's agentic AI rules say whoever deploys an agent owns the result. When it replies faster than anyone can read, put fixed rules ahead of AI review.</p>
         </div>
       </a>
-      <a class="card" href="/articles/fix-the-process-first/"
-         data-category="Operations"
-         data-search="fix the process first. an agent only makes a mess faster. cios at cio 100 boston said to simplify operations before automating them. here is what that means for a support team putting an ai agent into production. operations"
-         data-date="2026-10-02">
-        <img src="/articles/fix-the-process-first/images/hero-tangled-wires.webp" alt="A close-up of a dense tangle of electrical wires outdoors" loading="lazy" width="1600" height="900">
-        <div class="card-body">
-          <div class="meta"><span class="cat">Operations</span> &bull; Oct 2, 2026 &bull; 5 min read</div>
-          <h2>Fix the process first. An agent only makes a mess faster.</h2>
-          <p>CIOs at CIO 100 Boston said to simplify operations before automating them. Here is what that means for a support team putting an AI agent into production.</p>
-        </div>
-      </a>
 </main>
 
 <div class="empty" id="empty">
@@ -640,7 +651,7 @@
 <script>
 (function () {
   var PER_PAGE = 6;
-  var TOTAL    = 35;
+  var TOTAL    = 36;
   var grid   = document.getElementById('cards');
   var search = document.getElementById('search');
   var chips  = document.getElementById('chips');
