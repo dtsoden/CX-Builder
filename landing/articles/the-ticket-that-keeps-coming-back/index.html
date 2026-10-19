@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-CBL2K7674N"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-CBL2K7674N');
+</script>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Your agent closes the ticket. Who finds out why it came?</title>
+<meta name="description" content="Synopsys now points agents at the root cause of chip failures. Your support queue has the same gap. Tickets get closed and the cause stays put.">
+<link rel="canonical" href="https://cx-builder.com/articles/the-ticket-that-keeps-coming-back/">
+<meta name="robots" content="index, follow, max-image-preview:large">
+
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://cx-builder.com/articles/the-ticket-that-keeps-coming-back/">
+<meta property="og:site_name" content="CX-Builder">
+<meta property="og:title" content="Your agent closes the ticket. Who finds out why it came?">
+<meta property="og:description" content="Synopsys now points agents at the root cause of chip failures. Your support queue has the same gap. Tickets get closed and the cause stays put.">
+<meta property="og:image" content="https://cx-builder.com/articles/the-ticket-that-keeps-coming-back/images/hero-tracing-the-fault.webp">
+<meta property="og:image:width" content="1600">
+<meta property="og:image:height" content="900">
+<meta property="og:image:alt" content="A technician looking through a microscope at an electronic component on a lab bench">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Your agent closes the ticket. Who finds out why it came?">
+<meta name="twitter:description" content="Synopsys now points agents at the root cause of chip failures. Your support queue has the same gap. Tickets get closed and the cause stays put.">
+<meta name="twitter:image" content="https://cx-builder.com/articles/the-ticket-that-keeps-coming-back/images/hero-tracing-the-fault.webp">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Your agent closes the ticket. Who finds out why it came?",
+  "description": "Synopsys now points agents at the root cause of chip failures. Your support queue has the same gap. Tickets get closed and the cause stays put.",
+  "image": "https://cx-builder.com/articles/the-ticket-that-keeps-coming-back/images/hero-tracing-the-fault.webp",
+  "datePublished": "2026-10-19",
+  "dateModified": "2026-10-19",
+  "author": { "@type": "Person", "name": "David Soden" },
+  "publisher": {
+    "@type": "Organization",
+    "name": "CX-Builder",
+    "logo": { "@type": "ImageObject", "url": "https://cx-builder.com/cx-builder-dark.png" }
+  },
+  "mainEntityOfPage": { "@type": "WebPage", "@id": "https://cx-builder.com/articles/the-ticket-that-keeps-coming-back/" }
+}
+</script>
+
+<link rel="icon" type="image/png" href="/cx-avitar-dark.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Source+Serif+4:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+  :root {
+    --accent:#5CA7DC; --dark:#020C12; --dark-footer:#010810;
+    --ink:#12212B; --ink-soft:#4A5B66; --rule:#E2E8ED;
+  }
+  body { font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif; background:#fff; color:var(--ink); -webkit-font-smoothing:antialiased; line-height:1.6; }
+  a { color:inherit; text-decoration:none; }
+  img { max-width:100%; height:auto; display:block; }
+  svg { width:100%; }
+
+  /* header / footer: dark, matches cx-builder.com */
+  .nav { background:rgba(2,12,18,0.96); border-bottom:1px solid rgba(255,255,255,0.06); position:sticky; top:0; z-index:50; }
+  .nav-inner { max-width:80rem; margin:0 auto; display:flex; align-items:center; justify-content:space-between; height:4rem; padding:0 1.5rem; }
+  .nav-logo { height:2.88rem; margin:-0.75rem 0; }
+  .nav-links { display:flex; align-items:center; gap:2rem; }
+  .nav-links a { font-size:0.875rem; color:rgba(255,255,255,0.6); transition:color .2s; }
+  .nav-links a:hover, .nav-links a.on { color:#fff; }
+  .nav-cta { border-radius:.5rem; padding:.5rem 1rem; font-size:.875rem; font-weight:600; background:var(--accent); color:var(--dark); }
+
+  .wrap { max-width:46rem; margin:0 auto; padding:0 1.5rem; }
+  .crumb { padding:2.5rem 0 1.25rem; font-size:.875rem; color:var(--ink-soft); }
+  .crumb a:hover { color:var(--accent); }
+
+  .kicker { font-size:.75rem; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:var(--accent); margin-bottom:1rem; }
+  h1 { font-family:'Source Serif 4',Georgia,serif; font-size:clamp(2.1rem,5.5vw,3.1rem); font-weight:700; line-height:1.12; letter-spacing:-.015em; }
+  .standfirst { font-family:'Source Serif 4',Georgia,serif; font-style:italic; font-size:clamp(1.1rem,2.4vw,1.35rem); line-height:1.55; color:var(--ink-soft); margin-top:1.25rem; }
+
+  .byline { display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:1rem;
+            border-top:1px solid var(--rule); border-bottom:1px solid var(--rule); margin:2rem 0 2.5rem; padding:.9rem 0; font-size:.9rem; color:var(--ink-soft); }
+  .share-li { display:inline-flex; align-items:center; gap:.45rem; background:#0A66C2; color:#fff; font-weight:600; font-size:.8rem; padding:.5rem .85rem; border-radius:.375rem; }
+  .share-li:hover { background:#004182; }
+  .share-li svg { width:14px; height:14px; fill:currentColor; }
+
+  figure { margin:2.5rem 0; }
+  figure img { border-radius:.5rem; }
+  figcaption { font-size:.8rem; color:var(--ink-soft); margin-top:.6rem; }
+
+  h2 { font-family:'Source Serif 4',Georgia,serif; font-size:clamp(1.5rem,3.2vw,1.9rem); font-weight:700; line-height:1.25; margin:2.75rem 0 1rem; }
+  p { margin-bottom:1.15rem; font-size:1.06rem; }
+  .wrap ul { margin:0 0 1.15rem 1.25rem; }
+  .wrap ul li { margin-bottom:.5rem; font-size:1.06rem; }
+  .wrap p a, .wrap li a { color:var(--accent); text-decoration:underline; text-underline-offset:2px; }
+
+  .box { background:var(--dark); color:#fff; border-radius:.75rem; padding:1.75rem; margin:2.75rem 0; }
+  .box h3 { font-size:1.05rem; font-weight:700; margin-bottom:.6rem; }
+  .box p { color:rgba(255,255,255,0.72); margin-bottom:0; font-size:1rem; }
+
+  .more { border-top:1px solid var(--rule); margin-top:3rem; padding:1.5rem 0 4rem; display:flex; gap:1.5rem; flex-wrap:wrap; font-size:.9rem; }
+  .more a { color:var(--accent); }
+
+  .footer { background:var(--dark-footer); color:rgba(255,255,255,0.55); padding:2.5rem 1.5rem; }
+  .footer-inner { max-width:80rem; margin:0 auto; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:1rem; font-size:.85rem; }
+  .footer-links { display:flex; gap:1.5rem; }
+  .footer-links a:hover { color:#fff; }
+  .footer-logo { height:2rem; }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="/"><img class="nav-logo" src="/cx-builder-dark.png" alt="CX-Builder"></a>
+    <div class="nav-links">
+      <a href="/#features">Features</a>
+      <a href="/#install">Install</a>
+      <a href="/articles/" class="on">Articles</a>
+      <a href="https://github.com/dtsoden/cx-builder" target="_blank" rel="noopener noreferrer">GitHub</a>
+    </div>
+    <a href="/#install" class="nav-cta">Get Started</a>
+  </div>
+</nav>
+
+<div class="wrap">
+  <div class="crumb"><a href="/articles/">&larr; All articles</a></div>
+
+  <div class="kicker">Operations &bull; Field note</div>
+  <h1>Your agent closes the ticket. Who finds out why it came?</h1>
+  <p class="standfirst">Chip designers are handing agents the slow work of tracing a failure back to its cause. Most support teams still close the same ticket every week and never ask where it comes from.</p>
+
+  <div class="byline">
+    <span>David Soden &bull; 5 min read &bull; 19 October 2026</span>
+    <a class="share-li" href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fcx-builder.com%2Farticles%2Fthe-ticket-that-keeps-coming-back%2F" target="_blank" rel="noopener noreferrer">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.34V9h3.41v1.56h.05c.48-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.55V9h3.57v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.72V1.72C24 .77 23.2 0 22.22 0z"/></svg>
+      Share on LinkedIn
+    </a>
+  </div>
+
+  <figure>
+    <img src="images/hero-tracing-the-fault.webp" width="1600" height="900" alt="A technician looking through a microscope at an electronic component on a lab bench">
+    <figcaption>In chip design, finding why something failed takes longer than fixing it. Support works the same way.</figcaption>
+  </figure>
+
+  <h2>What happened</h2>
+  <p>Synopsys and Microsoft announced <a href="https://www.engineering.com/synopsys-adds-agentic-ai-workflows-for-chip-design/" target="_blank" rel="noopener noreferrer">autonomous agent workflows for chip design</a>, now available for evaluation on Microsoft Discovery. The one worth your attention is debug closure. When a chip design fails verification, a set of agents traces the failure back to the part of the design that caused it and pushes the fix through validation.</p>
+  <p>Synopsys says early evaluations cut debug cycle time by 25 to 40 percent, which it puts at weeks of engineering effort saved. AMD is evaluating the workflows for its next products. Those are vendor numbers from early trials, so treat them as a direction and wait for your own.</p>
+  <p>Most people outside semiconductors can skip the chip details. What carries over is the kind of work being handed to agents. This is a long investigation rather than a single answer to a single prompt: gather the evidence, form a theory, test it, and report what broke and why.</p>
+
+  <h2>Why this matters to your business</h2>
+  <p>Your support operation has its own version of a failed verification run, and it shows up as repeat contact. The same billing confusion, the same delivery question, the same password reset that fails for one group of customers. Each ticket gets answered and closed. The cause that produced it stays where it was, so next week brings the same tickets again.</p>
+  <p>That is expensive in a way the dashboard hides. Handle time looks fine, and the backlog looks under control. But you are paying to answer a question that a fixed invoice template or a clearer delivery email would have stopped at the source. And every customer who has to ask is a little less patient the next time.</p>
+  <p>A support agent that answers faster makes this worse in one respect. It gets so good at closing the ticket that nobody feels the pain that used to push someone to go and fix the cause.</p>
+
+  <figure>
+    <img src="images/same-call-again.webp" width="1400" height="788" alt="A tired call centre worker with a headset resting his head in his hand at his desk" loading="lazy">
+    <figcaption>Answering the same question for the hundredth time is a symptom, and nobody on the floor owns the cause.</figcaption>
+  </figure>
+
+  <h2>Why this is a CX-Builder use case</h2>
+  <p>The Synopsys pattern splits the job between agents with different duties. One finds the failures. Another works out what they have in common, and a third proposes the fix. You can build the same split over a support queue, and none of it needs to touch a customer.</p>
+  <p>In CX-Builder that is an agent that runs on a schedule rather than in a chat window. It reads the week's closed tickets, groups them by what the customer was actually asking, and checks each large group against your policies, product documents and recent changes. Then it writes a short report for a person: this cluster of 300 tickets started the week the new invoice layout shipped, here are five examples, and here is the line on the invoice that customers keep misreading.</p>
+  <p>The output is a finding with evidence attached, and a human decides what to do with it. The agent never edits the invoice or rewrites the delivery email itself. It does the slow part, the reading and grouping and cross-checking, and leaves the call to the person who owns the process.</p>
+
+  <figure>
+    <img src="images/grouping-the-causes.webp" width="1400" height="788" alt="Two colleagues sorting sticky notes into groups on an office whiteboard" loading="lazy">
+    <figcaption>The agent does the sorting. A person decides which group is worth fixing first.</figcaption>
+  </figure>
+
+  <h2>What this looks like if you build it</h2>
+  <p>A scheduled agentflow pulls closed tickets from your helpdesk through its connector and embeds them into a vector store, so similar complaints land near each other even when customers phrase them differently. Then a second agent takes the largest clusters and retrieves from a separate store holding your policies, release notes and templates, looking for a change that lines up with when each cluster started. A structured output step turns each finding into a fixed shape (cluster size, start date, suspected cause, sample tickets), and a human-in-the-loop step routes it to the owner for a yes or no before anything becomes a work item.</p>
+  <p>Keep the first version read-only. Run it for a month and count how many of its findings a person agreed with. That number tells you whether it has earned more scope.</p>
+
+  <div class="box">
+    <h3>The takeaway</h3>
+    <p>Pull last quarter's ten most common ticket reasons and ask, for each one, whether anyone has been asked to make it stop. If the honest answer is mostly no, the next agent you build should investigate the queue instead of answering it.</p>
+  </div>
+
+  <div class="more">
+    <a href="/articles/">All articles</a>
+    <a href="/#install">Install CX-Builder</a>
+    <a href="https://github.com/dtsoden/cx-builder" target="_blank" rel="noopener noreferrer">View on GitHub</a>
+  </div>
+</div>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <img class="footer-logo" src="/cx-builder-dark.png" alt="CX-Builder">
+    <div class="footer-links">
+      <a href="/">Home</a>
+      <a href="/articles/">Articles</a>
+      <a href="https://github.com/dtsoden/cx-builder" target="_blank" rel="noopener noreferrer">GitHub</a>
+      <a href="https://ainews.davidsoden.com/" target="_blank" rel="noopener noreferrer">AI News</a>
+    </div>
+    <span>&copy; 2026 CX-Builder</span>
+  </div>
+</footer>
+
+</body>
+</html>

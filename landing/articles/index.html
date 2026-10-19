@@ -50,6 +50,17 @@
   "blogPost": [
     {
       "@type": "BlogPosting",
+      "headline": "Your agent closes the ticket. Who finds out why it came?",
+      "url": "https://cx-builder.com/articles/the-ticket-that-keeps-coming-back/",
+      "datePublished": "2026-10-19",
+      "image": "https://cx-builder.com/articles/the-ticket-that-keeps-coming-back/images/hero-tracing-the-fault.webp",
+      "author": {
+        "@type": "Person",
+        "name": "David Soden"
+      }
+    },
+    {
+      "@type": "BlogPosting",
       "headline": "Intel wants agents on your own racks. Check your volume.",
       "url": "https://cx-builder.com/articles/rent-the-model-until-the-volume-says-otherwise/",
       "datePublished": "2026-10-16",
@@ -561,6 +572,17 @@
 <div class="count" id="count"></div>
 
 <main class="grid" id="cards">
+      <a class="card" href="/articles/the-ticket-that-keeps-coming-back/"
+         data-category="Operations"
+         data-search="your agent closes the ticket. who finds out why it came? synopsys now points agents at the root cause of chip failures. your support queue has the same gap. tickets get closed and the cause stays put. operations"
+         data-date="2026-10-19">
+        <img src="/articles/the-ticket-that-keeps-coming-back/images/hero-tracing-the-fault.webp" alt="A technician looking through a microscope at an electronic component on a lab bench" loading="lazy" width="1600" height="900">
+        <div class="card-body">
+          <div class="meta"><span class="cat">Operations</span> &bull; Oct 19, 2026 &bull; 5 min read</div>
+          <h2>Your agent closes the ticket. Who finds out why it came?</h2>
+          <p>Synopsys now points agents at the root cause of chip failures. Your support queue has the same gap. Tickets get closed and the cause stays put.</p>
+        </div>
+      </a>
       <a class="card" href="/articles/rent-the-model-until-the-volume-says-otherwise/"
          data-category="Model strategy"
          data-search="intel wants agents on your own racks. check your volume. intel&#x27;s new inference card runs large models in an ordinary server. owning hardware pays only at steady volume, so build agents that can switch models later. model strategy"
@@ -616,17 +638,6 @@
           <p>AWS built an agent that answers questions about live game servers and can change none of them. That is the right first agent for most operations teams.</p>
         </div>
       </a>
-      <a class="card" href="/articles/verification-debt/"
-         data-category="Governance"
-         data-search="your ai agent writes faster than your team can check it singapore&#x27;s agentic ai rules say whoever deploys an agent owns the result. when it replies faster than anyone can read, put fixed rules ahead of ai review. governance"
-         data-date="2026-10-05">
-        <img src="/articles/verification-debt/images/hero-papers-piling-up.webp" alt="A thick, untidy stack of forms and photographs lying on a desk" loading="lazy" width="1600" height="900">
-        <div class="card-body">
-          <div class="meta"><span class="cat">Governance</span> &bull; Oct 5, 2026 &bull; 5 min read</div>
-          <h2>Your AI agent writes faster than your team can check it</h2>
-          <p>Singapore's agentic AI rules say whoever deploys an agent owns the result. When it replies faster than anyone can read, put fixed rules ahead of AI review.</p>
-        </div>
-      </a>
 </main>
 
 <div class="empty" id="empty">
@@ -651,7 +662,7 @@
 <script>
 (function () {
   var PER_PAGE = 6;
-  var TOTAL    = 36;
+  var TOTAL    = 37;
   var grid   = document.getElementById('cards');
   var search = document.getElementById('search');
   var chips  = document.getElementById('chips');
