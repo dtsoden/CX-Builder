@@ -50,6 +50,17 @@
   "blogPost": [
     {
       "@type": "BlogPosting",
+      "headline": "Your QA team reads a sample. An agent can read every ticket.",
+      "url": "https://cx-builder.com/articles/read-every-ticket/",
+      "datePublished": "2026-10-21",
+      "image": "https://cx-builder.com/articles/read-every-ticket/images/hero-unread-binders.webp",
+      "author": {
+        "@type": "Person",
+        "name": "David Soden"
+      }
+    },
+    {
+      "@type": "BlogPosting",
       "headline": "Your agent closes the ticket. Who finds out why it came?",
       "url": "https://cx-builder.com/articles/the-ticket-that-keeps-coming-back/",
       "datePublished": "2026-10-19",
@@ -572,6 +583,17 @@
 <div class="count" id="count"></div>
 
 <main class="grid" id="cards">
+      <a class="card" href="/articles/read-every-ticket/"
+         data-category="Operations"
+         data-search="your qa team reads a sample. an agent can read every ticket. a bank went from checking about 40% of its risk to all of it. support qa can make the same move: an agent reads every ticket, people review what it flags. operations"
+         data-date="2026-10-21">
+        <img src="/articles/read-every-ticket/images/hero-unread-binders.webp" alt="Stacks of thick binders filled with printed documents" loading="lazy" width="1600" height="900">
+        <div class="card-body">
+          <div class="meta"><span class="cat">Operations</span> &bull; Oct 21, 2026 &bull; 5 min read</div>
+          <h2>Your QA team reads a sample. An agent can read every ticket.</h2>
+          <p>A bank went from checking about 40% of its risk to all of it. Support QA can make the same move: an agent reads every ticket, people review what it flags.</p>
+        </div>
+      </a>
       <a class="card" href="/articles/the-ticket-that-keeps-coming-back/"
          data-category="Operations"
          data-search="your agent closes the ticket. who finds out why it came? synopsys now points agents at the root cause of chip failures. your support queue has the same gap. tickets get closed and the cause stays put. operations"
@@ -627,17 +649,6 @@
           <p>Cisco's new Dialog keeps customer context across channels and time. Most support agents forget everyone when the chat ends. Decide what yours keeps, and where.</p>
         </div>
       </a>
-      <a class="card" href="/articles/read-only-first/"
-         data-category="Operations"
-         data-search="start your ops agent read-only. let it earn the keys later. aws built an agent that answers questions about live game servers and can change none of them. that is the right first agent for most operations teams. operations"
-         data-date="2026-10-07">
-        <img src="/articles/read-only-first/images/hero-control-room.webp" alt="Four operators at desks of monitors watching a wide wall display of a live warehouse system" loading="lazy" width="1600" height="900">
-        <div class="card-body">
-          <div class="meta"><span class="cat">Operations</span> &bull; Oct 7, 2026 &bull; 5 min read</div>
-          <h2>Start your ops agent read-only. Let it earn the keys later.</h2>
-          <p>AWS built an agent that answers questions about live game servers and can change none of them. That is the right first agent for most operations teams.</p>
-        </div>
-      </a>
 </main>
 
 <div class="empty" id="empty">
@@ -662,7 +673,7 @@
 <script>
 (function () {
   var PER_PAGE = 6;
-  var TOTAL    = 37;
+  var TOTAL    = 38;
   var grid   = document.getElementById('cards');
   var search = document.getElementById('search');
   var chips  = document.getElementById('chips');

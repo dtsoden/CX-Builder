@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-CBL2K7674N"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-CBL2K7674N');
+</script>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Your QA team reads a sample. An agent can read every ticket.</title>
+<meta name="description" content="A bank went from checking about 40% of its risk to all of it. Support QA can make the same move: an agent reads every ticket, people review what it flags.">
+<link rel="canonical" href="https://cx-builder.com/articles/read-every-ticket/">
+<meta name="robots" content="index, follow, max-image-preview:large">
+
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://cx-builder.com/articles/read-every-ticket/">
+<meta property="og:site_name" content="CX-Builder">
+<meta property="og:title" content="Your QA team reads a sample. An agent can read every ticket.">
+<meta property="og:description" content="A bank went from checking about 40% of its risk to all of it. Support QA can make the same move: an agent reads every ticket, people review what it flags.">
+<meta property="og:image" content="https://cx-builder.com/articles/read-every-ticket/images/hero-unread-binders.webp">
+<meta property="og:image:width" content="1600">
+<meta property="og:image:height" content="900">
+<meta property="og:image:alt" content="Stacks of thick binders filled with printed documents">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Your QA team reads a sample. An agent can read every ticket.">
+<meta name="twitter:description" content="A bank went from checking about 40% of its risk to all of it. Support QA can make the same move: an agent reads every ticket, people review what it flags.">
+<meta name="twitter:image" content="https://cx-builder.com/articles/read-every-ticket/images/hero-unread-binders.webp">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Your QA team reads a sample. An agent can read every ticket.",
+  "description": "A bank went from checking about 40% of its risk to all of it. Support QA can make the same move: an agent reads every ticket, people review what it flags.",
+  "image": "https://cx-builder.com/articles/read-every-ticket/images/hero-unread-binders.webp",
+  "datePublished": "2026-10-21",
+  "dateModified": "2026-10-21",
+  "author": { "@type": "Person", "name": "David Soden" },
+  "publisher": {
+    "@type": "Organization",
+    "name": "CX-Builder",
+    "logo": { "@type": "ImageObject", "url": "https://cx-builder.com/cx-builder-dark.png" }
+  },
+  "mainEntityOfPage": { "@type": "WebPage", "@id": "https://cx-builder.com/articles/read-every-ticket/" }
+}
+</script>
+
+<link rel="icon" type="image/png" href="/cx-avitar-dark.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Source+Serif+4:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+  :root {
+    --accent:#5CA7DC; --dark:#020C12; --dark-footer:#010810;
+    --ink:#12212B; --ink-soft:#4A5B66; --rule:#E2E8ED;
+  }
+  body { font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif; background:#fff; color:var(--ink); -webkit-font-smoothing:antialiased; line-height:1.6; }
+  a { color:inherit; text-decoration:none; }
+  img { max-width:100%; height:auto; display:block; }
+  svg { width:100%; }
+
+  /* header / footer: dark, matches cx-builder.com */
+  .nav { background:rgba(2,12,18,0.96); border-bottom:1px solid rgba(255,255,255,0.06); position:sticky; top:0; z-index:50; }
+  .nav-inner { max-width:80rem; margin:0 auto; display:flex; align-items:center; justify-content:space-between; height:4rem; padding:0 1.5rem; }
+  .nav-logo { height:2.88rem; margin:-0.75rem 0; }
+  .nav-links { display:flex; align-items:center; gap:2rem; }
+  .nav-links a { font-size:0.875rem; color:rgba(255,255,255,0.6); transition:color .2s; }
+  .nav-links a:hover, .nav-links a.on { color:#fff; }
+  .nav-cta { border-radius:.5rem; padding:.5rem 1rem; font-size:.875rem; font-weight:600; background:var(--accent); color:var(--dark); }
+
+  .wrap { max-width:46rem; margin:0 auto; padding:0 1.5rem; }
+  .crumb { padding:2.5rem 0 1.25rem; font-size:.875rem; color:var(--ink-soft); }
+  .crumb a:hover { color:var(--accent); }
+
+  .kicker { font-size:.75rem; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:var(--accent); margin-bottom:1rem; }
+  h1 { font-family:'Source Serif 4',Georgia,serif; font-size:clamp(2.1rem,5.5vw,3.1rem); font-weight:700; line-height:1.12; letter-spacing:-.015em; }
+  .standfirst { font-family:'Source Serif 4',Georgia,serif; font-style:italic; font-size:clamp(1.1rem,2.4vw,1.35rem); line-height:1.55; color:var(--ink-soft); margin-top:1.25rem; }
+
+  .byline { display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:1rem;
+            border-top:1px solid var(--rule); border-bottom:1px solid var(--rule); margin:2rem 0 2.5rem; padding:.9rem 0; font-size:.9rem; color:var(--ink-soft); }
+  .share-li { display:inline-flex; align-items:center; gap:.45rem; background:#0A66C2; color:#fff; font-weight:600; font-size:.8rem; padding:.5rem .85rem; border-radius:.375rem; }
+  .share-li:hover { background:#004182; }
+  .share-li svg { width:14px; height:14px; fill:currentColor; }
+
+  figure { margin:2.5rem 0; }
+  figure img { border-radius:.5rem; }
+  figcaption { font-size:.8rem; color:var(--ink-soft); margin-top:.6rem; }
+
+  h2 { font-family:'Source Serif 4',Georgia,serif; font-size:clamp(1.5rem,3.2vw,1.9rem); font-weight:700; line-height:1.25; margin:2.75rem 0 1rem; }
+  p { margin-bottom:1.15rem; font-size:1.06rem; }
+  .wrap ul { margin:0 0 1.15rem 1.25rem; }
+  .wrap ul li { margin-bottom:.5rem; font-size:1.06rem; }
+  .wrap p a, .wrap li a { color:var(--accent); text-decoration:underline; text-underline-offset:2px; }
+
+  .box { background:var(--dark); color:#fff; border-radius:.75rem; padding:1.75rem; margin:2.75rem 0; }
+  .box h3 { font-size:1.05rem; font-weight:700; margin-bottom:.6rem; }
+  .box p { color:rgba(255,255,255,0.72); margin-bottom:0; font-size:1rem; }
+
+  .more { border-top:1px solid var(--rule); margin-top:3rem; padding:1.5rem 0 4rem; display:flex; gap:1.5rem; flex-wrap:wrap; font-size:.9rem; }
+  .more a { color:var(--accent); }
+
+  .footer { background:var(--dark-footer); color:rgba(255,255,255,0.55); padding:2.5rem 1.5rem; }
+  .footer-inner { max-width:80rem; margin:0 auto; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:1rem; font-size:.85rem; }
+  .footer-links { display:flex; gap:1.5rem; }
+  .footer-links a:hover { color:#fff; }
+  .footer-logo { height:2rem; }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="/"><img class="nav-logo" src="/cx-builder-dark.png" alt="CX-Builder"></a>
+    <div class="nav-links">
+      <a href="/#features">Features</a>
+      <a href="/#install">Install</a>
+      <a href="/articles/" class="on">Articles</a>
+      <a href="https://github.com/dtsoden/cx-builder" target="_blank" rel="noopener noreferrer">GitHub</a>
+    </div>
+    <a href="/#install" class="nav-cta">Get Started</a>
+  </div>
+</nav>
+
+<div class="wrap">
+  <div class="crumb"><a href="/articles/">&larr; All articles</a></div>
+
+  <div class="kicker">Operations &bull; Field note</div>
+  <h1>Your QA team reads a sample. An agent can read every ticket.</h1>
+  <p class="standfirst">Support QA still runs on samples because reading everything used to cost too much. A bank just showed what changes when an agent does the first read.</p>
+
+  <div class="byline">
+    <span>David Soden &bull; 5 min read &bull; 21 October 2026</span>
+    <a class="share-li" href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fcx-builder.com%2Farticles%2Fread-every-ticket%2F" target="_blank" rel="noopener noreferrer">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.34V9h3.41v1.56h.05c.48-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.55V9h3.57v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.72V1.72C24 .77 23.2 0 22.22 0z"/></svg>
+      Share on LinkedIn
+    </a>
+  </div>
+
+  <figure>
+    <img src="images/hero-unread-binders.webp" width="1600" height="900" alt="Stacks of thick binders filled with printed documents">
+    <figcaption>Everything outside the sample still happened. Nobody read it.</figcaption>
+  </figure>
+
+  <h2>What happened</h2>
+  <p>Microsoft's year-end post, <a href="https://blogs.microsoft.com/blog/2026/07/28/looking-back-on-microsofts-fy26-from-ai-experimentation-to-frontier-transformation/" target="_blank" rel="noopener noreferrer">Looking back on Microsoft's FY26</a>, is a long list of customer results, most of them productivity numbers. One stands out for anyone who runs a support operation. Banco Popular Dominicano, the largest private bank in the Dominican Republic, used to review operational risk the way most companies review anything: periodically, and by sample.</p>
+  <p>The bank built a set of specialized agents, and Microsoft says it now monitors all of its operational risk in real time, up from roughly 40% coverage, while working through about 80,000 documents a week. Those are figures from a vendor's own blog, so hold the exact numbers loosely. The shape of the change is what's worth copying. The team stopped choosing which records to read and started reading all of them, and people now spend their hours on what the agents surface. Risk specialists built it themselves with low-code tools.</p>
+
+  <h2>Why this matters to your business</h2>
+  <p>Your support QA almost certainly works the way the bank's risk team used to. A QA lead pulls a handful of conversations per agent each week and scores them against a rubric. Everything outside the sample goes unread. That's where the wrong refund promise or the disclosure that never got said tends to sit until a customer complains or a regulator asks.</p>
+  <p>Sampling was the right call when every review cost a person's time. But it means your quality score is an estimate, your coaching rests on a few calls, and a problem with one product line can run for weeks before it lands in anyone's sample. If AI agents now answer customers alongside your people, the volume goes up and the share anyone reads goes down.</p>
+
+  <figure>
+    <img src="images/support-agents-at-work.webp" width="1400" height="788" alt="Two customer support agents wearing headsets working on laptops at a shared desk" loading="lazy">
+    <figcaption>Every conversation gets held to the same standard, including the ones nobody pulled for review.</figcaption>
+  </figure>
+
+  <h2>Why this is a CX-Builder use case</h2>
+  <p>Checking a conversation against a written standard is work an agent does well, because the standard already exists on paper. Your QA scorecard, your refund policy and your required disclosures are documents. CX-Builder loads them into a knowledge base, so a review agent checks each transcript against your actual rules instead of a model's general idea of good service.</p>
+  <p>Your QA lead stays. The agent does the first read on every closed ticket and sorts it. Most will pass and get logged with a score. The ones that break a rule or score below a threshold go to a person, with the rule cited and the line from the transcript quoted. Your QA team spends its week on the cases that matter, and coverage goes to every ticket without adding reviewers.</p>
+  <p>The bank's other lesson applies too. Your QA lead knows what a bad conversation looks like better than any engineer does. In a visual builder, that person can shape the rubric and set the thresholds directly instead of filing a request and waiting.</p>
+
+  <figure>
+    <img src="images/reviewing-flagged-case.webp" width="1400" height="788" alt="A man in a suit examining a printed document with a magnifying glass at his desk" loading="lazy">
+    <figcaption>Review time goes to the cases the agent flagged, with the rule and the quote attached.</figcaption>
+  </figure>
+
+  <h2>What this looks like if you build it</h2>
+  <p>It's one flow, run on each closed conversation from your helpdesk or as a nightly batch. A document store holds the rubric and policies, so retrieval pulls the rules that apply to this ticket's topic. The review agent returns a structured result: pass or fail on each rubric item, plus the rule and the transcript quote behind each call. A condition sends failures and low-confidence calls to a human review step and writes the rest to your reporting store.</p>
+  <p>Run it on last month's tickets before you trust it on live traffic, and compare its calls with what your QA team scored by hand. Where the two disagree, you'll usually find a rule that was never written down.</p>
+
+  <div class="box">
+    <h3>The takeaway</h3>
+    <p>Count how many conversations last month's QA scores were based on, as a share of everything your team handled. If that share is small, pick your single most expensive failure, a missed cancellation or a wrong refund promise, and build a review agent that checks every ticket for that alone. Widen the rubric once its flags match what your QA lead would have caught.</p>
+  </div>
+
+  <div class="more">
+    <a href="/articles/">All articles</a>
+    <a href="/#install">Install CX-Builder</a>
+    <a href="https://github.com/dtsoden/cx-builder" target="_blank" rel="noopener noreferrer">View on GitHub</a>
+  </div>
+</div>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <img class="footer-logo" src="/cx-builder-dark.png" alt="CX-Builder">
+    <div class="footer-links">
+      <a href="/">Home</a>
+      <a href="/articles/">Articles</a>
+      <a href="https://github.com/dtsoden/cx-builder" target="_blank" rel="noopener noreferrer">GitHub</a>
+      <a href="https://ainews.davidsoden.com/" target="_blank" rel="noopener noreferrer">AI News</a>
+    </div>
+    <span>&copy; 2026 CX-Builder</span>
+  </div>
+</footer>
+
+</body>
+</html>
