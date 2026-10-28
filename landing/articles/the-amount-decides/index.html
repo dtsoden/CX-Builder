@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-CBL2K7674N"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-CBL2K7674N');
+</script>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Your AI agent&#39;s permissions should depend on the amount</title>
+<meta name="description" content="A login says who your AI agent is. It can&#39;t tell a $40 refund from a $4,000 one. Put the limit on each action, and have a person approve the large ones.">
+<link rel="canonical" href="https://cx-builder.com/articles/the-amount-decides/">
+<meta name="robots" content="index, follow, max-image-preview:large">
+
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://cx-builder.com/articles/the-amount-decides/">
+<meta property="og:site_name" content="CX-Builder">
+<meta property="og:title" content="Your AI agent&#39;s permissions should depend on the amount">
+<meta property="og:description" content="A login says who your AI agent is. It can&#39;t tell a $40 refund from a $4,000 one. Put the limit on each action, and have a person approve the large ones.">
+<meta property="og:image" content="https://cx-builder.com/articles/the-amount-decides/images/hero-badge-reader.webp">
+<meta property="og:image:width" content="1600">
+<meta property="og:image:height" content="900">
+<meta property="og:image:alt" content="A hand in a suit sleeve holding a key card against a wall-mounted access reader">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Your AI agent&#39;s permissions should depend on the amount">
+<meta name="twitter:description" content="A login says who your AI agent is. It can&#39;t tell a $40 refund from a $4,000 one. Put the limit on each action, and have a person approve the large ones.">
+<meta name="twitter:image" content="https://cx-builder.com/articles/the-amount-decides/images/hero-badge-reader.webp">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Your AI agent's permissions should depend on the amount",
+  "description": "A login says who your AI agent is. It can't tell a $40 refund from a $4,000 one. Put the limit on each action, and have a person approve the large ones.",
+  "image": "https://cx-builder.com/articles/the-amount-decides/images/hero-badge-reader.webp",
+  "datePublished": "2026-10-28",
+  "dateModified": "2026-10-28",
+  "author": { "@type": "Person", "name": "David Soden" },
+  "publisher": {
+    "@type": "Organization",
+    "name": "CX-Builder",
+    "logo": { "@type": "ImageObject", "url": "https://cx-builder.com/cx-builder-dark.png" }
+  },
+  "mainEntityOfPage": { "@type": "WebPage", "@id": "https://cx-builder.com/articles/the-amount-decides/" }
+}
+</script>
+
+<link rel="icon" type="image/png" href="/cx-avitar-dark.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Source+Serif+4:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+  :root {
+    --accent:#5CA7DC; --dark:#020C12; --dark-footer:#010810;
+    --ink:#12212B; --ink-soft:#4A5B66; --rule:#E2E8ED;
+  }
+  body { font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif; background:#fff; color:var(--ink); -webkit-font-smoothing:antialiased; line-height:1.6; }
+  a { color:inherit; text-decoration:none; }
+  img { max-width:100%; height:auto; display:block; }
+  svg { width:100%; }
+
+  /* header / footer: dark, matches cx-builder.com */
+  .nav { background:rgba(2,12,18,0.96); border-bottom:1px solid rgba(255,255,255,0.06); position:sticky; top:0; z-index:50; }
+  .nav-inner { max-width:80rem; margin:0 auto; display:flex; align-items:center; justify-content:space-between; height:4rem; padding:0 1.5rem; }
+  .nav-logo { height:2.88rem; margin:-0.75rem 0; }
+  .nav-links { display:flex; align-items:center; gap:2rem; }
+  .nav-links a { font-size:0.875rem; color:rgba(255,255,255,0.6); transition:color .2s; }
+  .nav-links a:hover, .nav-links a.on { color:#fff; }
+  .nav-cta { border-radius:.5rem; padding:.5rem 1rem; font-size:.875rem; font-weight:600; background:var(--accent); color:var(--dark); }
+
+  .wrap { max-width:46rem; margin:0 auto; padding:0 1.5rem; }
+  .crumb { padding:2.5rem 0 1.25rem; font-size:.875rem; color:var(--ink-soft); }
+  .crumb a:hover { color:var(--accent); }
+
+  .kicker { font-size:.75rem; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:var(--accent); margin-bottom:1rem; }
+  h1 { font-family:'Source Serif 4',Georgia,serif; font-size:clamp(2.1rem,5.5vw,3.1rem); font-weight:700; line-height:1.12; letter-spacing:-.015em; }
+  .standfirst { font-family:'Source Serif 4',Georgia,serif; font-style:italic; font-size:clamp(1.1rem,2.4vw,1.35rem); line-height:1.55; color:var(--ink-soft); margin-top:1.25rem; }
+
+  .byline { display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:1rem;
+            border-top:1px solid var(--rule); border-bottom:1px solid var(--rule); margin:2rem 0 2.5rem; padding:.9rem 0; font-size:.9rem; color:var(--ink-soft); }
+  .share-li { display:inline-flex; align-items:center; gap:.45rem; background:#0A66C2; color:#fff; font-weight:600; font-size:.8rem; padding:.5rem .85rem; border-radius:.375rem; }
+  .share-li:hover { background:#004182; }
+  .share-li svg { width:14px; height:14px; fill:currentColor; }
+
+  figure { margin:2.5rem 0; }
+  figure img { border-radius:.5rem; }
+  figcaption { font-size:.8rem; color:var(--ink-soft); margin-top:.6rem; }
+
+  h2 { font-family:'Source Serif 4',Georgia,serif; font-size:clamp(1.5rem,3.2vw,1.9rem); font-weight:700; line-height:1.25; margin:2.75rem 0 1rem; }
+  p { margin-bottom:1.15rem; font-size:1.06rem; }
+  .wrap ul { margin:0 0 1.15rem 1.25rem; }
+  .wrap ul li { margin-bottom:.5rem; font-size:1.06rem; }
+  .wrap p a, .wrap li a { color:var(--accent); text-decoration:underline; text-underline-offset:2px; }
+
+  .box { background:var(--dark); color:#fff; border-radius:.75rem; padding:1.75rem; margin:2.75rem 0; }
+  .box h3 { font-size:1.05rem; font-weight:700; margin-bottom:.6rem; }
+  .box p { color:rgba(255,255,255,0.72); margin-bottom:0; font-size:1rem; }
+
+  .more { border-top:1px solid var(--rule); margin-top:3rem; padding:1.5rem 0 4rem; display:flex; gap:1.5rem; flex-wrap:wrap; font-size:.9rem; }
+  .more a { color:var(--accent); }
+
+  .footer { background:var(--dark-footer); color:rgba(255,255,255,0.55); padding:2.5rem 1.5rem; }
+  .footer-inner { max-width:80rem; margin:0 auto; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:1rem; font-size:.85rem; }
+  .footer-links { display:flex; gap:1.5rem; }
+  .footer-links a:hover { color:#fff; }
+  .footer-logo { height:2rem; }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="/"><img class="nav-logo" src="/cx-builder-dark.png" alt="CX-Builder"></a>
+    <div class="nav-links">
+      <a href="/#features">Features</a>
+      <a href="/#install">Install</a>
+      <a href="/articles/" class="on">Articles</a>
+      <a href="https://github.com/dtsoden/cx-builder" target="_blank" rel="noopener noreferrer">GitHub</a>
+    </div>
+    <a href="/#install" class="nav-cta">Get Started</a>
+  </div>
+</nav>
+
+<div class="wrap">
+  <div class="crumb"><a href="/articles/">&larr; All articles</a></div>
+
+  <div class="kicker">Agent security &bull; Field note</div>
+  <h1>Your AI agent&#39;s permissions should depend on the amount</h1>
+  <p class="standfirst">Your access system was built for people who sign in once and work all day. An agent makes a fresh decision with every tool call, and the right answer depends on what that call is about to do.</p>
+
+  <div class="byline">
+    <span>David Soden &bull; 5 min read &bull; 28 October 2026</span>
+    <a class="share-li" href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fcx-builder.com%2Farticles%2Fthe-amount-decides%2F" target="_blank" rel="noopener noreferrer">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.34V9h3.41v1.56h.05c.48-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.55V9h3.57v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.72V1.72C24 .77 23.2 0 22.22 0z"/></svg>
+      Share on LinkedIn
+    </a>
+  </div>
+
+  <figure>
+    <img src="images/hero-badge-reader.webp" width="1600" height="900" alt="A hand in a suit sleeve holding a key card against a wall-mounted access reader">
+    <figcaption>A login answers who is at the door. It says nothing about what they do once inside.</figcaption>
+  </figure>
+
+  <h2>What happened</h2>
+  <p>An opinion piece in Infosecurity Magazine argues that <a href="https://www.infosecurity-magazine.com/opinions/agentic-ai-demands-new-approach-to/" target="_blank" rel="noopener noreferrer">agentic AI needs a new approach to identity and access management</a>. The argument is simple. A person authenticates once and then acts many times inside a session, and identity systems were designed around that habit. An agent acts one tool call at a time, and whether a given call should go through depends on details a login never sees, such as how much money moves and where it goes.</p>
+  <p>The piece cites IBM research in which more than two-thirds of executives expect AI agents to take independent actions in their businesses by 2027. It repeats IBM's warning that agents tend to pick up privileges nobody explicitly gave them. And it asks for approvals that can happen asynchronously and land in an audit trail that can't be altered, in place of the sign-in-and-go model built for staff.</p>
+
+  <h2>Why this matters to your business</h2>
+  <p>Think about the refund a support rep can issue today. A rep might be allowed to refund up to $50 without asking anyone, with anything larger going to a supervisor. That rule lives in a policy document and in the rep's head, and it holds because the rep follows it. Give the same refund tool to an AI agent with an API key, and the key says yes to $50 and yes to $5,000 alike. The limit you relied on has gone, and nobody decided to remove it.</p>
+  <p>The cost shows up in two places. One is the bad action itself: a credit applied to the wrong account, or a replacement shipped to an address the customer changed an hour earlier. The other comes later, in the review. Someone will ask who approved it, and "the agent had access" won't satisfy a finance team or an auditor.</p>
+  <p>Taking the tool away throws out the reason you built the agent. What you want is the old limit back, enforced by the system instead of remembered by a person.</p>
+
+  <figure>
+    <img src="images/card-on-terminal.webp" width="1400" height="788" alt="A hand holding a payment card against a card terminal on a split blue and orange background" loading="lazy">
+    <figcaption>Same tool, same login. A $40 refund and a $4,000 one deserve different answers.</figcaption>
+  </figure>
+
+  <h2>Why this is a CX-Builder use case</h2>
+  <p>The check belongs in the flow, in the gap between the moment the agent proposes an action and the moment the action happens. CX-Builder lets you build that gap. The agent reads the request and the order history, then proposes a refund with an amount and a destination. A condition step checks that proposal against rules you wrote. Small refunds back to the original payment method go straight through. Anything large, or headed to a new account, stops.</p>
+  <p>When it stops, the flow pauses and waits for a person. That is the asynchronous approval the article asks for. A supervisor sees the proposed action, the amount and the agent's reasoning, approves or rejects it when they get to it, and the run carries on from where it paused. The customer hears that the refund is with a supervisor, which beats silence. Every run is recorded, so when someone asks who approved what, there is an answer.</p>
+  <p>CX-Builder is self-hosted, so the rules and the record sit on your own infrastructure, where your security team can read them and your auditor can ask for them.</p>
+
+  <figure>
+    <img src="images/approval-on-phone.webp" width="1400" height="788" alt="A woman in a blazer at an office desk reading her phone with papers and a pen in front of her" loading="lazy">
+    <figcaption>An approval that can wait for the supervisor fits the way supervisors actually work.</figcaption>
+  </figure>
+
+  <h2>What this looks like if you build it</h2>
+  <p>It is one agentflow. The refund call is a tool that only the flow can fire, after the check. The agent produces a structured proposal with fixed fields for amount, recipient and reason. A condition node reads those fields against your thresholds, and the high-value branch runs into a human input node that holds the run until someone approves. Start the thresholds low and raise them as the approval history shows the agent getting it right.</p>
+
+  <div class="box">
+    <h3>The takeaway</h3>
+    <p>List every action your agents can take that moves money, changes an account, or sends something outside the company. Next to each one, write the limit a human employee has for the same action. Wherever an agent holds that action with no limit, build the limit into the flow this quarter, while the volume is still small. Loosening a rule you already have is far easier than adding one after an incident.</p>
+  </div>
+
+  <div class="more">
+    <a href="/articles/">All articles</a>
+    <a href="/#install">Install CX-Builder</a>
+    <a href="https://github.com/dtsoden/cx-builder" target="_blank" rel="noopener noreferrer">View on GitHub</a>
+  </div>
+</div>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <img class="footer-logo" src="/cx-builder-dark.png" alt="CX-Builder">
+    <div class="footer-links">
+      <a href="/">Home</a>
+      <a href="/articles/">Articles</a>
+      <a href="https://github.com/dtsoden/cx-builder" target="_blank" rel="noopener noreferrer">GitHub</a>
+      <a href="https://ainews.davidsoden.com/" target="_blank" rel="noopener noreferrer">AI News</a>
+    </div>
+    <span>&copy; 2026 CX-Builder</span>
+  </div>
+</footer>
+
+</body>
+</html>
