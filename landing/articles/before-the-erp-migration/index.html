@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-CBL2K7674N"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-CBL2K7674N');
+</script>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Your customer agent shouldn't wait for the ERP migration</title>
+<meta name="description" content="SAP and Oracle tie their agentic AI to a cloud ERP move. Your customers' order and invoice questions can be answered from the ERP system you already run today.">
+<link rel="canonical" href="https://cx-builder.com/articles/before-the-erp-migration/">
+<meta name="robots" content="index, follow, max-image-preview:large">
+
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://cx-builder.com/articles/before-the-erp-migration/">
+<meta property="og:site_name" content="CX-Builder">
+<meta property="og:title" content="Your customer agent shouldn't wait for the ERP migration">
+<meta property="og:description" content="SAP and Oracle tie their agentic AI to a cloud ERP move. Your customers' order and invoice questions can be answered from the ERP system you already run today.">
+<meta property="og:image" content="https://cx-builder.com/articles/before-the-erp-migration/images/hero-loading-dock.webp">
+<meta property="og:image:width" content="1600">
+<meta property="og:image:height" content="900">
+<meta property="og:image:alt" content="A delivery truck pulling out of a dim warehouse loading dock past stacked pallets">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Your customer agent shouldn't wait for the ERP migration">
+<meta name="twitter:description" content="SAP and Oracle tie their agentic AI to a cloud ERP move. Your customers' order and invoice questions can be answered from the ERP system you already run today.">
+<meta name="twitter:image" content="https://cx-builder.com/articles/before-the-erp-migration/images/hero-loading-dock.webp">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Your customer agent shouldn't wait for the ERP migration",
+  "description": "SAP and Oracle tie their agentic AI to a cloud ERP move. Your customers' order and invoice questions can be answered from the ERP system you already run today.",
+  "image": "https://cx-builder.com/articles/before-the-erp-migration/images/hero-loading-dock.webp",
+  "datePublished": "2026-10-30",
+  "dateModified": "2026-10-30",
+  "author": { "@type": "Person", "name": "David Soden" },
+  "publisher": {
+    "@type": "Organization",
+    "name": "CX-Builder",
+    "logo": { "@type": "ImageObject", "url": "https://cx-builder.com/cx-builder-dark.png" }
+  },
+  "mainEntityOfPage": { "@type": "WebPage", "@id": "https://cx-builder.com/articles/before-the-erp-migration/" }
+}
+</script>
+
+<link rel="icon" type="image/png" href="/cx-avitar-dark.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Source+Serif+4:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+  :root {
+    --accent:#5CA7DC; --dark:#020C12; --dark-footer:#010810;
+    --ink:#12212B; --ink-soft:#4A5B66; --rule:#E2E8ED;
+  }
+  body { font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif; background:#fff; color:var(--ink); -webkit-font-smoothing:antialiased; line-height:1.6; }
+  a { color:inherit; text-decoration:none; }
+  img { max-width:100%; height:auto; display:block; }
+  svg { width:100%; }
+
+  /* header / footer: dark, matches cx-builder.com */
+  .nav { background:rgba(2,12,18,0.96); border-bottom:1px solid rgba(255,255,255,0.06); position:sticky; top:0; z-index:50; }
+  .nav-inner { max-width:80rem; margin:0 auto; display:flex; align-items:center; justify-content:space-between; height:4rem; padding:0 1.5rem; }
+  .nav-logo { height:2.88rem; margin:-0.75rem 0; }
+  .nav-links { display:flex; align-items:center; gap:2rem; }
+  .nav-links a { font-size:0.875rem; color:rgba(255,255,255,0.6); transition:color .2s; }
+  .nav-links a:hover, .nav-links a.on { color:#fff; }
+  .nav-cta { border-radius:.5rem; padding:.5rem 1rem; font-size:.875rem; font-weight:600; background:var(--accent); color:var(--dark); }
+
+  .wrap { max-width:46rem; margin:0 auto; padding:0 1.5rem; }
+  .crumb { padding:2.5rem 0 1.25rem; font-size:.875rem; color:var(--ink-soft); }
+  .crumb a:hover { color:var(--accent); }
+
+  .kicker { font-size:.75rem; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:var(--accent); margin-bottom:1rem; }
+  h1 { font-family:'Source Serif 4',Georgia,serif; font-size:clamp(2.1rem,5.5vw,3.1rem); font-weight:700; line-height:1.12; letter-spacing:-.015em; }
+  .standfirst { font-family:'Source Serif 4',Georgia,serif; font-style:italic; font-size:clamp(1.1rem,2.4vw,1.35rem); line-height:1.55; color:var(--ink-soft); margin-top:1.25rem; }
+
+  .byline { display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:1rem;
+            border-top:1px solid var(--rule); border-bottom:1px solid var(--rule); margin:2rem 0 2.5rem; padding:.9rem 0; font-size:.9rem; color:var(--ink-soft); }
+  .share-li { display:inline-flex; align-items:center; gap:.45rem; background:#0A66C2; color:#fff; font-weight:600; font-size:.8rem; padding:.5rem .85rem; border-radius:.375rem; }
+  .share-li:hover { background:#004182; }
+  .share-li svg { width:14px; height:14px; fill:currentColor; }
+
+  figure { margin:2.5rem 0; }
+  figure img { border-radius:.5rem; }
+  figcaption { font-size:.8rem; color:var(--ink-soft); margin-top:.6rem; }
+
+  h2 { font-family:'Source Serif 4',Georgia,serif; font-size:clamp(1.5rem,3.2vw,1.9rem); font-weight:700; line-height:1.25; margin:2.75rem 0 1rem; }
+  p { margin-bottom:1.15rem; font-size:1.06rem; }
+  .wrap ul { margin:0 0 1.15rem 1.25rem; }
+  .wrap ul li { margin-bottom:.5rem; font-size:1.06rem; }
+  .wrap p a, .wrap li a { color:var(--accent); text-decoration:underline; text-underline-offset:2px; }
+
+  .box { background:var(--dark); color:#fff; border-radius:.75rem; padding:1.75rem; margin:2.75rem 0; }
+  .box h3 { font-size:1.05rem; font-weight:700; margin-bottom:.6rem; }
+  .box p { color:rgba(255,255,255,0.72); margin-bottom:0; font-size:1rem; }
+
+  .more { border-top:1px solid var(--rule); margin-top:3rem; padding:1.5rem 0 4rem; display:flex; gap:1.5rem; flex-wrap:wrap; font-size:.9rem; }
+  .more a { color:var(--accent); }
+
+  .footer { background:var(--dark-footer); color:rgba(255,255,255,0.55); padding:2.5rem 1.5rem; }
+  .footer-inner { max-width:80rem; margin:0 auto; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:1rem; font-size:.85rem; }
+  .footer-links { display:flex; gap:1.5rem; }
+  .footer-links a:hover { color:#fff; }
+  .footer-logo { height:2rem; }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="/"><img class="nav-logo" src="/cx-builder-dark.png" alt="CX-Builder"></a>
+    <div class="nav-links">
+      <a href="/#features">Features</a>
+      <a href="/#install">Install</a>
+      <a href="/articles/" class="on">Articles</a>
+      <a href="https://github.com/dtsoden/cx-builder" target="_blank" rel="noopener noreferrer">GitHub</a>
+    </div>
+    <a href="/#install" class="nav-cta">Get Started</a>
+  </div>
+</nav>
+
+<div class="wrap">
+  <div class="crumb"><a href="/articles/">&larr; All articles</a></div>
+
+  <div class="kicker">Platform choice &bull; Field note</div>
+  <h1>Your customer agent shouldn't wait for the ERP migration</h1>
+  <p class="standfirst">The big ERP vendors sell their agents as the reason to migrate. The questions your customers ask about orders and invoices don't have to wait for that project to finish.</p>
+
+  <div class="byline">
+    <span>David Soden &bull; 5 min read &bull; 30 October 2026</span>
+    <a class="share-li" href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fcx-builder.com%2Farticles%2Fbefore-the-erp-migration%2F" target="_blank" rel="noopener noreferrer">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.34V9h3.41v1.56h.05c.48-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.55V9h3.57v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.72V1.72C24 .77 23.2 0 22.22 0z"/></svg>
+      Share on LinkedIn
+    </a>
+  </div>
+
+  <figure>
+    <img src="images/hero-loading-dock.webp" width="1600" height="900" alt="A delivery truck pulling out of a dim warehouse loading dock past stacked pallets">
+    <figcaption>Orders keep shipping while the system behind them waits for its upgrade date.</figcaption>
+  </figure>
+
+  <h2>What happened</h2>
+  <p>TechRadar ran a piece arguing that <a href="https://www.techradar.com/pro/agentic-ai-has-a-price-its-called-erp-migration" target="_blank" rel="noopener noreferrer">agentic AI from the big ERP vendors comes with a condition attached</a>. SAP's version, which it calls the autonomous enterprise, puts more than 200 specialized agents behind its Joule assistant, and the full set is reserved for cloud subscribers. Oracle's agents run only inside Fusion Cloud, so a company still on E-Business Suite has to move before it gets any of them. Customers on older on-premises releases get a reduced version or nothing.</p>
+  <p>The article's complaint is about sequencing. The agent is sold as the reason to modernize, and the migration is the price of entry. Both projects end up drawing on the same budget, and the vendor's roadmap sets the date. Its suggested way out is third-party support for the ERP you already run, which removes the forced deadline and frees money for AI you pick on its own merits.</p>
+
+  <h2>Why this matters to your business</h2>
+  <p>An ERP migration is measured in years, and its cost is a board conversation. If agentic AI gets filed under that project, every customer-facing improvement that depends on ERP data waits with it. A large share of what customers ask is ERP data. Where is my order, when does it ship, can I get a copy of that invoice, why was I charged twice. Those calls and emails reach your support team today, and the answer sits in a system that is not going anywhere for at least two more budget cycles.</p>
+  <p>Treating the two as one decision puts your service team on a finance-systems timetable. It also weakens your position in the migration itself. If the agent features are why you are moving, you have told the vendor you will accept their date.</p>
+
+  <figure>
+    <img src="images/server-racks.webp" width="1400" height="788" alt="Rows of black server cabinets in a data center with red and blue network cables visible through the doors" loading="lazy">
+    <figcaption>The system of record stays where it is for now. The agent only needs to read it.</figcaption>
+  </figure>
+
+  <p>So separate them. The back-office agents SAP and Oracle are building, the ones that post journals and reconcile accounts, probably do belong inside the platform. The agent that answers a customer about an order doesn't need to live there. It needs to read the ERP, and almost every ERP already allows that.</p>
+
+  <h2>Why this is a CX-Builder use case</h2>
+  <p>CX-Builder runs on your own server outside any ERP and treats the system of record as a source to read from. Most ERPs, old ones included, expose order and invoice data somehow: an API, a reporting database, a scheduled export. An agent built in CX-Builder calls that source as a tool and answers in your wording. Whatever it can't settle goes to a person with the record already attached.</p>
+  <p>When the migration does happen, on a date you chose, you change what the tool points at. The conversation design, the escalation rules and the approval steps stay as they were, and the customer never sees the back end move.</p>
+  <p>Keep the first version read-only. Looking up an order carries little risk. Issuing a credit note does not, so anything that writes back to the ERP goes through a human approval step until you have reason to trust it.</p>
+
+  <figure>
+    <img src="images/agents-on-calls.webp" width="1400" height="788" alt="A support agent wearing a headset works on a laptop while colleagues take calls at desks behind her" loading="lazy">
+    <figcaption>Order and invoice questions are the ones a read-only agent can take off this queue.</figcaption>
+  </figure>
+
+  <h2>What this looks like if you build it</h2>
+  <p>One agentflow with a few tools. The main one is a custom tool that queries a read-only view or API over orders, shipments and invoices, scoped to the customer's verified account. Next to it, a document store holds what the ERP doesn't: shipping terms, the returns policy, payment terms, all loaded into a vector store for retrieval. A human-in-the-loop step holds any requested change, such as a new delivery address or a disputed charge, until a person approves it.</p>
+  <p>When the new ERP arrives, the builder repoints the tool and replays the same test conversations against it. If the answers match, the cutover is done as far as customers are concerned.</p>
+
+  <div class="box">
+    <h3>The takeaway</h3>
+    <p>Pull last quarter's support contacts and tag the ones whose answer lives in the ERP. If that share is large, put a read-only agent in front of the ERP you run now, and make the migration decision on its own costs and its own date.</p>
+  </div>
+
+  <div class="more">
+    <a href="/articles/">All articles</a>
+    <a href="/#install">Install CX-Builder</a>
+    <a href="https://github.com/dtsoden/cx-builder" target="_blank" rel="noopener noreferrer">View on GitHub</a>
+  </div>
+</div>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <img class="footer-logo" src="/cx-builder-dark.png" alt="CX-Builder">
+    <div class="footer-links">
+      <a href="/">Home</a>
+      <a href="/articles/">Articles</a>
+      <a href="https://github.com/dtsoden/cx-builder" target="_blank" rel="noopener noreferrer">GitHub</a>
+      <a href="https://ainews.davidsoden.com/" target="_blank" rel="noopener noreferrer">AI News</a>
+    </div>
+    <span>&copy; 2026 CX-Builder</span>
+  </div>
+</footer>
+
+</body>
+</html>
