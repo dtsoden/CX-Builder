@@ -50,6 +50,17 @@
   "blogPost": [
     {
       "@type": "BlogPosting",
+      "headline": "Your chatbot explains the fix. It should run it instead.",
+      "url": "https://cx-builder.com/articles/leave-the-chatbot-loop/",
+      "datePublished": "2026-11-02",
+      "image": "https://cx-builder.com/articles/leave-the-chatbot-loop/images/hero-following-instructions.webp",
+      "author": {
+        "@type": "Person",
+        "name": "David Soden"
+      }
+    },
+    {
+      "@type": "BlogPosting",
       "headline": "Your customer agent shouldn't wait for the ERP migration",
       "url": "https://cx-builder.com/articles/before-the-erp-migration/",
       "datePublished": "2026-10-30",
@@ -627,6 +638,17 @@
 <div class="count" id="count"></div>
 
 <main class="grid" id="cards">
+      <a class="card" href="/articles/leave-the-chatbot-loop/"
+         data-category="Agent design"
+         data-search="your chatbot explains the fix. it should run it instead. red hat calls it the chatbot loop: assistants that explain and never act. the way out is an agent that decides and automation you already trust that acts. agent design"
+         data-date="2026-11-02">
+        <img src="/articles/leave-the-chatbot-loop/images/hero-following-instructions.webp" alt="A man in glasses on the phone at a laptop, frowning as he works through a problem at home" loading="lazy" width="1600" height="900">
+        <div class="card-body">
+          <div class="meta"><span class="cat">Agent design</span> &bull; Nov 2, 2026 &bull; 5 min read</div>
+          <h2>Your chatbot explains the fix. It should run it instead.</h2>
+          <p>Red Hat calls it the chatbot loop: assistants that explain and never act. The way out is an agent that decides and automation you already trust that acts.</p>
+        </div>
+      </a>
       <a class="card" href="/articles/before-the-erp-migration/"
          data-category="Platform choice"
          data-search="your customer agent shouldn&#x27;t wait for the erp migration sap and oracle tie their agentic ai to a cloud erp move. your customers&#x27; order and invoice questions can be answered from the erp system you already run today. platform choice"
@@ -682,17 +704,6 @@
           <p>A bank went from checking about 40% of its risk to all of it. Support QA can make the same move: an agent reads every ticket, people review what it flags.</p>
         </div>
       </a>
-      <a class="card" href="/articles/the-ticket-that-keeps-coming-back/"
-         data-category="Operations"
-         data-search="your agent closes the ticket. who finds out why it came? synopsys now points agents at the root cause of chip failures. your support queue has the same gap. tickets get closed and the cause stays put. operations"
-         data-date="2026-10-19">
-        <img src="/articles/the-ticket-that-keeps-coming-back/images/hero-tracing-the-fault.webp" alt="A technician looking through a microscope at an electronic component on a lab bench" loading="lazy" width="1600" height="900">
-        <div class="card-body">
-          <div class="meta"><span class="cat">Operations</span> &bull; Oct 19, 2026 &bull; 5 min read</div>
-          <h2>Your agent closes the ticket. Who finds out why it came?</h2>
-          <p>Synopsys now points agents at the root cause of chip failures. Your support queue has the same gap. Tickets get closed and the cause stays put.</p>
-        </div>
-      </a>
 </main>
 
 <div class="empty" id="empty">
@@ -717,7 +728,7 @@
 <script>
 (function () {
   var PER_PAGE = 6;
-  var TOTAL    = 42;
+  var TOTAL    = 43;
   var grid   = document.getElementById('cards');
   var search = document.getElementById('search');
   var chips  = document.getElementById('chips');
