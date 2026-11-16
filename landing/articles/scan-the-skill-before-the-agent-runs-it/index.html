@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-CBL2K7674N"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-CBL2K7674N');
+</script>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Check every add-on before your support agent can run it</title>
+<meta name="description" content="NVIDIA released a free scanner for AI agent skills. The lesson for support leaders: anything you plug into an agent inherits its access, so review it first.">
+<link rel="canonical" href="https://cx-builder.com/articles/scan-the-skill-before-the-agent-runs-it/">
+<meta name="robots" content="index, follow, max-image-preview:large">
+
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://cx-builder.com/articles/scan-the-skill-before-the-agent-runs-it/">
+<meta property="og:site_name" content="CX-Builder">
+<meta property="og:title" content="Check every add-on before your support agent can run it">
+<meta property="og:description" content="NVIDIA released a free scanner for AI agent skills. The lesson for support leaders: anything you plug into an agent inherits its access, so review it first.">
+<meta property="og:image" content="https://cx-builder.com/articles/scan-the-skill-before-the-agent-runs-it/images/hero-security-screening.webp">
+<meta property="og:image:width" content="1600">
+<meta property="og:image:height" content="900">
+<meta property="og:image:alt" content="Travelers placing bags on an X-ray scanner belt at an airport security checkpoint">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Check every add-on before your support agent can run it">
+<meta name="twitter:description" content="NVIDIA released a free scanner for AI agent skills. The lesson for support leaders: anything you plug into an agent inherits its access, so review it first.">
+<meta name="twitter:image" content="https://cx-builder.com/articles/scan-the-skill-before-the-agent-runs-it/images/hero-security-screening.webp">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Check every add-on before your support agent can run it",
+  "description": "NVIDIA released a free scanner for AI agent skills. The lesson for support leaders: anything you plug into an agent inherits its access, so review it first.",
+  "image": "https://cx-builder.com/articles/scan-the-skill-before-the-agent-runs-it/images/hero-security-screening.webp",
+  "datePublished": "2026-11-16",
+  "dateModified": "2026-11-16",
+  "author": { "@type": "Person", "name": "David Soden" },
+  "publisher": {
+    "@type": "Organization",
+    "name": "CX-Builder",
+    "logo": { "@type": "ImageObject", "url": "https://cx-builder.com/cx-builder-dark.png" }
+  },
+  "mainEntityOfPage": { "@type": "WebPage", "@id": "https://cx-builder.com/articles/scan-the-skill-before-the-agent-runs-it/" }
+}
+</script>
+
+<link rel="icon" type="image/png" href="/cx-avitar-dark.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Source+Serif+4:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+  :root {
+    --accent:#5CA7DC; --dark:#020C12; --dark-footer:#010810;
+    --ink:#12212B; --ink-soft:#4A5B66; --rule:#E2E8ED;
+  }
+  body { font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif; background:#fff; color:var(--ink); -webkit-font-smoothing:antialiased; line-height:1.6; }
+  a { color:inherit; text-decoration:none; }
+  img { max-width:100%; height:auto; display:block; }
+  svg { width:100%; }
+
+  /* header / footer: dark, matches cx-builder.com */
+  .nav { background:rgba(2,12,18,0.96); border-bottom:1px solid rgba(255,255,255,0.06); position:sticky; top:0; z-index:50; }
+  .nav-inner { max-width:80rem; margin:0 auto; display:flex; align-items:center; justify-content:space-between; height:4rem; padding:0 1.5rem; }
+  .nav-logo { height:2.88rem; margin:-0.75rem 0; }
+  .nav-links { display:flex; align-items:center; gap:2rem; }
+  .nav-links a { font-size:0.875rem; color:rgba(255,255,255,0.6); transition:color .2s; }
+  .nav-links a:hover, .nav-links a.on { color:#fff; }
+  .nav-cta { border-radius:.5rem; padding:.5rem 1rem; font-size:.875rem; font-weight:600; background:var(--accent); color:var(--dark); }
+
+  .wrap { max-width:46rem; margin:0 auto; padding:0 1.5rem; }
+  .crumb { padding:2.5rem 0 1.25rem; font-size:.875rem; color:var(--ink-soft); }
+  .crumb a:hover { color:var(--accent); }
+
+  .kicker { font-size:.75rem; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:var(--accent); margin-bottom:1rem; }
+  h1 { font-family:'Source Serif 4',Georgia,serif; font-size:clamp(2.1rem,5.5vw,3.1rem); font-weight:700; line-height:1.12; letter-spacing:-.015em; }
+  .standfirst { font-family:'Source Serif 4',Georgia,serif; font-style:italic; font-size:clamp(1.1rem,2.4vw,1.35rem); line-height:1.55; color:var(--ink-soft); margin-top:1.25rem; }
+
+  .byline { display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:1rem;
+            border-top:1px solid var(--rule); border-bottom:1px solid var(--rule); margin:2rem 0 2.5rem; padding:.9rem 0; font-size:.9rem; color:var(--ink-soft); }
+  .share-li { display:inline-flex; align-items:center; gap:.45rem; background:#0A66C2; color:#fff; font-weight:600; font-size:.8rem; padding:.5rem .85rem; border-radius:.375rem; }
+  .share-li:hover { background:#004182; }
+  .share-li svg { width:14px; height:14px; fill:currentColor; }
+
+  figure { margin:2.5rem 0; }
+  figure img { border-radius:.5rem; }
+  figcaption { font-size:.8rem; color:var(--ink-soft); margin-top:.6rem; }
+
+  h2 { font-family:'Source Serif 4',Georgia,serif; font-size:clamp(1.5rem,3.2vw,1.9rem); font-weight:700; line-height:1.25; margin:2.75rem 0 1rem; }
+  p { margin-bottom:1.15rem; font-size:1.06rem; }
+  .wrap ul { margin:0 0 1.15rem 1.25rem; }
+  .wrap ul li { margin-bottom:.5rem; font-size:1.06rem; }
+  .wrap p a, .wrap li a { color:var(--accent); text-decoration:underline; text-underline-offset:2px; }
+
+  .box { background:var(--dark); color:#fff; border-radius:.75rem; padding:1.75rem; margin:2.75rem 0; }
+  .box h3 { font-size:1.05rem; font-weight:700; margin-bottom:.6rem; }
+  .box p { color:rgba(255,255,255,0.72); margin-bottom:0; font-size:1rem; }
+
+  .more { border-top:1px solid var(--rule); margin-top:3rem; padding:1.5rem 0 4rem; display:flex; gap:1.5rem; flex-wrap:wrap; font-size:.9rem; }
+  .more a { color:var(--accent); }
+
+  .footer { background:var(--dark-footer); color:rgba(255,255,255,0.55); padding:2.5rem 1.5rem; }
+  .footer-inner { max-width:80rem; margin:0 auto; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:1rem; font-size:.85rem; }
+  .footer-links { display:flex; gap:1.5rem; }
+  .footer-links a:hover { color:#fff; }
+  .footer-logo { height:2rem; }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="/"><img class="nav-logo" src="/cx-builder-dark.png" alt="CX-Builder"></a>
+    <div class="nav-links">
+      <a href="/#features">Features</a>
+      <a href="/#install">Install</a>
+      <a href="/articles/" class="on">Articles</a>
+      <a href="https://github.com/dtsoden/cx-builder" target="_blank" rel="noopener noreferrer">GitHub</a>
+    </div>
+    <a href="/#install" class="nav-cta">Get Started</a>
+  </div>
+</nav>
+
+<div class="wrap">
+  <div class="crumb"><a href="/articles/">&larr; All articles</a></div>
+
+  <div class="kicker">Agent security &bull; Field note</div>
+  <h1>Check every add-on before your support agent can run it</h1>
+  <p class="standfirst">NVIDIA just released a free scanner for AI agent skills. The tool is useful, but the habit behind it matters more: nothing gets plugged into an agent that talks to your customers until someone has looked at it.</p>
+
+  <div class="byline">
+    <span>David Soden &bull; 5 min read &bull; 16 November 2026</span>
+    <a class="share-li" href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fcx-builder.com%2Farticles%2Fscan-the-skill-before-the-agent-runs-it%2F" target="_blank" rel="noopener noreferrer">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.34V9h3.41v1.56h.05c.48-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.55V9h3.57v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.72V1.72C24 .77 23.2 0 22.22 0z"/></svg>
+      Share on LinkedIn
+    </a>
+  </div>
+
+  <figure>
+    <img src="images/hero-security-screening.webp" width="1600" height="900" alt="Travelers placing bags on an X-ray scanner belt at an airport security checkpoint">
+    <figcaption>Everything that boards gets screened first. Agent add-ons deserve the same rule.</figcaption>
+  </figure>
+
+  <h2>What happened</h2>
+  <p>NVIDIA has released <a href="https://www.helpnetsecurity.com/2026/08/03/skillspector-open-source-agent-skill-security-scanner/" target="_blank" rel="noopener noreferrer">SkillSpector, an open-source scanner for AI agent skills</a>. A skill is a packaged set of instructions that teaches an agent a new task. Many are just written guidance, but some ship with small scripts that can run commands, read the environment variables where passwords and API keys often live, and reach into the folders that hold server login keys.</p>
+  <p>You point SkillSpector at a skill and it tells you whether to install it. It looks for code that runs arbitrary commands, follows secrets to see whether they get sent anywhere, checks for known malware signatures, and flags hidden instructions meant to hijack the agent, including text disguised with invisible characters. It checks the skill's dependencies against a public database of known vulnerabilities. An optional second pass uses a language model to weed out false alarms. The result is a risk score, a list of findings, and a plain "do not install" when a skill with executable code turns up several serious problems. It's free on GitHub.</p>
+  <p>The Help Net Security write-up cites research finding that skills which ship with scripts are about twice as likely to be vulnerable as those that don't. That fits what you'd expect. Instructions can mislead an agent, but code can act.</p>
+
+  <h2>Why this matters to your business</h2>
+  <p>An add-on gets whatever access the agent has. If your support agent can read customer records, issue refunds or update accounts, so can every skill, tool and connector you attach to it. Installing one from an unknown source is closer to hiring a contractor and handing over the building keys on day one than it is to installing an app.</p>
+  <p>Most companies have a vendor review process for new software. Agent add-ons tend to skip it, because adding one doesn't look like buying software. A developer copies a folder or pastes a configuration, and the agent can do something new by the afternoon. Nobody in procurement or security ever sees it.</p>
+  <p>The failure cases are concrete. An API key leaks to a server you've never heard of. Customer data leaves through a tool that was supposed to format addresses. A hidden line in an instruction file tells the agent to skip a policy check. Any one of these can end in a breach notification, and in a support setting the customer often finds out before you do.</p>
+
+  <figure>
+    <img src="images/keys-in-the-lock.webp" width="1400" height="788" alt="A bunch of keys hanging from a lock in a half-open door" loading="lazy">
+    <figcaption>Every tool you attach to an agent can use whatever keys the agent holds.</figcaption>
+  </figure>
+
+  <h2>Why this is a CX-Builder use case</h2>
+  <p>CX-Builder doesn't scan skills, and it doesn't need to for this to work. What it gives you is a place where every capability an agent has is visible and was added on purpose. Tools, connectors and MCP servers show up as nodes in the flow. If a support agent can issue a refund, there is a refund tool on the canvas, and someone put it there.</p>
+  <p>That visibility makes a review step practical. Because CX-Builder is self-hosted, nothing reaches your agents unless your team installs it. Credentials live in one credential store and are assigned to individual nodes, so a lookup tool can get a read-only key while the refund tool gets a different one. Tools that change something can be set to wait for human approval before they run, so a bad add-on that slips through still can't act on its own. And a flow imported from a template or a colleague arrives as something you can open and read before any customer touches it.</p>
+
+  <h2>What this looks like if you build it</h2>
+  <p>Treat third-party tool code, skills and MCP server configurations like any other code your company ships. Keep them in a repository and run a scanner in the pipeline before anything is added to a flow. SkillSpector covers the skill format and writes SARIF, which most CI systems can read, and your existing dependency and code scanning can cover custom tools. In the agentflow, give each tool its own narrow credential, switch on Require Human Input for any tool that writes or refunds, and test new tools in a staging flow before they go near production traffic.</p>
+  <p>None of that is exotic. It's the review your company already does for new software, applied to the thing that has started to behave like software.</p>
+
+  <figure>
+    <img src="images/reviewing-the-code.webp" width="1400" height="788" alt="Two engineers sitting at a desk reviewing code on a monitor and laptop" loading="lazy">
+    <figcaption>A second pair of eyes before an add-on goes live costs less than a breach notice.</figcaption>
+  </figure>
+
+  <div class="box">
+    <h3>The takeaway</h3>
+    <p>This quarter, list every skill, tool and connector your customer-facing agents can call, along with who added it and which credential it holds. Anything nobody can vouch for comes out until someone has read it. Then make the scan and the approval a required step, so the list stays clean without anyone having to remember.</p>
+  </div>
+
+  <div class="more">
+    <a href="/articles/">All articles</a>
+    <a href="/#install">Install CX-Builder</a>
+    <a href="https://github.com/dtsoden/cx-builder" target="_blank" rel="noopener noreferrer">View on GitHub</a>
+  </div>
+</div>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <img class="footer-logo" src="/cx-builder-dark.png" alt="CX-Builder">
+    <div class="footer-links">
+      <a href="/">Home</a>
+      <a href="/articles/">Articles</a>
+      <a href="https://github.com/dtsoden/cx-builder" target="_blank" rel="noopener noreferrer">GitHub</a>
+      <a href="https://ainews.davidsoden.com/" target="_blank" rel="noopener noreferrer">AI News</a>
+    </div>
+    <span>&copy; 2026 CX-Builder</span>
+  </div>
+</footer>
+
+</body>
+</html>
