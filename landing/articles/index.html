@@ -50,6 +50,17 @@
   "blogPost": [
     {
       "@type": "BlogPosting",
+      "headline": "Your AI agent's test run needs the same walls as production",
+      "url": "https://cx-builder.com/articles/wall-off-the-test-run/",
+      "datePublished": "2026-11-18",
+      "image": "https://cx-builder.com/articles/wall-off-the-test-run/images/hero-locked-gate.webp",
+      "author": {
+        "@type": "Person",
+        "name": "David Soden"
+      }
+    },
+    {
+      "@type": "BlogPosting",
       "headline": "Check every add-on before your support agent can run it",
       "url": "https://cx-builder.com/articles/scan-the-skill-before-the-agent-runs-it/",
       "datePublished": "2026-11-16",
@@ -704,6 +715,17 @@
 <div class="count" id="count"></div>
 
 <main class="grid" id="cards">
+      <a class="card" href="/articles/wall-off-the-test-run/"
+         data-category="Agent security"
+         data-search="your ai agent&#x27;s test run needs the same walls as production ai models escaped an openai security test and reached hugging face. if your agent pilot holds live keys and an open network, it is already production. agent security"
+         data-date="2026-11-18">
+        <img src="/articles/wall-off-the-test-run/images/hero-locked-gate.webp" alt="A black chain link gate held shut with a chain and padlock across a concrete alley between two buildings" loading="lazy" width="1600" height="900">
+        <div class="card-body">
+          <div class="meta"><span class="cat">Agent security</span> &bull; Nov 18, 2026 &bull; 5 min read</div>
+          <h2>Your AI agent's test run needs the same walls as production</h2>
+          <p>AI models escaped an OpenAI security test and reached Hugging Face. If your agent pilot holds live keys and an open network, it is already production.</p>
+        </div>
+      </a>
       <a class="card" href="/articles/scan-the-skill-before-the-agent-runs-it/"
          data-category="Agent security"
          data-search="check every add-on before your support agent can run it nvidia released a free scanner for ai agent skills. the lesson for support leaders: anything you plug into an agent inherits its access, so review it first. agent security"
@@ -759,17 +781,6 @@
           <p>An essay argues agents will absorb management's coordination work. In a support team, the chasing and status reports can go first. The decisions stay put.</p>
         </div>
       </a>
-      <a class="card" href="/articles/attack-your-own-agent-first/"
-         data-category="Agent security"
-         data-search="attack your own customer agent before someone else does a security firm now sends ai agents to attack its clients&amp;#39; systems on a loop. your customer chatbot needs the same treatment every time you change it. agent security"
-         data-date="2026-11-04">
-        <img src="/articles/attack-your-own-agent-first/images/hero-sparring.webp" alt="Two fencers in white mid-bout, one leaping through the air while the other lunges low on a wooden floor" loading="lazy" width="1600" height="900">
-        <div class="card-body">
-          <div class="meta"><span class="cat">Agent security</span> &bull; Nov 4, 2026 &bull; 4 min read</div>
-          <h2>Attack your own customer agent before someone else does</h2>
-          <p>A security firm now sends AI agents to attack its clients&#39; systems on a loop. Your customer chatbot needs the same treatment every time you change it.</p>
-        </div>
-      </a>
 </main>
 
 <div class="empty" id="empty">
@@ -794,7 +805,7 @@
 <script>
 (function () {
   var PER_PAGE = 6;
-  var TOTAL    = 49;
+  var TOTAL    = 50;
   var grid   = document.getElementById('cards');
   var search = document.getElementById('search');
   var chips  = document.getElementById('chips');
